@@ -1,7 +1,7 @@
 
-import React, { useState } from 'react';
-import { Check, ChevronUp, ChevronDown } from 'lucide-react';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import React from 'react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Check } from 'lucide-react';
 import SizeSelector from './SizeSelector';
 import PriceDisplay from './PriceDisplay';
 import ContactButton from './ContactButton';
@@ -24,8 +24,6 @@ const GeneralCleaning: React.FC<GeneralCleaningProps> = ({
   setSelectedSqm,
   includedCategories 
 }) => {
-  const [isChecklistOpen, setIsChecklistOpen] = useState(false);
-
   const price = calculatePrice(
     sqmOptions,
     selectedSqm,
@@ -42,52 +40,56 @@ const GeneralCleaning: React.FC<GeneralCleaningProps> = ({
   return (
     <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
       <h3 className="text-2xl font-semibold mb-6 text-center">{t('generalCleaning')}</h3>
-      <div className="max-w-md mx-auto">
-        <SizeSelector
-          label={t('homeSize')}
-          sqmOptions={sqmOptions}
-          selectedSqm={selectedSqm}
-          setSelectedSqm={setSelectedSqm}
-          selectSizeText={t('selectSize')}
-        />
+      
+      <div className="w-full">
+        <div className="max-w-md mx-auto mb-8">
+          <SizeSelector
+            label={t('homeSize')}
+            sqmOptions={sqmOptions}
+            selectedSqm={selectedSqm}
+            setSelectedSqm={setSelectedSqm}
+            selectSizeText={t('selectSize')}
+          />
 
-        <PriceDisplay
-          title={t('estimatedPrice')}
-          price={price}
-        />
+          <PriceDisplay
+            title={t('estimatedPrice')}
+            price={price}
+          />
 
-        <FeaturesList features={features} />
+          <FeaturesList features={features} />
 
-        <ContactButton
-          label={selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
-          className="mt-6"
-        />
+          <ContactButton
+            label={selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
+            className="mt-6 mb-8"
+          />
+        </div>
         
-        {/* General Cleaning Checklist */}
-        <div className="mt-8">
-          <Collapsible open={isChecklistOpen} onOpenChange={setIsChecklistOpen} className="w-full">
-            <CollapsibleTrigger className="w-full bg-shr-blue-dark text-white rounded-lg p-4 flex justify-between items-center font-normal text-base">
-              <h3 className="text-xl font-semibold">{t('cleaningIncludedIn')} {t('generalCleaning')}</h3>
-              {isChecklistOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
-            </CollapsibleTrigger>
-            
-            <CollapsibleContent className="mt-6 bg-white rounded-lg p-6 shadow-lg">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {includedCategories.map((category) => (
-                  <div key={category.id} className="bg-gray-50 rounded-lg p-5">
-                    <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{category.title}</h4>
-                    <ul className="space-y-2">
-                      {category.items.map((item, index) => (
-                        <li key={index} className="flex items-start">
-                          <Check size={18} className="text-green-500 mr-2" /> {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
+        {/* General Cleaning Checklist - Full width content */}
+        <div className="mt-4 w-full">
+          <h3 className="text-xl font-semibold mb-6">{t('cleaningIncludedIn')} {t('generalCleaning')}</h3>
+        </div>
+
+        {/* Cleaning categories in grid layout */}
+        <div className="w-full">
+          <Accordion type="single" collapsible className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
+            {includedCategories.map(category => (
+              <AccordionItem key={category.id} value={category.id} className="border border-gray-200 rounded-lg">
+                <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
+                  {category.title}
+                </AccordionTrigger>
+                <AccordionContent className="bg-gray-50 rounded-b-lg p-5 pt-2">
+                  <ul className="space-y-2 mt-2">
+                    {category.items.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <Check size={18} className="text-green-500 mr-2 mt-1" /> 
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </div>
     </div>
