@@ -3,6 +3,13 @@ import { useState } from 'react';
 import { useLanguage } from './LanguageSwitcher';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel";
 
 const About = () => {
   const { t } = useLanguage();
@@ -18,13 +25,32 @@ const About = () => {
         
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative">
-            <div className="aspect-square overflow-hidden rounded-lg shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1605184858581-da8f4ac4c8c8?q=80&w=1770" 
-                alt="SHR Cleaning Professional" 
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <Carousel className="w-full">
+              <CarouselContent>
+                <CarouselItem>
+                  <div className="aspect-square overflow-hidden rounded-lg shadow-lg">
+                    <img 
+                      src="https://images.unsplash.com/photo-1686178827149-6d55c72d81df?q=80&w=1770" 
+                      alt="SHR Cleaning Professional" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="aspect-square overflow-hidden rounded-lg shadow-lg">
+                    <img 
+                      src="https://images.unsplash.com/photo-1686178827149-6d55c72d81df?q=80&w=1770" 
+                      alt="SHR Cleaning Service" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+              <div className="absolute inset-0 flex items-center justify-between pointer-events-none">
+                <CarouselPrevious className="pointer-events-auto left-2" />
+                <CarouselNext className="pointer-events-auto right-2" />
+              </div>
+            </Carousel>
           </div>
           
           <div className="space-y-6">
@@ -71,135 +97,6 @@ const About = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Cleaning Checklist Section */}
-        <div className="mt-16">
-          <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full">
-            <CollapsibleTrigger className="w-full bg-shr-blue-dark text-white rounded-lg p-4 flex justify-between items-center">
-              <h3 className="text-xl font-semibold">{t('cleaningIncluded')}</h3>
-              {isOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
-            </CollapsibleTrigger>
-            
-            <CollapsibleContent className="mt-6 bg-white rounded-lg p-6 shadow-lg">
-              <p className="text-gray-700 mb-8">{t('cleaningChecklistDescription')}</p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {/* Kitchen */}
-                <div className="bg-gray-50 rounded-lg p-5">
-                  <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('kitchen')}</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Vacuum floors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Mop floors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Damp-dry skirting boards</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Damp-dry door frames</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust shelves & joinery</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust free surfaces</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust covered surfaces</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust off lamps</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Polish mirrors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust the furniture</li>
-                  </ul>
-                </div>
-                
-                {/* Living Room */}
-                <div className="bg-gray-50 rounded-lg p-5">
-                  <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('livingRoom')}</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Vacuum floors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Mop floors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Damp-dry skirting boards</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Damp-dry door frames</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust shelves & joinery</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust free surfaces</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust covered surfaces</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust off electronics</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust off lamps</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Polish mirrors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust the furniture</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust the desk</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dusting paintings</li>
-                  </ul>
-                </div>
-                
-                {/* Bedroom */}
-                <div className="bg-gray-50 rounded-lg p-5">
-                  <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('bedroom')}</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Vacuum floors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Mop floors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Damp-dry skirting boards</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Damp-dry door frames</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust shelves & joinery</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust free surfaces</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust covered surfaces</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust off electronics</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust off lamps</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dusting paintings</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Polish mirrors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust the furniture</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust the desk</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Wipe bedside tables & headboards</li>
-                  </ul>
-                </div>
-                
-                {/* Bathroom */}
-                <div className="bg-gray-50 rounded-lg p-5">
-                  <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('bathroom')}</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Vacuum floors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Mop floors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Damp-dry skirting boards</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Damp-dry door frames</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust shelves & joinery</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust free surfaces</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust covered surfaces</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust off lamps</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Polish mirrors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust the furniture</li>
-                  </ul>
-                </div>
-                
-                {/* Hall */}
-                <div className="bg-gray-50 rounded-lg p-5">
-                  <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('hall')}</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Vacuum floors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Mop floors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Damp-dry skirting boards</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Damp-dry door frames</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust shelves & joinery</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust free surfaces</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust covered surfaces</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust off lamps</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Polish mirrors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust the furniture</li>
-                  </ul>
-                </div>
-                
-                {/* Extra Room */}
-                <div className="bg-gray-50 rounded-lg p-5">
-                  <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('extraRoom')}</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Vacuum floors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Mop floors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Damp-dry skirting boards</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Damp-dry door frames</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust shelves & joinery</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust free surfaces</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust covered surfaces</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust off electronics</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust off lamps</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Polish mirrors</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust the furniture</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dust the desk</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Wipe bedside tables & headboards</li>
-                    <li className="flex items-center"><Check size={18} className="text-green-500 mr-2" /> Dusting paintings</li>
-                  </ul>
-                </div>
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
         </div>
       </div>
     </section>

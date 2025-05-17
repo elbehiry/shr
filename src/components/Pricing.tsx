@@ -1,11 +1,11 @@
-
 import React, { useState } from 'react';
 import { useLanguage } from './LanguageSwitcher';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Phone, Check, Plus, Minus } from 'lucide-react';
+import { Phone, Check, Plus, Minus, ChevronDown, ChevronUp } from 'lucide-react';
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 interface WindowType {
   id: string;
@@ -25,6 +25,7 @@ interface SqmOption {
 const Pricing = () => {
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('moving');
+  const [isChecklistOpen, setIsChecklistOpen] = useState(false);
   
   // Define square meter options
   const sqmOptions: SqmOption[] = [
@@ -198,9 +199,19 @@ const Pricing = () => {
           <p className="text-gray-600 max-w-2xl mx-auto">
             {t('pricingDescription')}
           </p>
+          <p className="text-gray-600 max-w-2xl mx-auto mt-2 font-medium">
+            {t('rutDeduction')}
+          </p>
         </div>
         
         <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <Button 
+            variant={activeTab === 'home' ? 'default' : 'outline'}
+            onClick={() => setActiveTab('home')}
+            className={activeTab === 'home' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
+          >
+            {t('homeCleaning')}
+          </Button>
           <Button 
             variant={activeTab === 'moving' ? 'default' : 'outline'}
             onClick={() => setActiveTab('moving')}
@@ -237,6 +248,187 @@ const Pricing = () => {
             {t('recurringService')}
           </Button>
         </div>
+
+        {/* Home Cleaning */}
+        {activeTab === 'home' && (
+          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+            <h3 className="text-2xl font-semibold mb-6 text-center">{t('homeCleaning')}</h3>
+            <div className="max-w-md mx-auto">
+              <div className="mb-6">
+                <Label htmlFor="sqm-home">{t('homeSize')}</Label>
+                <Select value={selectedSqm} onValueChange={setSelectedSqm}>
+                  <SelectTrigger className="w-full mt-1">
+                    <SelectValue placeholder={t('selectSize')} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {sqmOptions.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="bg-shr-gray p-6 rounded-lg">
+                <h4 className="font-semibold mb-2">{t('estimatedPrice')}</h4>
+                <p className="text-lg">{calculateMovingPrice()}</p>
+              </div>
+
+              <div className="mt-6 space-y-3">
+                <p className="flex items-start">
+                  <Check className="h-5 w-5 text-shr-blue-dark mr-2 shrink-0 mt-0.5" />
+                  <span>{t('generalFeature1')}</span>
+                </p>
+                <p className="flex items-start">
+                  <Check className="h-5 w-5 text-shr-blue-dark mr-2 shrink-0 mt-0.5" />
+                  <span>{t('generalFeature2')}</span>
+                </p>
+                <p className="flex items-start">
+                  <Check className="h-5 w-5 text-shr-blue-dark mr-2 shrink-0 mt-0.5" />
+                  <span>{t('generalFeature3')}</span>
+                </p>
+              </div>
+
+              <Button
+                className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
+                onClick={() => window.location.href = 'tel:+46704019341'}
+              >
+                <Phone size={20} />
+                {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
+              </Button>
+
+              {/* Home Cleaning Checklist */}
+              <div className="mt-8">
+                <Collapsible open={isChecklistOpen} onOpenChange={setIsChecklistOpen} className="w-full">
+                  <CollapsibleTrigger className="w-full bg-shr-blue-dark text-white rounded-lg p-4 flex justify-between items-center">
+                    <h3 className="text-xl font-semibold">{t('cleaningIncludedIn')} {t('homeCleaning')}</h3>
+                    {isChecklistOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+                  </CollapsibleTrigger>
+                  
+                  <CollapsibleContent className="mt-6 bg-white rounded-lg p-6 shadow-lg">
+                    <p className="text-gray-700 mb-8">{t('cleaningChecklistDescription')}</p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {/* Kitchen */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('kitchen')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* Living Room */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('livingRoom')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffElectronics')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustDesk')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustPaintings')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* Bedroom */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('bedroom')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffElectronics')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustPaintings')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustDesk')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wipeBedside')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* Bathroom */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('bathroom')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* Hall */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('hall')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* Extra Room */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('extraRoom')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffElectronics')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustDesk')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wipeBedside')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustPaintings')}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Moving Cleaning */}
         {activeTab === 'moving' && (
@@ -286,6 +478,100 @@ const Pricing = () => {
                 <Phone size={20} />
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
               </Button>
+              
+              {/* Moving Cleaning Checklist */}
+              <div className="mt-8">
+                <Collapsible open={isChecklistOpen} onOpenChange={setIsChecklistOpen} className="w-full">
+                  <CollapsibleTrigger className="w-full bg-shr-blue-dark text-white rounded-lg p-4 flex justify-between items-center">
+                    <h3 className="text-xl font-semibold">{t('cleaningIncludedIn')} {t('movingCleaning')}</h3>
+                    {isChecklistOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+                  </CollapsibleTrigger>
+                  
+                  <CollapsibleContent className="mt-6 bg-white rounded-lg p-6 shadow-lg">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {/* Kitchen */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('kitchen')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* Bathroom */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('bathroom')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* Room */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('room')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wallsDusted')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('moldingsWiped')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('elementsCleaned')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('doorsCleaned')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('windowsAllSides')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wardrobesWiped')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('blindsCleaned')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('floorsVacuumedWiped')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('allWindowsCleaned')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* Laundry */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('laundry')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('washingMachineCleaned')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('tumbleDryersCleaned')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dryingCabinetsCleaned')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wallsCeilingsDusted')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('floorsVacuumedWiped')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('floorDrainsCleaned')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('allWindowsCleaned')}</li>
+                        </ul>
+                        <p className="mt-4 text-sm text-gray-600">{t('sellerResponsibility')}</p>
+                      </div>
+                      
+                      {/* Guarantee */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('guarantee')}</h4>
+                        <p>{t('guaranteeText')}</p>
+                      </div>
+                      
+                      {/* Other */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('other')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('basementsSwept')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('furnishedBasementCleaned')}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
+              </div>
             </div>
           </div>
         )}
@@ -338,6 +624,93 @@ const Pricing = () => {
                 <Phone size={20} />
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
               </Button>
+              
+              {/* General Cleaning Checklist */}
+              <div className="mt-8">
+                <Collapsible open={isChecklistOpen} onOpenChange={setIsChecklistOpen} className="w-full">
+                  <CollapsibleTrigger className="w-full bg-shr-blue-dark text-white rounded-lg p-4 flex justify-between items-center">
+                    <h3 className="text-xl font-semibold">{t('cleaningIncludedIn')} {t('generalCleaning')}</h3>
+                    {isChecklistOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+                  </CollapsibleTrigger>
+                  
+                  <CollapsibleContent className="mt-6 bg-white rounded-lg p-6 shadow-lg">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {/* All Rooms */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('allRooms')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumingMoppingFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('cleaningBaseboardsDoorlinings')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('cleaningFramesWindowsills')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('cleaningWardrobesExterior')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('cleaningElements')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('stainRemovalWalls')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustingShelvesPaintings')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('emptyingTrashcans')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('cleaningAirVents')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('shakingCarpets')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumingSofa')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* All Other Surfaces */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('allOtherSurfaces')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('refrigeratorExternallyCleaned')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('ovenCleaningInOut')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('cleaningStovetops')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dishwasherCleanedInOut')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('cleaningSinks')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('cabinetDoorsCleaned')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('cleaningCabinetsGarbage')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('cleaningKitchenHood')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('cleaningAirVentsNotInside')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* Bathroom */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('bathroom')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* Balcony */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('balcony')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumSweepingFloors')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* Window Cleaning */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('windowCleaning')}</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('windowCleaningBookedSeparately')}</li>
+                        </ul>
+                      </div>
+                      
+                      {/* Desire */}
+                      <div className="bg-gray-50 rounded-lg p-5">
+                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('desire')}</h4>
+                        <p>{t('desireText')}</p>
+                      </div>
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
+              </div>
             </div>
           </div>
         )}
