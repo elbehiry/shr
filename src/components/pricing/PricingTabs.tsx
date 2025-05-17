@@ -1,6 +1,7 @@
 
 import React, { useCallback } from 'react';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface PricingTabsProps {
   activeTab: string;
@@ -11,61 +12,59 @@ interface PricingTabsProps {
 const PricingTabs: React.FC<PricingTabsProps> = ({ activeTab, onTabChange, t }) => {
   // Use useCallback to prevent unnecessary renders
   const handleTabClick = useCallback((tabName: string) => {
-    onTabChange(tabName);
-  }, [onTabChange]);
+    if (activeTab !== tabName) {
+      onTabChange(tabName);
+    }
+  }, [onTabChange, activeTab]);
 
   return (
-    <div className="flex flex-wrap justify-center gap-4 mb-8">
-      <Button 
-        variant={activeTab === 'home' ? 'default' : 'outline'} 
-        onClick={() => handleTabClick('home')} 
-        className={activeTab === 'home' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-        aria-label={t('homeCleaning')}
-      >
-        {t('homeCleaning')}
-      </Button>
-      <Button 
-        variant={activeTab === 'moving' ? 'default' : 'outline'} 
-        onClick={() => handleTabClick('moving')} 
-        className={activeTab === 'moving' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-        aria-label={t('movingCleaning')}
-      >
-        {t('movingCleaning')}
-      </Button>
-      <Button 
-        variant={activeTab === 'general' ? 'default' : 'outline'} 
-        onClick={() => handleTabClick('general')} 
-        className={activeTab === 'general' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-        aria-label={t('generalCleaning')}
-      >
-        {t('generalCleaning')}
-      </Button>
-      <Button 
-        variant={activeTab === 'window' ? 'default' : 'outline'} 
-        onClick={() => handleTabClick('window')} 
-        className={activeTab === 'window' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-        aria-label={t('windowCleaning')}
-      >
-        {t('windowCleaning')}
-      </Button>
-      <Button 
-        variant={activeTab === 'office' ? 'default' : 'outline'} 
-        onClick={() => handleTabClick('office')} 
-        className={activeTab === 'office' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-        aria-label={t('officeCleaning')}
-      >
-        {t('officeCleaning')}
-      </Button>
-      <Button 
-        variant={activeTab === 'recurring' ? 'default' : 'outline'} 
-        onClick={() => handleTabClick('recurring')} 
-        className={activeTab === 'recurring' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-        aria-label={t('recurringService')}
-      >
-        {t('recurringService')}
-      </Button>
-    </div>
+    <Tabs value={activeTab} onValueChange={handleTabClick} className="w-full">
+      <TabsList className="flex flex-wrap justify-center gap-4 mb-8 bg-transparent h-auto p-0">
+        <TabsTrigger 
+          value="home"
+          className={`${activeTab === 'home' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90 text-white' : 'bg-white border border-input'} px-4 py-2 rounded-md font-medium transition-colors`}
+          aria-label={t('homeCleaning')}
+        >
+          {t('homeCleaning')}
+        </TabsTrigger>
+        <TabsTrigger 
+          value="moving"
+          className={`${activeTab === 'moving' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90 text-white' : 'bg-white border border-input'} px-4 py-2 rounded-md font-medium transition-colors`}
+          aria-label={t('movingCleaning')}
+        >
+          {t('movingCleaning')}
+        </TabsTrigger>
+        <TabsTrigger 
+          value="general"
+          className={`${activeTab === 'general' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90 text-white' : 'bg-white border border-input'} px-4 py-2 rounded-md font-medium transition-colors`}
+          aria-label={t('generalCleaning')}
+        >
+          {t('generalCleaning')}
+        </TabsTrigger>
+        <TabsTrigger 
+          value="window"
+          className={`${activeTab === 'window' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90 text-white' : 'bg-white border border-input'} px-4 py-2 rounded-md font-medium transition-colors`}
+          aria-label={t('windowCleaning')}
+        >
+          {t('windowCleaning')}
+        </TabsTrigger>
+        <TabsTrigger 
+          value="office"
+          className={`${activeTab === 'office' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90 text-white' : 'bg-white border border-input'} px-4 py-2 rounded-md font-medium transition-colors`}
+          aria-label={t('officeCleaning')}
+        >
+          {t('officeCleaning')}
+        </TabsTrigger>
+        <TabsTrigger 
+          value="recurring"
+          className={`${activeTab === 'recurring' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90 text-white' : 'bg-white border border-input'} px-4 py-2 rounded-md font-medium transition-colors`}
+          aria-label={t('recurringService')}
+        >
+          {t('recurringService')}
+        </TabsTrigger>
+      </TabsList>
+    </Tabs>
   );
 };
 
-export default PricingTabs;
+export default React.memo(PricingTabs);
