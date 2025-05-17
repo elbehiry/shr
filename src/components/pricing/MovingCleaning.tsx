@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Check } from 'lucide-react';
@@ -53,12 +54,13 @@ const MovingCleaning: React.FC<MovingCleaningProps> = ({ t, sqmOptions, selected
           className="mt-6 mb-8"
         />
         
-        {/* Moving Cleaning Checklist */}
-        <div className="mt-4">
+        {/* Moving Cleaning Checklist - Reorganized into two rows with full width */}
+        <div className="mt-4 w-full">
           <h3 className="text-xl font-semibold mb-6">{t('cleaningIncludedIn')} {t('movingCleaning')}</h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <Accordion type="single" collapsible className="w-full">
+          {/* First row - 3 items */}
+          <div className="w-full mb-4">
+            <Accordion type="single" collapsible className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Kitchen */}
               <AccordionItem value="kitchen" className="border border-gray-200 rounded-lg">
                 <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
@@ -123,8 +125,9 @@ const MovingCleaning: React.FC<MovingCleaningProps> = ({ t, sqmOptions, selected
             </Accordion>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Accordion type="single" collapsible className="w-full">
+          {/* Second row - 3 items */}
+          <div className="w-full">
+            <Accordion type="single" collapsible className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Laundry */}
               <AccordionItem value="laundry" className="border border-gray-200 rounded-lg">
                 <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
