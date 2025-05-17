@@ -43,9 +43,8 @@ const TabContent: React.FC<TabContentProps> = ({
   handleCountChange,
   notIncludedTranslations
 }) => {
-  // Use a single return statement with conditionals to prevent DOM manipulation issues
   return (
-    <div className="tab-content">
+    <div className="tab-content" data-nosnippet="true">
       {activeTab === 'home' && (
         <MemoizedHomeCleaning
           t={t}

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface PricingTabsProps {
@@ -10,17 +10,17 @@ interface PricingTabsProps {
 
 const PricingTabs: React.FC<PricingTabsProps> = ({ activeTab, onTabChange, t }) => {
   // Create tab options with their values and labels
-  const tabOptions = [
+  const tabOptions = useMemo(() => [
     { value: 'home', label: t('homeCleaning') },
     { value: 'moving', label: t('movingCleaning') },
     { value: 'general', label: t('generalCleaning') },
     { value: 'window', label: t('windowCleaning') },
     { value: 'office', label: t('officeCleaning') },
     { value: 'recurring', label: t('recurringService') },
-  ];
+  ], [t]);
 
   return (
-    <div className="w-full">
+    <div className="w-full" data-nosnippet="true" translate="no">
       <Tabs 
         value={activeTab} 
         onValueChange={onTabChange} 
@@ -34,6 +34,8 @@ const PricingTabs: React.FC<PricingTabsProps> = ({ activeTab, onTabChange, t }) 
               value={tab.value}
               className={`${activeTab === tab.value ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90 text-white' : 'bg-white border border-input'} px-4 py-2 rounded-md font-medium transition-colors`}
               aria-label={tab.label}
+              data-value={tab.value}
+              translate="no"
             >
               {tab.label}
             </TabsTrigger>
