@@ -72,64 +72,6 @@ const Services = () => {
     }
   ];
 
-  const includedCategories = [
-    {
-      id: 'all-rooms',
-      title: t('allRooms'),
-      items: [
-        t('vacuumFloors'),
-        t('mopFloors'),
-        t('dampDrySkirtingBoards'),
-        t('dampDryDoorFrames'),
-        t('dustShelvesJoinery'),
-      ]
-    },
-    {
-      id: 'other-surfaces',
-      title: t('allOtherSurfaces'),
-      items: [
-        t('dustFreeSurfaces'),
-        t('dustCoveredSurfaces'),
-        t('dustOffElectronics'),
-        t('dustOffLamps'),
-        t('polishMirrors'),
-      ]
-    },
-    {
-      id: 'bathroom',
-      title: t('bathroom'),
-      items: [
-        t('cleaningSinks'),
-        t('cleaningAirVentsNotInside'),
-        t('vacuumSweepingFloors'),
-      ]
-    },
-    {
-      id: 'window',
-      title: t('windowCleaning'),
-      items: [
-        t('windowCleaningBookedSeparately'),
-      ]
-    },
-    {
-      id: 'balcony',
-      title: t('balcony'),
-      items: [
-        t('cleaningCabinetsGarbage'),
-      ]
-    },
-    {
-      id: 'additional',
-      title: t('additionalServices'),
-      items: [
-        t('ovenCleaningInOut'),
-        t('refrigeratorExternallyCleaned'),
-        t('cleaningStovetops'),
-        t('dishwasherCleanedInOut'),
-      ]
-    }
-  ];
-
   const toggleSection = (sectionId: string) => {
     setActiveSection(activeSection === sectionId ? null : sectionId);
   };
@@ -143,50 +85,6 @@ const Services = () => {
           <p className="text-gray-600 max-w-2xl mx-auto">
             {t('servicesDescription')}
           </p>
-        </div>
-        
-        {/* What's included in main cleaning section */}
-        <div className="mb-16">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl md:text-3xl font-bold text-shr-blue-dark">{t('includedMainCleaning')}</h3>
-            <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
-              {t('cleaningChecklistDescription')}
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {includedCategories.map((category) => (
-              <div 
-                key={category.id}
-                className="border border-gray-200 rounded-lg overflow-hidden"
-              >
-                <button 
-                  className="w-full flex items-center justify-between py-4 px-6 bg-white text-left font-semibold text-gray-800 hover:bg-gray-50 transition-colors"
-                  onClick={() => toggleSection(category.id)}
-                >
-                  <span>{category.title}</span>
-                  <ChevronDown 
-                    className={`transition-transform duration-300 ${activeSection === category.id ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                
-                {activeSection === category.id && (
-                  <div className="bg-gray-50 p-4 animate-accordion-down">
-                    <ul className="space-y-2">
-                      {category.items.map((item, index) => (
-                        <li key={index} className="flex items-start">
-                          <svg className="h-5 w-5 text-shr-blue-dark shrink-0 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
         </div>
         
         {/* Service cards section */}
