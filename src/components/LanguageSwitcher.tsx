@@ -41,6 +41,7 @@ const translations: Record<string, Record<string, string>> = {
     heroDescription: 'Vi erbjuder högkvalitativa städtjänster för bostäder och företag. Vårt team av erfarna professionella ser till att ditt utrymme är skinande rent.',
     contactUs: 'Kontakta oss',
     getQuote: 'Få offert',
+    learnMore: 'Läs mer',
     
     // About
     aboutTitle: 'Om SHR städ',
@@ -193,6 +194,7 @@ const translations: Record<string, Record<string, string>> = {
     ourServices: 'Våra tjänster',
     ourServicesDescription: 'Vi erbjuder ett brett utbud av städtjänster för att möta alla dina behov.',
     requestQuote: 'Begär offert',
+    callNow: 'Ring nu',
     
     // Pricing section
     pricingTitle: 'Våra priser',
@@ -212,16 +214,8 @@ const translations: Record<string, Record<string, string>> = {
     // Testimonials section
     testimonialsTitle: 'Vad våra kunder säger',
     
-    // Features for the different cleaning services
-    generalFeature1: 'Omfattande rengöring av alla ytor',
-    generalFeature2: 'Miljövänliga rengöringsmedel',
-    generalFeature3: 'Erfarna städare med omsorg för detaljer',
-    
-    movingFeature1: 'Professionell flyttstädning enligt checklista',
-    movingFeature2: 'Godkänd av besiktningsman',
-    movingFeature3: 'Fullständig rengöring av alla utrymmen',
-    
     // Window types descriptions
+    selectWindowTypes: 'Välj fönstertyper',
     windowType1: 'Standard Fönster',
     regularNoBars: 'Vanligt fönster utan spröjs',
     windowType2: 'Tredelat Fönster',
@@ -240,6 +234,12 @@ const translations: Record<string, Record<string, string>> = {
     balconyHalfGlazedDesc: 'Delvis inglasad balkong',
     
     totalPrice: 'Totalt Pris',
+    
+    // Office cleaning factors
+    factorsAffectingPrice: 'Faktorer som påverkar priset:',
+    officeSize: 'Kontorsstorlek',
+    roomCount: 'Antal rum',
+    cleaningFrequency: 'Städningsfrekvens',
     
     // Recurring service descriptions
     weekly: 'Veckovis',
@@ -270,6 +270,7 @@ const translations: Record<string, Record<string, string>> = {
     heroDescription: 'We offer high-quality cleaning services for residential and commercial properties. Our team of experienced professionals ensures your space is spotlessly clean.',
     contactUs: 'Contact Us',
     getQuote: 'Get Quote',
+    learnMore: 'Learn More',
     
     // About
     aboutTitle: 'About SHR städ',
@@ -422,6 +423,7 @@ const translations: Record<string, Record<string, string>> = {
     ourServices: 'Our Services',
     ourServicesDescription: 'We offer a wide range of cleaning services to meet all your needs.',
     requestQuote: 'Request Quote',
+    callNow: 'Call Now',
     
     // Pricing section
     pricingTitle: 'Our Prices',
@@ -441,16 +443,8 @@ const translations: Record<string, Record<string, string>> = {
     // Testimonials section
     testimonialsTitle: 'What Our Clients Say',
     
-    // Features for the different cleaning services
-    generalFeature1: 'Comprehensive cleaning of all surfaces',
-    generalFeature2: 'Eco-friendly cleaning products',
-    generalFeature3: 'Experienced cleaners with attention to detail',
-    
-    movingFeature1: 'Professional move-out cleaning according to checklist',
-    movingFeature2: 'Approved by property inspectors',
-    movingFeature3: 'Complete cleaning of all spaces',
-    
     // Window types descriptions
+    selectWindowTypes: 'Select window types',
     windowType1: 'Standard Window',
     regularNoBars: 'Regular window without bars',
     windowType2: 'Triple Window',
@@ -469,6 +463,12 @@ const translations: Record<string, Record<string, string>> = {
     balconyHalfGlazedDesc: 'Partially enclosed glass balcony',
     
     totalPrice: 'Total Price',
+    
+    // Office cleaning factors
+    factorsAffectingPrice: 'Factors affecting the price:',
+    officeSize: 'Office size',
+    roomCount: 'Number of rooms',
+    cleaningFrequency: 'Cleaning frequency',
     
     // Recurring service descriptions
     weekly: 'Weekly',

@@ -10,9 +10,9 @@ interface OfficeCleaningProps {
 
 const OfficeCleaning: React.FC<OfficeCleaningProps> = ({ t }) => {
   const officeFactors = [
-    'Kontorsstorlek',
-    'Antal rum',
-    'Städningsfrekvens'
+    t('officeSize'),
+    t('roomCount'),
+    t('cleaningFrequency')
   ];
 
   return (
@@ -25,7 +25,7 @@ const OfficeCleaning: React.FC<OfficeCleaningProps> = ({ t }) => {
       <div className="max-w-md mx-auto">
         <div className="bg-shr-gray p-6 rounded-lg mb-6">
           <h4 className="font-semibold mb-4">{t('customQuote')}</h4>
-          <p className="mb-2">Faktorer som påverkar priset:</p>
+          <p className="mb-2">{t('factorsAffectingPrice')}</p>
           <FeaturesList features={officeFactors} />
         </div>
 
