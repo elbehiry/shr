@@ -1,22 +1,14 @@
 
 import React, { useState } from 'react';
 import { useLanguage } from './LanguageSwitcher';
-import { Button } from '@/components/ui/button';
-
-// Import components
-import HomeCleaning from './pricing/HomeCleaning';
-import MovingCleaning from './pricing/MovingCleaning';
-import GeneralCleaning from './pricing/GeneralCleaning';
-import WindowCleaning from './pricing/WindowCleaning';
-import OfficeCleaning from './pricing/OfficeCleaning';
-import RecurringService from './pricing/RecurringService';
+import PricingTabs from './pricing/PricingTabs';
+import TabContent from './pricing/TabContent';
 
 // Import types
 import { SqmOption, WindowType, CleaningCategory } from './pricing/types';
 
 const Pricing = () => {
   const { t } = useLanguage();
-  // Changed default tab to 'home'
   const [activeTab, setActiveTab] = useState('home');
   const [isChecklistOpen, setIsChecklistOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -66,30 +58,7 @@ const Pricing = () => {
     looseItemsRemovalDesc: t('looseItemsRemovalDesc') || 'Removal of loose items to be thrown away is NOT included in the price and is charged extra per hour.',
     additionalServices: t('additionalServices') || 'Additional Services',
   };
-  
-  // Add Swedish translations
-  const notIncludedTranslationsSv = {
-    notIncludedTitle: 'Följande ingår INTE i priset och debiteras extra',
-    notIncludedNewDescription: 'Följande artiklar ingår inte eller debiteras extra',
-    termsLink: 'här',
-    notIncludedDescriptionEnd: 'för fullständig information om vad som ingår, inte ingår och vad som debiteras extra.',
-    glazedBalcony: 'Inglasad balkong',
-    glazedBalconyDesc: 'Rengöring av den inglasade balkongen ingår INTE i priset och debiteras extra.',
-    specialFloorTreatment: 'Speciell golvbehandling',
-    specialFloorTreatmentDesc: 'Golvbehandling som vaxning eller polering av golv med polish ingår INTE och debiteras extra om så önskas.',
-    householdAppliances: 'Hushållsapparater',
-    householdAppliancesDesc: 'Rengöring av hushållsapparater (tvättmaskin, torktumlare och diskmaskin) ingår inte i priset och debiteras extra om så önskas.',
-    scrubberUse: 'Användning av skurmaskin',
-    scrubberUseDesc: 'Användning av en skurmaskin för mycket smutsiga golv ingår inte i priset och debiteras extra om det behövs.',
-    looseItemsRemoval: 'Borttagning av lösa föremål',
-    looseItemsRemovalDesc: 'Borttagning av lösa föremål som ska kastas ingår INTE i priset och debiteras extra per timme.',
-    additionalServices: 'Ytterligare tjänster',
-  };
-  
-  // Original useLanguage hook structure assumes t function handles these translations
-  // and they're likely loaded from a language file or object
-  // For simplicity, we're adding these translations directly to the component
-  
+
   const toggleSection = (sectionId: string) => {
     setActiveSection(activeSection === sectionId ? null : sectionId);
   };
@@ -270,10 +239,8 @@ const Pricing = () => {
 
   // Fix the tab switching to avoid DOM manipulation errors
   const handleTabChange = (tabName: string) => {
-    // Use a safe tab switching approach
-    setTimeout(() => {
-      setActiveTab(tabName);
-    }, 0);
+    // Direct state update without setTimeout to avoid DOM manipulation errors
+    setActiveTab(tabName);
   };
 
   return (
@@ -290,110 +257,26 @@ const Pricing = () => {
           </p>
         </div>
         
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
-          <Button 
-            variant={activeTab === 'home' ? 'default' : 'outline'} 
-            onClick={() => handleTabChange('home')} 
-            className={activeTab === 'home' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-            aria-label={t('homeCleaning')}
-          >
-            {t('homeCleaning')}
-          </Button>
-          <Button 
-            variant={activeTab === 'moving' ? 'default' : 'outline'} 
-            onClick={() => handleTabChange('moving')} 
-            className={activeTab === 'moving' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-            aria-label={t('movingCleaning')}
-          >
-            {t('movingCleaning')}
-          </Button>
-          <Button 
-            variant={activeTab === 'general' ? 'default' : 'outline'} 
-            onClick={() => handleTabChange('general')} 
-            className={activeTab === 'general' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-            aria-label={t('generalCleaning')}
-          >
-            {t('generalCleaning')}
-          </Button>
-          <Button 
-            variant={activeTab === 'window' ? 'default' : 'outline'} 
-            onClick={() => handleTabChange('window')} 
-            className={activeTab === 'window' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-            aria-label={t('windowCleaning')}
-          >
-            {t('windowCleaning')}
-          </Button>
-          <Button 
-            variant={activeTab === 'office' ? 'default' : 'outline'} 
-            onClick={() => handleTabChange('office')} 
-            className={activeTab === 'office' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-            aria-label={t('officeCleaning')}
-          >
-            {t('officeCleaning')}
-          </Button>
-          <Button 
-            variant={activeTab === 'recurring' ? 'default' : 'outline'} 
-            onClick={() => handleTabChange('recurring')} 
-            className={activeTab === 'recurring' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-            aria-label={t('recurringService')}
-          >
-            {t('recurringService')}
-          </Button>
-        </div>
+        <PricingTabs 
+          activeTab={activeTab} 
+          onTabChange={handleTabChange}
+          t={t}
+        />
 
-        {/* Conditionally render the appropriate tab content */}
         <div className="tab-content-container">
-          {activeTab === 'home' && (
-            <HomeCleaning
-              t={t}
-              sqmOptions={sqmOptions}
-              selectedSqm={selectedSqm}
-              setSelectedSqm={setSelectedSqm}
-              cleaningAreas={cleaningAreas}
-            />
-          )}
-
-          {activeTab === 'moving' && (
-            <MovingCleaning
-              t={t}
-              sqmOptions={sqmOptions}
-              selectedSqm={selectedSqm}
-              setSelectedSqm={setSelectedSqm}
-            />
-          )}
-
-          {activeTab === 'general' && (
-            <GeneralCleaning
-              t={(key) => {
-                // Special handling for the new NOT included section translations
-                if (key in notIncludedTranslations) {
-                  return notIncludedTranslations[key as keyof typeof notIncludedTranslations];
-                }
-                return t(key);
-              }}
-              sqmOptions={sqmOptions}
-              selectedSqm={selectedSqm}
-              setSelectedSqm={setSelectedSqm}
-              includedCategories={includedCategories}
-            />
-          )}
-
-          {activeTab === 'window' && (
-            <WindowCleaning
-              t={t}
-              windowTypes={windowTypes}
-              windowCounts={windowCounts}
-              handleCountChange={handleCountChange}
-            />
-          )}
-
-          {activeTab === 'office' && (
-            <OfficeCleaning t={t} />
-          )}
-
-          {activeTab === 'recurring' && (
-            <RecurringService t={t} />
-          )}
+          <TabContent 
+            activeTab={activeTab}
+            t={t}
+            sqmOptions={sqmOptions}
+            selectedSqm={selectedSqm}
+            setSelectedSqm={setSelectedSqm}
+            cleaningAreas={cleaningAreas}
+            includedCategories={includedCategories}
+            windowTypes={windowTypes}
+            windowCounts={windowCounts}
+            handleCountChange={handleCountChange}
+            notIncludedTranslations={notIncludedTranslations}
+          />
         </div>
       </div>
     </section>
