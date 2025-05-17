@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { useLanguage } from './LanguageSwitcher';
+import { useLanguage } from '@/hooks/useLanguage';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Phone, Check, Plus, Minus } from 'lucide-react';
@@ -189,6 +188,12 @@ const Pricing = () => {
     }, 0);
   };
 
+  // Fix the phone buttons to prevent navigation and just call the phone number
+  const handlePhoneClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.location.href = 'tel:+46704019341';
+  };
+
   return (
     <section id="pricing" className="section-padding">
       <div className="container mx-auto">
@@ -281,7 +286,7 @@ const Pricing = () => {
 
               <Button
                 className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={() => window.location.href = 'tel:+46704019341'}
+                onClick={handlePhoneClick}
               >
                 <Phone size={20} />
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
@@ -333,7 +338,7 @@ const Pricing = () => {
 
               <Button
                 className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={() => window.location.href = 'tel:+46704019341'}
+                onClick={handlePhoneClick}
               >
                 <Phone size={20} />
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
@@ -391,7 +396,7 @@ const Pricing = () => {
 
               <Button
                 className="w-full bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={() => window.location.href = 'tel:+46704019341'}
+                onClick={handlePhoneClick}
               >
                 <Phone size={20} />
                 {t('bookNow')}
@@ -430,7 +435,7 @@ const Pricing = () => {
 
               <Button
                 className="w-full bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={() => window.location.href = 'tel:+46704019341'}
+                onClick={handlePhoneClick}
               >
                 <Phone size={20} />
                 {t('requestQuote')}
@@ -467,7 +472,7 @@ const Pricing = () => {
 
               <Button
                 className="w-full bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={() => window.location.href = 'tel:+46704019341'}
+                onClick={handlePhoneClick}
               >
                 <Phone size={20} />
                 {t('callForCustomPlan')}
