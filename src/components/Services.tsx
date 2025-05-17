@@ -80,10 +80,10 @@ const Services = () => {
     <section id="services" className="section-padding">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('ourServices')}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('servicesTitle')}</h2>
           <div className="h-1 w-20 bg-shr-blue-dark mx-auto mb-6"></div>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            {t('ourServicesDescription')}
+            {t('servicesDescription')}
           </p>
         </div>
         
@@ -117,7 +117,7 @@ const Services = () => {
             className="cta-button"
             onClick={() => window.location.href = 'tel:+46704019341'}
           >
-            {t('requestQuote')}
+            {t('getQuote')}
           </button>
         </div>
       </div>

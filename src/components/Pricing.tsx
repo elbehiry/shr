@@ -16,8 +16,8 @@ import { SqmOption, WindowType, CleaningCategory } from './pricing/types';
 
 const Pricing = () => {
   const { t } = useLanguage();
-  // Changed default tab to 'general'
-  const [activeTab, setActiveTab] = useState('general');
+  // Changed default tab to 'home'
+  const [activeTab, setActiveTab] = useState('home');
   const [isChecklistOpen, setIsChecklistOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
