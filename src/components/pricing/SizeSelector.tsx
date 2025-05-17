@@ -19,7 +19,7 @@ const SizeSelector: React.FC<SizeSelectorProps> = ({
   setSelectedSqm, 
   selectSizeText 
 }) => {
-  const selectId = "sqm-selector"; // Create a unique ID for the select component
+  const selectId = `sqm-selector-${Math.random().toString(36).substring(2, 9)}`; // Create a unique ID for each instance
   
   return (
     <div className="mb-6">

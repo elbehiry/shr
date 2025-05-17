@@ -1,14 +1,16 @@
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { getSqmOptions } from '../data/sqmOptions';
 import { getInitialWindowCounts } from '../data/windowTypes';
-import { SqmOption } from '../types';
 
 export const usePricingState = () => {
   const sqmOptions = getSqmOptions();
   
-  // Tab state
-  const [activeTab, setActiveTab] = useState('home');
+  // Tab state - try to restore from localStorage if available
+  const [activeTab, setActiveTab] = useState(() => {
+    const savedTab = localStorage.getItem('activeTab');
+    return savedTab || 'home';
+  });
   
   // Square meter selection state
   const [selectedSqm, setSelectedSqm] = useState(sqmOptions[0].value);
@@ -21,7 +23,14 @@ export const usePricingState = () => {
     // Only update if it's different to avoid unnecessary re-renders
     if (tabName !== activeTab) {
       setActiveTab(tabName);
+      // Save to localStorage
+      localStorage.setItem('activeTab', tabName);
     }
+  }, [activeTab]);
+
+  // Ensure any tab state is properly persisted
+  useEffect(() => {
+    localStorage.setItem('activeTab', activeTab);
   }, [activeTab]);
   
   // Use useCallback to memoize the count change handler
