@@ -1,6 +1,6 @@
 
 import { Phone, Mail } from 'lucide-react';
-import { useLanguage } from './LanguageSwitcher';
+import { useLanguage } from '@/hooks/useLanguage';
 
 const Footer = () => {
   const { t } = useLanguage();

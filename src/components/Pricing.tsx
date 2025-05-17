@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -184,7 +185,7 @@ const Pricing = () => {
   const calculateWindowTotal = () => {
     return Object.entries(windowCounts).reduce((total, [id, count]) => {
       const windowType = windowTypes.find(w => w.id === id);
-      return total + (windowType?.price || 0) * count;
+      return total + ((windowType?.price || 0) * count);
     }, 0);
   };
 

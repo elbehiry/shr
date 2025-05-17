@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Phone, Mail } from 'lucide-react';
-import { useLanguage } from './LanguageSwitcher';
+import { useLanguage } from '@/hooks/useLanguage';
 
 const Contact = () => {
   const { t } = useLanguage();

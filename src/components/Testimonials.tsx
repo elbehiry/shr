@@ -1,5 +1,5 @@
 
-import { useLanguage } from './LanguageSwitcher';
+import { useLanguage } from '@/hooks/useLanguage';
 import { 
   Carousel, 
   CarouselContent, 
@@ -12,7 +12,7 @@ import { useEffect, useState, useRef } from "react";
 const Testimonials = () => {
   const { t, language } = useLanguage();
   const [autoPlay, setAutoPlay] = useState(true);
-  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   
   const testimonials = {

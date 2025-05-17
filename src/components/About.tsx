@@ -1,5 +1,5 @@
 
-import { useLanguage } from './LanguageSwitcher';
+import { useLanguage } from '@/hooks/useLanguage';
 
 const About = () => {
   const { t } = useLanguage();
