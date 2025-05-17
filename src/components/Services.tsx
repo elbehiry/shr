@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useLanguage } from '@/hooks/useLanguage';
+import { useLanguage } from './LanguageSwitcher';
 
 const Services = () => {
   const { t } = useLanguage();

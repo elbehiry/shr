@@ -1,9 +1,9 @@
+
 import React, { useState } from 'react';
-import { useLanguage } from '@/hooks/useLanguage';
+import { useLanguage } from './LanguageSwitcher';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Check, Info, Phone, Minus, Plus } from 'lucide-react';
+import { Phone, Check, Plus, Minus } from 'lucide-react';
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
@@ -182,18 +182,11 @@ const Pricing = () => {
     return `${option.hours} ${t('hours')} - ${option.price} kr`;
   };
   
-  // Fix the calculation function
   const calculateWindowTotal = () => {
     return Object.entries(windowCounts).reduce((total, [id, count]) => {
       const windowType = windowTypes.find(w => w.id === id);
-      return total + (windowType ? windowType.price * count : 0);
+      return total + (windowType?.price || 0) * count;
     }, 0);
-  };
-
-  // Fix the phone buttons to prevent navigation and just call the phone number
-  const handlePhoneClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    window.location.href = 'tel:+46704019341';
   };
 
   return (
@@ -288,7 +281,7 @@ const Pricing = () => {
 
               <Button
                 className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={handlePhoneClick}
+                onClick={() => window.location.href = 'tel:+46704019341'}
               >
                 <Phone size={20} />
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
@@ -340,7 +333,7 @@ const Pricing = () => {
 
               <Button
                 className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={handlePhoneClick}
+                onClick={() => window.location.href = 'tel:+46704019341'}
               >
                 <Phone size={20} />
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
@@ -398,7 +391,7 @@ const Pricing = () => {
 
               <Button
                 className="w-full bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={handlePhoneClick}
+                onClick={() => window.location.href = 'tel:+46704019341'}
               >
                 <Phone size={20} />
                 {t('bookNow')}
@@ -437,7 +430,7 @@ const Pricing = () => {
 
               <Button
                 className="w-full bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={handlePhoneClick}
+                onClick={() => window.location.href = 'tel:+46704019341'}
               >
                 <Phone size={20} />
                 {t('requestQuote')}
@@ -474,7 +467,7 @@ const Pricing = () => {
 
               <Button
                 className="w-full bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={handlePhoneClick}
+                onClick={() => window.location.href = 'tel:+46704019341'}
               >
                 <Phone size={20} />
                 {t('callForCustomPlan')}

@@ -1,7 +1,283 @@
-
+import { useState, createContext, useContext, ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { Globe } from 'lucide-react';
-import { useLanguage } from '@/hooks/useLanguage';
+
+// Define the supported languages
+export type Language = 'sv' | 'en';
+
+// Define translations
+export const translations = {
+  en: {
+    home: "Home",
+    about: "About",
+    services: "Services",
+    testimonials: "Testimonials",
+    contact: "Contact Us",
+    callNow: "Call Now",
+    contactUs: "Contact Us",
+    getInTouch: "Get In Touch",
+    phone: "Phone",
+    email: "Email",
+    serviceAreas: "Service Areas",
+    notSure: "Not sure if we serve your area? Call us to find out!",
+    // Hero translations
+    heroTitle: "Professional Cleaning Services for Your Home & Office",
+    heroDescription: "SHR provides top-quality cleaning services tailored to your needs. We take pride in delivering spotless results and exceptional customer service.",
+    learnMore: "Learn More",
+    // About translations
+    aboutTitle: "About SHR",
+    aboutDescription: "We Make Your Space Shine",
+    aboutText: "SHR Cleaning Services has been providing exceptional cleaning solutions to homes and offices. Our dedicated team of professionals is committed to delivering spotless results and outstanding customer service.",
+    professionalStaff: "Professional Staff",
+    trainedSpecialists: "Trained and experienced cleaning specialists",
+    efficientService: "Efficient Service",
+    quickProcesses: "Quick and thorough cleaning processes",
+    commercialResidential: "Commercial & Residential",
+    allPropertyTypes: "Services for all property types",
+    satisfactionGuarantee: "Satisfaction Guarantee",
+    happinessPriority: "Your happiness is our priority",
+    // Services translations
+    servicesTitle: "Our Cleaning Services",
+    servicesDescription: "Check our transparent pricing below or contact us for customized cleaning solutions.",
+    residentialCleaning: "Residential Cleaning",
+    residentialDescription: "Keep your home spotless with our thorough residential cleaning services tailored to your specific needs.",
+    commercialCleaning: "Commercial Cleaning",
+    commercialDescription: "Professional cleaning solutions for offices, retail spaces, and other commercial properties.",
+    specialtyCleaning: "Specialty Cleaning",
+    specialtyDescription: "Specialized cleaning services for specific areas or occasions requiring extra attention.",
+    recurringService: "Recurring Service",
+    recurringDescription: "Regular cleaning schedules to maintain a consistently clean environment for your home or business.",
+    regularMaintenance: "Regular maintenance",
+    deepCleaning: "Deep cleaning",
+    houseMoving: "House moving",
+    customSchedules: "Custom schedules",
+    officeCleaning: "Office cleaning",
+    retailSpaces: "Retail spaces",
+    medicalFacilities: "Medical facilities",
+    afterHoursService: "After-hours service",
+    carpetCleaning: "Carpet cleaning",
+    windowWashing: "Window washing",
+    postConstruction: "Post-construction",
+    eventCleanup: "Event cleanup",
+    weeklyService: "Weekly service",
+    biweeklyOptions: "Bi-weekly options",
+    monthlyDeepCleaning: "Monthly deep cleaning",
+    customizedSchedules: "Customized schedules",
+    callForQuote: "Call For a Free Quote",
+    // Testimonials translations
+    testimonialsTitle: "What Our Clients Say",
+    // Footer translations
+    professionalServices: "Professional cleaning services for residential and commercial spaces. We take pride in our work and guarantee your satisfaction.",
+    quickLinks: "Quick Links",
+    contactInformation: "Contact Information",
+    allRightsReserved: "All rights reserved.",
+    // Other
+    readyForCleaner: "Ready for a cleaner space? Contact SHR Cleaning Services today for a free quote. We're here to answer your questions and provide the highest quality service.",
+    // Pricing translations
+    pricingTitle: "Our Pricing",
+    pricingDescription: "We offer transparent pricing for all our services. See our rates below or contact us for a custom quote.",
+    movingCleaning: "Moving Cleaning",
+    generalCleaning: "General Cleaning",
+    windowCleaning: "Window Cleaning",
+    estimatedPrice: "Estimated Price",
+    totalPrice: "Total Price",
+    homeSize: "Home Size",
+    selectSize: "Select size",
+    hours: "hours",
+    bookNow: "Book Now",
+    requestQuote: "Request Quote",
+    callForCustomPlan: "Call for Custom Plan",
+    customQuote: "Custom Quote",
+    officeDescription: "We provide professional cleaning services for offices of all sizes.",
+    officeFactors: "Pricing depends on:",
+    officeFactor1: "Office size & layout",
+    officeFactor2: "Cleaning frequency",
+    officeFactor3: "Special requirements",
+    weekly: "Weekly Service",
+    biweekly: "Bi-weekly Service",
+    monthly: "Monthly Service",
+    weeklyDescription: "Regular weekly cleaning to maintain a consistently clean environment.",
+    biweeklyDescription: "Cleaning every other week for balanced maintenance.",
+    monthlyDescription: "Deep monthly cleaning for less frequently used spaces.",
+    movingFeature1: "Complete cleaning of all rooms",
+    movingFeature2: "Thorough cleaning of all surfaces",
+    movingFeature3: "Final inspection and quality check included",
+    generalFeature1: "Dusting and vacuuming",
+    generalFeature2: "Bathroom and kitchen cleaning",
+    generalFeature3: "Floor cleaning and polishing",
+    selectWindowTypes: "Select the number of each window type",
+    windowType1: "Type 1",
+    regularNoBars: "Regular without bars",
+    windowType2: "Type 2",
+    tripleNoBars: "Triple without bars",
+    windowType3: "Type 3",
+    tripleWithBars: "Triple with bars",
+    windowType4: "Type 4",
+    unusualLarge: "Unusual or large windows",
+    balconyDoorLarge: "Balcony Door Large",
+    balconyDoorLargeDesc: "With large glass pane",
+    balconyDoor: "Balcony Door",
+    balconyDoorDesc: "With window",
+    balconyFullGlazed: "Fully Glazed Balcony",
+    balconyFullGlazedDesc: "Max 6 m²",
+    balconyHalfGlazed: "Half Glazed Balcony",
+    balconyHalfGlazedDesc: "Max 6 m²",
+    termsOfUse: "Terms of Use",
+    privacyPolicy: "Privacy Policy"
+  },
+  sv: {
+    home: "Hem",
+    about: "Om oss",
+    services: "Tjänster",
+    testimonials: "Omdömen",
+    contact: "Kontakta oss",
+    callNow: "Ring nu",
+    contactUs: "Kontakta oss",
+    getInTouch: "Kontakta oss",
+    phone: "Telefon",
+    email: "E-post",
+    serviceAreas: "Serviceområden",
+    notSure: "Osäker på om vi betjänar ditt område? Ring oss för att ta reda på det!",
+    // Hero translations
+    heroTitle: "Professionella städtjänster för ditt hem och kontor",
+    heroDescription: "SHR tillhandahåller städtjänster av högsta kvalitet anpassade efter dina behov. Vi är stolta över att leverera fläckfria resultat och exceptionell kundservice.",
+    learnMore: "Läs mer",
+    // About translations
+    aboutTitle: "Om SHR",
+    aboutDescription: "Vi får ditt utrymme att skina",
+    aboutText: "SHR Cleaning Services har levererat exceptionella städlösningar till hem och kontor. Vårt dedikerade team av proffs är engagerade i att leverera fläckfria resultat och utmärkt kundservice.",
+    professionalStaff: "Professionell personal",
+    trainedSpecialists: "Utbildade och erfarna städspecialister",
+    efficientService: "Effektiv service",
+    quickProcesses: "Snabba och noggranna städprocesser",
+    commercialResidential: "Kommersiellt & Bostäder",
+    allPropertyTypes: "Tjänster för alla fastighetstyper",
+    satisfactionGuarantee: "Nöjdhetsgaranti",
+    happinessPriority: "Din lycka är vår prioritet",
+    // Services translations
+    servicesTitle: "Våra städtjänster",
+    servicesDescription: "Kolla våra transparenta priser nedan eller kontakta oss för anpassade städlösningar.",
+    residentialCleaning: "Hemstädning",
+    residentialDescription: "Håll ditt hem fläckfritt med våra grundliga hemstädningstjänster anpassade efter dina specifika behov.",
+    commercialCleaning: "Kontorsstädning",
+    commercialDescription: "Professionella städlösningar för kontor, butikslokaler och andra kommersiella fastigheter.",
+    specialtyCleaning: "Specialstädning",
+    specialtyDescription: "Specialiserade städtjänster för specifika områden eller tillfällen som kräver extra uppmärksamhet.",
+    recurringService: "Återkommande service",
+    recurringDescription: "Regelbundna städscheman för att upprätthålla en konsekvent ren miljö för ditt hem eller företag.",
+    regularMaintenance: "Regelbundet underhåll",
+    deepCleaning: "Djuprengöring",
+    houseMoving: "Flyttstädning",
+    customSchedules: "Anpassade scheman",
+    officeCleaning: "Kontorsstädning",
+    retailSpaces: "Butikslokaler",
+    medicalFacilities: "Medicinska anläggningar",
+    afterHoursService: "Service efter stängningstid",
+    carpetCleaning: "Mattrengöring",
+    windowWashing: "Fönsterputsning",
+    postConstruction: "Efter byggnation",
+    eventCleanup: "Evenemangsstädning",
+    weeklyService: "Veckoservice",
+    biweeklyOptions: "Varannan vecka alternativ",
+    monthlyDeepCleaning: "Månatlig djuprengöring",
+    customizedSchedules: "Anpassade scheman",
+    callForQuote: "Ring för en gratis offert",
+    // Testimonials translations
+    testimonialsTitle: "Vad våra kunder säger",
+    // Footer translations
+    professionalServices: "Professionella städtjänster för bostäder och kommersiella utrymmen. Vi är stolta över vårt arbete och garanterar din tillfredsställelse.",
+    quickLinks: "Snabblänkar",
+    contactInformation: "Kontaktinformation",
+    allRightsReserved: "Alla rättigheter förbehållna.",
+    // Other
+    readyForCleaner: "Redo för ett renare utrymme? Kontakta SHR Cleaning Services idag för en gratis offert. Vi finns här för att svara på dina frågor och ge service av högsta kvalitet.",
+    // Pricing translations
+    pricingTitle: "Våra priser",
+    pricingDescription: "Vi erbjuder transparenta priser för alla våra tjänster. Se våra priser nedan eller kontakta oss för en anpassad offert.",
+    movingCleaning: "Flyttstädning",
+    generalCleaning: "Allmän städning",
+    windowCleaning: "Fönsterputsning",
+    estimatedPrice: "Uppskattat pris",
+    totalPrice: "Totalpris",
+    homeSize: "Bostadens storlek",
+    selectSize: "Välj storlek",
+    hours: "timmar",
+    bookNow: "Boka nu",
+    requestQuote: "Begär offert",
+    callForCustomPlan: "Ring för anpassad plan",
+    customQuote: "Anpassad offert",
+    officeDescription: "Vi erbjuder professionella städtjänster för kontor i alla storlekar.",
+    officeFactors: "Priset beror på:",
+    officeFactor1: "Kontorets storlek och layout",
+    officeFactor2: "Städfrekvens",
+    officeFactor3: "Särskilda krav",
+    weekly: "Veckoservice",
+    biweekly: "Varannan vecka",
+    monthly: "Månatlig service",
+    weeklyDescription: "Regelbunden veckostädning för att upprätthålla en konsekvent ren miljö.",
+    biweeklyDescription: "Städning varannan vecka för balanserat underhåll.",
+    monthlyDescription: "Djup månatlig städning för mindre frekvent använda utrymmen.",
+    movingFeature1: "Komplett städning av alla rum",
+    movingFeature2: "Noggrann rengöring av alla ytor",
+    movingFeature3: "Slutinspektion och kvalitetskontroll ingår",
+    generalFeature1: "Dammsugning och dammtorkning",
+    generalFeature2: "Städning av badrum och kök",
+    generalFeature3: "Golvrengöring och polering",
+    selectWindowTypes: "Välj antal av varje fönstertyp",
+    windowType1: "Typ 1",
+    regularNoBars: "Vanligt utan spröjs",
+    windowType2: "Typ 2",
+    tripleNoBars: "Tredelat utan spröjs",
+    windowType3: "Typ 3",
+    tripleWithBars: "Tredelat med spröjs",
+    windowType4: "Typ 4",
+    unusualLarge: "Ovanliga eller stora fönster",
+    balconyDoorLarge: "Balkongdörr stor",
+    balconyDoorLargeDesc: "Med stor glasruta",
+    balconyDoor: "Balkongdörr",
+    balconyDoorDesc: "Med fönster",
+    balconyFullGlazed: "Helglasad balkong",
+    balconyFullGlazedDesc: "Max 6 m²",
+    balconyHalfGlazed: "Halvglasad balkong",
+    balconyHalfGlazedDesc: "Max 6 m²",
+    termsOfUse: "Användarvillkor",
+    privacyPolicy: "Integritetspolicy"
+  }
+};
+
+// Create a context for language
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: keyof typeof translations.en | keyof typeof translations.sv) => string;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+// Provider component
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+  const [language, setLanguage] = useState<Language>('sv'); // Default to Swedish
+
+  // Translation function
+  const t = (key: keyof typeof translations.en | keyof typeof translations.sv): string => {
+    return translations[language][key] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+// Hook to use the language context
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};
 
 const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage();

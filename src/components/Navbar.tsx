@@ -2,8 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone } from 'lucide-react';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
-import { useLanguage } from '@/hooks/useLanguage';
+import LanguageSwitcher, { useLanguage } from '@/components/LanguageSwitcher';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);

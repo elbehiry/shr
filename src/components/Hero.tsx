@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Phone } from 'lucide-react';
-import { useLanguage } from '@/hooks/useLanguage';
+import { useLanguage } from './LanguageSwitcher';
 
 const Hero = () => {
   const { t } = useLanguage();
