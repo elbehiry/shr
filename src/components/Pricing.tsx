@@ -161,7 +161,7 @@ const Pricing = () => {
     icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
           <rect x="2" y="3" width="20" height="18" rx="1" />
           <line x1="8" y1="3" x2="8" y2="21" />
-          <line x1="16" y1="3" x2="16" y1="21" />
+          <line x1="16" y1="3" x2="16" y2="21" />
         </svg>
   }, {
     id: 'type3',
@@ -519,7 +519,7 @@ const Pricing = () => {
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
               </Button>
               
-              {/* What's included in main cleaning section - Moved from outside to here */}
+              {/* What's included in main cleaning section - Reorganized into 2 rows with 3 options each */}
               <div className="mb-8">
                 <div className="text-center mb-6">
                   <h3 className="text-xl md:text-2xl font-bold text-shr-blue-dark">{t('includedMainCleaning')}</h3>
@@ -528,36 +528,58 @@ const Pricing = () => {
                   </p>
                 </div>
                 
-                <div className="grid grid-cols-1 gap-3">
-                  {includedCategories.map((category) => (
+                {/* First row - 3 categories */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+                  {includedCategories.slice(0, 3).map((category) => (
                     <div 
                       key={category.id}
                       className="border border-gray-200 rounded-lg overflow-hidden"
                     >
-                      <button 
-                        className="w-full flex items-center justify-between py-3 px-4 bg-white text-left font-semibold text-gray-800 hover:bg-gray-50 transition-colors"
-                        onClick={() => toggleSection(category.id)}
-                      >
-                        <span>{category.title}</span>
-                        <ChevronDown 
-                          className={`transition-transform duration-300 ${activeSection === category.id ? 'rotate-180' : ''}`}
-                        />
-                      </button>
-                      
-                      {activeSection === category.id && (
-                        <div className="bg-gray-50 p-3 animate-accordion-down">
-                          <ul className="space-y-2">
-                            {category.items.map((item, index) => (
-                              <li key={index} className="flex items-start">
-                                <svg className="h-5 w-5 text-shr-blue-dark shrink-0 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
+                      <Accordion type="single" collapsible className="w-full">
+                        <AccordionItem value={category.id} className="border-0">
+                          <AccordionTrigger className="py-3 px-3 bg-white hover:bg-gray-50 text-left font-semibold text-gray-800 transition-colors">
+                            {category.title}
+                          </AccordionTrigger>
+                          <AccordionContent className="bg-gray-50 p-3">
+                            <ul className="space-y-2">
+                              {category.items.map((item, index) => (
+                                <li key={index} className="flex items-start">
+                                  <Check size={16} className="text-green-500 mr-2 mt-0.5" />
+                                  <span className="text-sm">{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Second row - 3 categories */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  {includedCategories.slice(3, 6).map((category) => (
+                    <div 
+                      key={category.id}
+                      className="border border-gray-200 rounded-lg overflow-hidden"
+                    >
+                      <Accordion type="single" collapsible className="w-full">
+                        <AccordionItem value={category.id} className="border-0">
+                          <AccordionTrigger className="py-3 px-3 bg-white hover:bg-gray-50 text-left font-semibold text-gray-800 transition-colors">
+                            {category.title}
+                          </AccordionTrigger>
+                          <AccordionContent className="bg-gray-50 p-3">
+                            <ul className="space-y-2">
+                              {category.items.map((item, index) => (
+                                <li key={index} className="flex items-start">
+                                  <Check size={16} className="text-green-500 mr-2 mt-0.5" />
+                                  <span className="text-sm">{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </AccordionContent>
+                        </AccordionItem>
+                      </Accordion>
                     </div>
                   ))}
                 </div>
