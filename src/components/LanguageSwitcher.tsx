@@ -196,7 +196,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Pricing section
     pricingTitle: 'Våra priser',
-    pricingDescription: 'Transparenta priser utan dolda avgifter',
+    pricingDescription: '',
     homeCleaning: 'Hemstädning',
     movingCleaning: 'Flyttstädning',
     generalCleaning: 'Storstädning',
@@ -211,6 +211,44 @@ const translations: Record<string, Record<string, string>> = {
     
     // Testimonials section
     testimonialsTitle: 'Vad våra kunder säger',
+    
+    // Features for the different cleaning services
+    generalFeature1: 'Omfattande rengöring av alla ytor',
+    generalFeature2: 'Miljövänliga rengöringsmedel',
+    generalFeature3: 'Erfarna städare med omsorg för detaljer',
+    
+    movingFeature1: 'Professionell flyttstädning enligt checklista',
+    movingFeature2: 'Godkänd av besiktningsman',
+    movingFeature3: 'Fullständig rengöring av alla utrymmen',
+    
+    // Window types descriptions
+    windowType1: 'Standard Fönster',
+    regularNoBars: 'Vanligt fönster utan spröjs',
+    windowType2: 'Tredelat Fönster',
+    tripleNoBars: 'Tredelat fönster utan spröjs',
+    windowType3: 'Tredelat med Spröjs',
+    tripleWithBars: 'Tredelat fönster med spröjs',
+    windowType4: 'Specialfönster',
+    unusualLarge: 'Ovanligt stort eller svåråtkomligt',
+    balconyDoorLarge: 'Stor Balkongdörr',
+    balconyDoorLargeDesc: 'Stor balkongdörr med fönster',
+    balconyDoor: 'Balkongdörr',
+    balconyDoorDesc: 'Standard balkongdörr',
+    balconyFullGlazed: 'Helglasad Balkong',
+    balconyFullGlazedDesc: 'Fullständigt inglasad balkong',
+    balconyHalfGlazed: 'Halvglasad Balkong',
+    balconyHalfGlazedDesc: 'Delvis inglasad balkong',
+    
+    totalPrice: 'Totalt Pris',
+    
+    // Recurring service descriptions
+    weekly: 'Veckovis',
+    weeklyDescription: 'Regelbunden grundlig städning varje vecka för ett konsekvent rent hem',
+    biweekly: 'Varannan Vecka',
+    biweeklyDescription: 'Den mest populära tjänsten för hushåll som behöver regelbunden städning',
+    monthly: 'Månadsvis',
+    monthlyDescription: 'Djuprengöring en gång i månaden för att upprätthålla hemmets renhet',
+    callForCustomPlan: 'Ring för anpassad plan',
   },
   
   en: {
@@ -387,7 +425,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Pricing section
     pricingTitle: 'Our Prices',
-    pricingDescription: 'Transparent pricing with no hidden fees',
+    pricingDescription: '',
     homeCleaning: 'Home Cleaning',
     movingCleaning: 'Moving Cleaning',
     generalCleaning: 'General Cleaning',
@@ -402,6 +440,44 @@ const translations: Record<string, Record<string, string>> = {
     
     // Testimonials section
     testimonialsTitle: 'What Our Clients Say',
+    
+    // Features for the different cleaning services
+    generalFeature1: 'Comprehensive cleaning of all surfaces',
+    generalFeature2: 'Eco-friendly cleaning products',
+    generalFeature3: 'Experienced cleaners with attention to detail',
+    
+    movingFeature1: 'Professional move-out cleaning according to checklist',
+    movingFeature2: 'Approved by property inspectors',
+    movingFeature3: 'Complete cleaning of all spaces',
+    
+    // Window types descriptions
+    windowType1: 'Standard Window',
+    regularNoBars: 'Regular window without bars',
+    windowType2: 'Triple Window',
+    tripleNoBars: 'Triple window without bars',
+    windowType3: 'Triple with Bars',
+    tripleWithBars: 'Triple window with bars',
+    windowType4: 'Special Window',
+    unusualLarge: 'Unusually large or hard to reach',
+    balconyDoorLarge: 'Large Balcony Door',
+    balconyDoorLargeDesc: 'Large balcony door with window',
+    balconyDoor: 'Balcony Door',
+    balconyDoorDesc: 'Standard balcony door',
+    balconyFullGlazed: 'Fully Glazed Balcony',
+    balconyFullGlazedDesc: 'Fully enclosed glass balcony',
+    balconyHalfGlazed: 'Half Glazed Balcony',
+    balconyHalfGlazedDesc: 'Partially enclosed glass balcony',
+    
+    totalPrice: 'Total Price',
+    
+    // Recurring service descriptions
+    weekly: 'Weekly',
+    weeklyDescription: 'Regular thorough cleaning every week for a consistently clean home',
+    biweekly: 'Bi-Weekly',
+    biweeklyDescription: 'The most popular service for households that need regular cleaning',
+    monthly: 'Monthly',
+    monthlyDescription: 'Deep cleaning once a month to maintain home cleanliness',
+    callForCustomPlan: 'Call for custom plan',
   },
 };
 
