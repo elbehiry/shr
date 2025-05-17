@@ -5,11 +5,6 @@ import { useLanguage } from './LanguageSwitcher';
 const Services = () => {
   const { t } = useLanguage();
   
-  const serviceImages = [
-    "https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1770", // Black and brown fruit on wooden plate
-    "https://images.unsplash.com/photo-1686178827149-6d55c72d81df?q=80&w=1770" // Previously added image
-  ];
-  
   const services = [
     {
       title: t('movingCleaningTitle'),
@@ -62,15 +57,6 @@ const Services = () => {
           <p className="text-gray-600 max-w-2xl mx-auto">
             {t('servicesDescription')}
           </p>
-        </div>
-        
-        {/* Service images */}
-        <div className="flex justify-center mb-12 space-x-4 overflow-x-auto py-4">
-          {serviceImages.map((image, i) => (
-            <div key={i} className="flex-shrink-0 w-64 h-48 md:w-80 md:h-60 overflow-hidden rounded-lg shadow-md">
-              <img src={image} alt={`Service ${i+1}`} className="w-full h-full object-cover transition-transform hover:scale-105 duration-300" />
-            </div>
-          ))}
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

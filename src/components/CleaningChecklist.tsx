@@ -21,7 +21,6 @@ interface CleaningChecklistProps {
 
 const CleaningChecklist = ({ serviceType }: CleaningChecklistProps) => {
   const { t } = useLanguage();
-  const [expanded, setExpanded] = useState<string | boolean>(false);
 
   // Define sections based on service type
   const getSections = (): CleaningItem[] => {
@@ -271,21 +270,21 @@ const CleaningChecklist = ({ serviceType }: CleaningChecklistProps) => {
   const sections = getSections();
 
   return (
-    <div className="bg-gray-50 p-6 rounded-lg">
+    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
       <h3 className="text-xl font-semibold mb-4">{t('cleaningIncluded')}</h3>
       <p className="text-gray-600 mb-6">{t('cleaningChecklistDescription')}</p>
       
-      <Accordion type="single" collapsible className="w-full space-y-2">
+      <Accordion type="multiple" className="w-full space-y-2">
         {sections.map((section, index) => (
           <AccordionItem
             key={index}
             value={`item-${index}`}
-            className="bg-white rounded-md shadow-sm border border-gray-100"
+            className="bg-shr-gray rounded-md overflow-hidden"
           >
-            <AccordionTrigger className="px-4 py-3 hover:no-underline font-medium">
+            <AccordionTrigger className="px-4 py-3 hover:no-underline font-medium hover:bg-gray-100 transition-colors">
               {section.title}
             </AccordionTrigger>
-            <AccordionContent className="px-4 pb-4">
+            <AccordionContent className="px-4 py-3 bg-white border-t border-gray-100">
               <ul className="space-y-2">
                 {section.items.map((item, i) => (
                   <li key={i} className="flex items-start">

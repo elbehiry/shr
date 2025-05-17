@@ -21,6 +21,9 @@ const Pricing = () => {
     }
   };
 
+  // Determine if we should show the checklist based on the active tab
+  const showChecklist = ['homeClean', 'moveClean', 'generalClean'].includes(activeTab);
+
   return (
     <section id="pricing" className="section-padding bg-shr-gray">
       <div className="container mx-auto">
@@ -80,13 +83,6 @@ const Pricing = () => {
             </TabsTrigger>
           </TabsList>
           
-          {/* Show cleaning checklist for home, move and general cleaning tabs */}
-          {(activeTab === 'homeClean' || activeTab === 'moveClean' || activeTab === 'generalClean') && (
-            <div className="mb-8">
-              <CleaningChecklist serviceType={getChecklistType()} />
-            </div>
-          )}
-          
           {/* Tab contents */}
           <TabsContent value="homeClean" className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
             <h3 className="text-xl font-semibold mb-6">{t('selectSize')}</h3>
@@ -144,7 +140,7 @@ const Pricing = () => {
           </TabsContent>
           
           <TabsContent value="moveClean" className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
-            {/* Moving cleaning tab content - same as home cleaning */}
+            {/* Moving cleaning tab content - same as before */}
             <h3 className="text-xl font-semibold mb-6">{t('selectSize')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div 
@@ -203,7 +199,6 @@ const Pricing = () => {
             {/* General cleaning content */}
             <h3 className="text-xl font-semibold mb-6">{t('selectSize')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Size options... */}
               <div 
                 className={`border rounded-lg p-5 cursor-pointer transition-all ${selectedSize === 'small' ? 'border-shr-blue-dark bg-blue-50' : 'border-gray-200 hover:border-shr-blue-dark'}`}
                 onClick={() => setSelectedSize('small')}
