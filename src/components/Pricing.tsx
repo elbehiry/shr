@@ -1,50 +1,33 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useLanguage } from './LanguageSwitcher';
 import PricingTabs from './pricing/PricingTabs';
 import TabContent from './pricing/TabContent';
 
 // Import data utility files
-import { getSqmOptions } from './pricing/data/sqmOptions';
-import { getWindowTypes, getInitialWindowCounts } from './pricing/data/windowTypes';
-import { 
-  getCleaningAreas, 
-  getIncludedCategories, 
-  getNotIncludedTranslations 
-} from './pricing/data/cleaningCategories';
+import { getCleaningAreas, getIncludedCategories, getNotIncludedTranslations } from './pricing/data/cleaningCategories';
+import { getWindowTypes } from './pricing/data/windowTypes';
+import { usePricingState } from './pricing/hooks/usePricingState';
 
 const Pricing = () => {
   const { t } = useLanguage();
-  const [activeTab, setActiveTab] = useState('home');
+  
+  // Use our custom pricing state hook
+  const {
+    activeTab,
+    selectedSqm,
+    windowCounts,
+    sqmOptions,
+    handleTabChange,
+    setSelectedSqm,
+    handleCountChange
+  } = usePricingState();
   
   // Get data from utility files
-  const sqmOptions = getSqmOptions();
   const windowTypes = getWindowTypes(t);
   const cleaningAreas = getCleaningAreas(t);
   const includedCategories = getIncludedCategories(t);
   const notIncludedTranslations = getNotIncludedTranslations(t);
-  
-  // Pre-select the lowest sqm option
-  const [selectedSqm, setSelectedSqm] = useState(sqmOptions[0].value);
-
-  // Window cleaning calculator state
-  const [windowCounts, setWindowCounts] = useState(getInitialWindowCounts());
-  
-  const handleCountChange = (id: string, change: number) => {
-    setWindowCounts(prev => {
-      const currentCount = prev[id] || 0;
-      const newCount = Math.max(0, currentCount + change);
-      return {
-        ...prev,
-        [id]: newCount
-      };
-    });
-  };
-
-  // Handle tab changes
-  const handleTabChange = (tabName: string) => {
-    setActiveTab(tabName);
-  };
 
   return (
     <section id="pricing" className="section-padding">
