@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useLanguage } from './LanguageSwitcher';
 import { Button } from '@/components/ui/button';
@@ -16,6 +15,7 @@ import { SqmOption, WindowType, CleaningCategory } from './pricing/types';
 
 const Pricing = () => {
   const { t } = useLanguage();
+  // Already set to 'moving' as default
   const [activeTab, setActiveTab] = useState('moving');
   const [isChecklistOpen, setIsChecklistOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -225,6 +225,14 @@ const Pricing = () => {
     items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffElectronics'), t('dustOffLamps'), t('polishMirrors'), t('dustFurniture'), t('dustDesk'), t('wipeBedside'), t('dustPaintings')]
   }];
 
+  // Fix the tab switching to avoid DOM manipulation errors
+  const handleTabChange = (tabName: string) => {
+    // Use a safe tab switching approach
+    setTimeout(() => {
+      setActiveTab(tabName);
+    }, 0);
+  };
+
   return (
     <section id="pricing" className="section-padding">
       <div className="container mx-auto">
@@ -242,42 +250,42 @@ const Pricing = () => {
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           <Button 
             variant={activeTab === 'home' ? 'default' : 'outline'} 
-            onClick={() => setActiveTab('home')} 
+            onClick={() => handleTabChange('home')} 
             className={activeTab === 'home' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
           >
             {t('homeCleaning')}
           </Button>
           <Button 
             variant={activeTab === 'moving' ? 'default' : 'outline'} 
-            onClick={() => setActiveTab('moving')} 
+            onClick={() => handleTabChange('moving')} 
             className={activeTab === 'moving' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
           >
             {t('movingCleaning')}
           </Button>
           <Button 
             variant={activeTab === 'general' ? 'default' : 'outline'} 
-            onClick={() => setActiveTab('general')} 
+            onClick={() => handleTabChange('general')} 
             className={activeTab === 'general' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
           >
             {t('generalCleaning')}
           </Button>
           <Button 
             variant={activeTab === 'window' ? 'default' : 'outline'} 
-            onClick={() => setActiveTab('window')} 
+            onClick={() => handleTabChange('window')} 
             className={activeTab === 'window' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
           >
             {t('windowCleaning')}
           </Button>
           <Button 
             variant={activeTab === 'office' ? 'default' : 'outline'} 
-            onClick={() => setActiveTab('office')} 
+            onClick={() => handleTabChange('office')} 
             className={activeTab === 'office' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
           >
             {t('officeCleaning')}
           </Button>
           <Button 
             variant={activeTab === 'recurring' ? 'default' : 'outline'} 
-            onClick={() => setActiveTab('recurring')} 
+            onClick={() => handleTabChange('recurring')} 
             className={activeTab === 'recurring' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
           >
             {t('recurringService')}
@@ -285,51 +293,53 @@ const Pricing = () => {
         </div>
 
         {/* Conditionally render the appropriate tab content */}
-        {activeTab === 'home' && (
-          <HomeCleaning
-            t={t}
-            sqmOptions={sqmOptions}
-            selectedSqm={selectedSqm}
-            setSelectedSqm={setSelectedSqm}
-            cleaningAreas={cleaningAreas}
-          />
-        )}
+        <div className="tab-content-container">
+          {activeTab === 'home' && (
+            <HomeCleaning
+              t={t}
+              sqmOptions={sqmOptions}
+              selectedSqm={selectedSqm}
+              setSelectedSqm={setSelectedSqm}
+              cleaningAreas={cleaningAreas}
+            />
+          )}
 
-        {activeTab === 'moving' && (
-          <MovingCleaning
-            t={t}
-            sqmOptions={sqmOptions}
-            selectedSqm={selectedSqm}
-            setSelectedSqm={setSelectedSqm}
-          />
-        )}
+          {activeTab === 'moving' && (
+            <MovingCleaning
+              t={t}
+              sqmOptions={sqmOptions}
+              selectedSqm={selectedSqm}
+              setSelectedSqm={setSelectedSqm}
+            />
+          )}
 
-        {activeTab === 'general' && (
-          <GeneralCleaning
-            t={t}
-            sqmOptions={sqmOptions}
-            selectedSqm={selectedSqm}
-            setSelectedSqm={setSelectedSqm}
-            includedCategories={includedCategories}
-          />
-        )}
+          {activeTab === 'general' && (
+            <GeneralCleaning
+              t={t}
+              sqmOptions={sqmOptions}
+              selectedSqm={selectedSqm}
+              setSelectedSqm={setSelectedSqm}
+              includedCategories={includedCategories}
+            />
+          )}
 
-        {activeTab === 'window' && (
-          <WindowCleaning
-            t={t}
-            windowTypes={windowTypes}
-            windowCounts={windowCounts}
-            handleCountChange={handleCountChange}
-          />
-        )}
+          {activeTab === 'window' && (
+            <WindowCleaning
+              t={t}
+              windowTypes={windowTypes}
+              windowCounts={windowCounts}
+              handleCountChange={handleCountChange}
+            />
+          )}
 
-        {activeTab === 'office' && (
-          <OfficeCleaning t={t} />
-        )}
+          {activeTab === 'office' && (
+            <OfficeCleaning t={t} />
+          )}
 
-        {activeTab === 'recurring' && (
-          <RecurringService t={t} />
-        )}
+          {activeTab === 'recurring' && (
+            <RecurringService t={t} />
+          )}
+        </div>
       </div>
     </section>
   );

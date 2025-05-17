@@ -69,10 +69,33 @@ const HomeCleaning: React.FC<HomeCleaningProps> = ({
           <h3 className="text-xl font-semibold mb-6">{t('cleaningIncludedIn')} {t('homeCleaning')}</h3>
         </div>
       
-        {/* Cleaning areas in grid layout */}
+        {/* First row - Cleaning areas in grid layout */}
+        <div className="w-full mb-4">
+          <Accordion type="single" collapsible className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
+            {cleaningAreas.slice(0, 3).map(area => (
+              <AccordionItem key={area.id} value={area.id} className="border border-gray-200 rounded-lg">
+                <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
+                  {area.title}
+                </AccordionTrigger>
+                <AccordionContent className="bg-gray-50 rounded-b-lg p-5 pt-2">
+                  <ul className="space-y-2 mt-2">
+                    {area.items.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <Check size={18} className="text-green-500 mr-2 mt-1" /> 
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+        
+        {/* Second row - Additional cleaning areas */}
         <div className="w-full">
           <Accordion type="single" collapsible className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
-            {cleaningAreas.map(area => (
+            {cleaningAreas.slice(3).map(area => (
               <AccordionItem key={area.id} value={area.id} className="border border-gray-200 rounded-lg">
                 <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
                   {area.title}
