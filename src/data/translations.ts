@@ -16,12 +16,12 @@ export const translations = {
     notSure: "Not sure if we serve your area? Call us to find out!",
     // Hero translations
     heroTitle: "Professional Cleaning Services for Your Home & Office",
-    heroDescription: "SHR provides top-quality cleaning services tailored to your needs. We take pride in delivering spotless results and exceptional customer service.",
+    heroDescription: "SHR städ provides top-quality cleaning services tailored to your needs. We take pride in delivering spotless results and exceptional customer service.",
     learnMore: "Learn More",
     // About translations
-    aboutTitle: "About SHR",
+    aboutTitle: "About SHR städ",
     aboutDescription: "We Make Your Space Shine",
-    aboutText: "SHR Cleaning Services has been providing exceptional cleaning solutions to homes and offices. Our dedicated team of professionals is committed to delivering spotless results and outstanding customer service.",
+    aboutText: "SHR städ has been providing exceptional cleaning solutions to homes and offices. Our dedicated team of professionals is committed to delivering spotless results and outstanding customer service.",
     professionalStaff: "Professional Staff",
     trainedSpecialists: "Trained and experienced cleaning specialists",
     efficientService: "Efficient Service",
@@ -66,7 +66,7 @@ export const translations = {
     contactInformation: "Contact Information",
     allRightsReserved: "All rights reserved.",
     // Other
-    readyForCleaner: "Ready for a cleaner space? Contact SHR Cleaning Services today for a free quote. We're here to answer your questions and provide the highest quality service.",
+    readyForCleaner: "Ready for a cleaner space? Contact SHR städ today for a free quote. We're here to answer your questions and provide the highest quality service.",
     // Pricing translations
     pricingTitle: "Our Pricing",
     pricingDescription: "We offer transparent pricing for all our services. See our rates below or contact us for a custom quote.",
@@ -136,12 +136,12 @@ export const translations = {
     notSure: "Osäker på om vi betjänar ditt område? Ring oss för att ta reda på det!",
     // Hero translations
     heroTitle: "Professionella städtjänster för ditt hem och kontor",
-    heroDescription: "SHR tillhandahåller städtjänster av högsta kvalitet anpassade efter dina behov. Vi är stolta över att leverera fläckfria resultat och exceptionell kundservice.",
+    heroDescription: "SHR städ tillhandahåller städtjänster av högsta kvalitet anpassade efter dina behov. Vi är stolta över att leverera fläckfria resultat och exceptionell kundservice.",
     learnMore: "Läs mer",
     // About translations
-    aboutTitle: "Om SHR",
+    aboutTitle: "Om SHR städ",
     aboutDescription: "Vi får ditt utrymme att skina",
-    aboutText: "SHR Cleaning Services har levererat exceptionella städlösningar till hem och kontor. Vårt dedikerade team av proffs är engagerade i att leverera fläckfria resultat och utmärkt kundservice.",
+    aboutText: "SHR städ har levererat exceptionella städlösningar till hem och kontor. Vårt dedikerade team av proffs är engagerade i att leverera fläckfria resultat och utmärkt kundservice.",
     professionalStaff: "Professionell personal",
     trainedSpecialists: "Utbildade och erfarna städspecialister",
     efficientService: "Effektiv service",
@@ -186,7 +186,7 @@ export const translations = {
     contactInformation: "Kontaktinformation",
     allRightsReserved: "Alla rättigheter förbehållna.",
     // Other
-    readyForCleaner: "Redo för ett renare utrymme? Kontakta SHR Cleaning Services idag för en gratis offert. Vi finns här för att svara på dina frågor och ge service av högsta kvalitet.",
+    readyForCleaner: "Redo för ett renare utrymme? Kontakta SHR städ idag för en gratis offert. Vi finns här för att svara på dina frågor och ge service av högsta kvalitet.",
     // Pricing translations
     pricingTitle: "Våra priser",
     pricingDescription: "Vi erbjuder transparenta priser för alla våra tjänster. Se våra priser nedan eller kontakta oss för en anpassad offert.",

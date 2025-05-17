@@ -16,7 +16,7 @@ const About = () => {
           <div className="relative">
             <div className="aspect-square overflow-hidden rounded-lg shadow-lg">
               <img 
-                src="https://images.unsplash.com/photo-1556911261-6bd341186b2f?q=80&w=1770" 
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1770" 
                 alt="SHR Cleaning Team" 
                 className="w-full h-full object-cover"
               />
