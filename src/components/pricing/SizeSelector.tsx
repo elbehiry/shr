@@ -19,11 +19,13 @@ const SizeSelector: React.FC<SizeSelectorProps> = ({
   setSelectedSqm, 
   selectSizeText 
 }) => {
+  const selectId = "sqm-selector"; // Create a unique ID for the select component
+  
   return (
     <div className="mb-6">
-      <Label htmlFor="sqm">{label}</Label>
-      <Select value={selectedSqm} onValueChange={setSelectedSqm}>
-        <SelectTrigger className="w-full mt-1">
+      <Label htmlFor={selectId}>{label}</Label>
+      <Select value={selectedSqm} onValueChange={setSelectedSqm} id={selectId}>
+        <SelectTrigger className="w-full mt-1" id={selectId}>
           <SelectValue placeholder={selectSizeText} />
         </SelectTrigger>
         <SelectContent>

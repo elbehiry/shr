@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { getSqmOptions } from '../data/sqmOptions';
 import { getInitialWindowCounts } from '../data/windowTypes';
 import { SqmOption } from '../types';
@@ -16,12 +16,16 @@ export const usePricingState = () => {
   // Window cleaning calculator state
   const [windowCounts, setWindowCounts] = useState(getInitialWindowCounts());
   
-  const handleTabChange = (tabName: string) => {
-    // Simple direct state update without any DOM manipulation
-    setActiveTab(tabName);
-  };
+  // Use useCallback to memoize the tab change handler
+  const handleTabChange = useCallback((tabName: string) => {
+    // Only update if it's different to avoid unnecessary re-renders
+    if (tabName !== activeTab) {
+      setActiveTab(tabName);
+    }
+  }, [activeTab]);
   
-  const handleCountChange = (id: string, change: number) => {
+  // Use useCallback to memoize the count change handler
+  const handleCountChange = useCallback((id: string, change: number) => {
     setWindowCounts(prev => {
       const currentCount = prev[id] || 0;
       const newCount = Math.max(0, currentCount + change);
@@ -30,7 +34,7 @@ export const usePricingState = () => {
         [id]: newCount
       };
     });
-  };
+  }, []);
   
   return {
     activeTab,

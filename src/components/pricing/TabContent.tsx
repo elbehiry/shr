@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { memo } from 'react';
 import HomeCleaning from './HomeCleaning';
 import MovingCleaning from './MovingCleaning';
 import GeneralCleaning from './GeneralCleaning';
@@ -22,6 +22,14 @@ interface TabContentProps {
   notIncludedTranslations: Record<string, string>;
 }
 
+// Use memo for the individual tab components to prevent unnecessary re-renders
+const MemoizedHomeCleaning = memo(HomeCleaning);
+const MemoizedMovingCleaning = memo(MovingCleaning);
+const MemoizedGeneralCleaning = memo(GeneralCleaning);
+const MemoizedWindowCleaning = memo(WindowCleaning);
+const MemoizedOfficeCleaning = memo(OfficeCleaning);
+const MemoizedRecurringService = memo(RecurringService);
+
 const TabContent: React.FC<TabContentProps> = ({
   activeTab,
   t,
@@ -35,11 +43,11 @@ const TabContent: React.FC<TabContentProps> = ({
   handleCountChange,
   notIncludedTranslations
 }) => {
-  // Use React.memo'd components or render conditionally with &&
+  // Use a single return statement with conditionals to prevent DOM manipulation issues
   return (
-    <>
+    <div className="tab-content">
       {activeTab === 'home' && (
-        <HomeCleaning
+        <MemoizedHomeCleaning
           t={t}
           sqmOptions={sqmOptions}
           selectedSqm={selectedSqm}
@@ -49,7 +57,7 @@ const TabContent: React.FC<TabContentProps> = ({
       )}
 
       {activeTab === 'moving' && (
-        <MovingCleaning
+        <MemoizedMovingCleaning
           t={t}
           sqmOptions={sqmOptions}
           selectedSqm={selectedSqm}
@@ -58,7 +66,7 @@ const TabContent: React.FC<TabContentProps> = ({
       )}
 
       {activeTab === 'general' && (
-        <GeneralCleaning
+        <MemoizedGeneralCleaning
           t={(key) => {
             // Special handling for the new NOT included section translations
             if (key in notIncludedTranslations) {
@@ -74,7 +82,7 @@ const TabContent: React.FC<TabContentProps> = ({
       )}
 
       {activeTab === 'window' && (
-        <WindowCleaning
+        <MemoizedWindowCleaning
           t={t}
           windowTypes={windowTypes}
           windowCounts={windowCounts}
@@ -82,10 +90,10 @@ const TabContent: React.FC<TabContentProps> = ({
         />
       )}
 
-      {activeTab === 'office' && <OfficeCleaning t={t} />}
+      {activeTab === 'office' && <MemoizedOfficeCleaning t={t} />}
 
-      {activeTab === 'recurring' && <RecurringService t={t} />}
-    </>
+      {activeTab === 'recurring' && <MemoizedRecurringService t={t} />}
+    </div>
   );
 };
 
