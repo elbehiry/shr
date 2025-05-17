@@ -1,4 +1,3 @@
-
 import { useLanguage } from './LanguageSwitcher';
 import { 
   Carousel, 
@@ -10,7 +9,7 @@ import {
 import { useEffect, useState, useRef } from "react";
 
 const Testimonials = () => {
-  const { t, language } = useLanguage();
+  const { t, currentLanguage } = useLanguage();
   const [autoPlay, setAutoPlay] = useState(true);
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -82,7 +81,7 @@ const Testimonials = () => {
     ]
   };
 
-  const currentTestimonials = language === 'sv' ? testimonials.sv : testimonials.en;
+  const currentTestimonials = currentLanguage === 'sv' ? testimonials.sv : testimonials.en;
   
   const nextSlide = () => {
     setActiveIndex((prevIndex) => 
@@ -103,7 +102,7 @@ const Testimonials = () => {
         clearInterval(autoPlayRef.current);
       }
     };
-  }, [autoPlay, activeIndex, language]);
+  }, [autoPlay, activeIndex, currentLanguage]);
   
   // Pause auto-play on hover
   const handleMouseEnter = () => {
