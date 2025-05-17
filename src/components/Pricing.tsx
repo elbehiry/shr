@@ -403,87 +403,111 @@ const Pricing = () => {
               <div className="mt-4">
                 <h3 className="text-xl font-semibold mb-6">{t('cleaningIncludedIn')} {t('movingCleaning')}</h3>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <Accordion type="single" collapsible className="w-full">
                   {/* Kitchen */}
-                  <div className="bg-gray-50 rounded-lg p-5">
-                    <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('kitchen')}</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
-                    </ul>
-                  </div>
+                  <AccordionItem value="kitchen" className="border-b border-gray-200">
+                    <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
+                      {t('kitchen')}
+                    </AccordionTrigger>
+                    <AccordionContent className="bg-gray-50 rounded-b-lg p-5 pt-2">
+                      <ul className="space-y-2 mt-2">
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
                   
                   {/* Bathroom */}
-                  <div className="bg-gray-50 rounded-lg p-5">
-                    <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('bathroom')}</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
-                    </ul>
-                  </div>
+                  <AccordionItem value="bathroom" className="border-b border-gray-200">
+                    <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
+                      {t('bathroom')}
+                    </AccordionTrigger>
+                    <AccordionContent className="bg-gray-50 rounded-b-lg p-5 pt-2">
+                      <ul className="space-y-2 mt-2">
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
                   
                   {/* Room */}
-                  <div className="bg-gray-50 rounded-lg p-5">
-                    <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('room')}</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wallsDusted')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('moldingsWiped')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('elementsCleaned')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('doorsCleaned')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('windowsAllSides')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wardrobesWiped')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('blindsCleaned')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('floorsVacuumedWiped')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('allWindowsCleaned')}</li>
-                    </ul>
-                  </div>
+                  <AccordionItem value="room" className="border-b border-gray-200">
+                    <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
+                      {t('room')}
+                    </AccordionTrigger>
+                    <AccordionContent className="bg-gray-50 rounded-b-lg p-5 pt-2">
+                      <ul className="space-y-2 mt-2">
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wallsDusted')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('moldingsWiped')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('elementsCleaned')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('doorsCleaned')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('windowsAllSides')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wardrobesWiped')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('blindsCleaned')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('floorsVacuumedWiped')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('allWindowsCleaned')}</li>
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
                   
                   {/* Laundry */}
-                  <div className="bg-gray-50 rounded-lg p-5">
-                    <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('laundry')}</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('washingMachineCleaned')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('tumbleDryersCleaned')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dryingCabinetsCleaned')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wallsCeilingsDusted')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('floorsVacuumedWiped')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('floorDrainsCleaned')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('allWindowsCleaned')}</li>
-                    </ul>
-                    <p className="mt-4 text-sm text-gray-600">{t('sellerResponsibility')}</p>
-                  </div>
+                  <AccordionItem value="laundry" className="border-b border-gray-200">
+                    <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
+                      {t('laundry')}
+                    </AccordionTrigger>
+                    <AccordionContent className="bg-gray-50 rounded-b-lg p-5 pt-2">
+                      <ul className="space-y-2 mt-2">
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('washingMachineCleaned')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('tumbleDryersCleaned')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dryingCabinetsCleaned')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wallsCeilingsDusted')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('floorsVacuumedWiped')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('floorDrainsCleaned')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('allWindowsCleaned')}</li>
+                      </ul>
+                      <p className="mt-4 text-sm text-gray-600">{t('sellerResponsibility')}</p>
+                    </AccordionContent>
+                  </AccordionItem>
                   
                   {/* Guarantee */}
-                  <div className="bg-gray-50 rounded-lg p-5">
-                    <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('guarantee')}</h4>
-                    <p>{t('guaranteeText')}</p>
-                  </div>
+                  <AccordionItem value="guarantee" className="border-b border-gray-200">
+                    <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
+                      {t('guarantee')}
+                    </AccordionTrigger>
+                    <AccordionContent className="bg-gray-50 rounded-b-lg p-5 pt-2">
+                      <p className="mt-2">{t('guaranteeText')}</p>
+                    </AccordionContent>
+                  </AccordionItem>
                   
                   {/* Other */}
-                  <div className="bg-gray-50 rounded-lg p-5">
-                    <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('other')}</h4>
-                    <ul className="space-y-2">
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('basementsSwept')}</li>
-                      <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('furnishedBasementCleaned')}</li>
-                    </ul>
-                  </div>
-                </div>
+                  <AccordionItem value="other" className="border-b border-gray-200">
+                    <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
+                      {t('other')}
+                    </AccordionTrigger>
+                    <AccordionContent className="bg-gray-50 rounded-b-lg p-5 pt-2">
+                      <ul className="space-y-2 mt-2">
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('basementsSwept')}</li>
+                        <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('furnishedBasementCleaned')}</li>
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </div>
             </div>
           </div>}
