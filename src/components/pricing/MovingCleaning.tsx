@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Check } from 'lucide-react';
@@ -32,35 +33,35 @@ const MovingCleaning: React.FC<MovingCleaningProps> = ({ t, sqmOptions, selected
   return (
     <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
       <h3 className="text-2xl font-semibold mb-6 text-center">{t('movingCleaning')}</h3>
-      <div className="max-w-md mx-auto">
-        <SizeSelector
-          label={t('homeSize')}
-          sqmOptions={sqmOptions}
-          selectedSqm={selectedSqm}
-          setSelectedSqm={setSelectedSqm}
-          selectSizeText={t('selectSize')}
-        />
+      
+      <div className="w-full">
+        <div className="max-w-md mx-auto mb-8">
+          <SizeSelector
+            label={t('homeSize')}
+            sqmOptions={sqmOptions}
+            selectedSqm={selectedSqm}
+            setSelectedSqm={setSelectedSqm}
+            selectSizeText={t('selectSize')}
+          />
 
-        <PriceDisplay
-          title={t('estimatedPrice')}
-          price={price}
-        />
+          <PriceDisplay
+            title={t('estimatedPrice')}
+            price={price}
+          />
 
-        <FeaturesList features={features} />
+          <FeaturesList features={features} />
 
-        <ContactButton
-          label={selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
-          className="mt-6 mb-8"
-        />
+          <ContactButton
+            label={selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
+            className="mt-6 mb-8"
+          />
+        </div>
         
         {/* Moving Cleaning Checklist - Full width content */}
         <div className="mt-4 w-full">
           <h3 className="text-xl font-semibold mb-6">{t('cleaningIncludedIn')} {t('movingCleaning')}</h3>
         </div>
-      </div>
       
-      {/* Move accordion sections outside of the max-w-md container to allow full width */}
-      <div className="w-full mt-4">
         {/* First row - 3 items */}
         <div className="w-full mb-4">
           <Accordion type="single" collapsible className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
