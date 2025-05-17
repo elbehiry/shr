@@ -4,200 +4,31 @@ import { useLanguage } from './LanguageSwitcher';
 import PricingTabs from './pricing/PricingTabs';
 import TabContent from './pricing/TabContent';
 
-// Import types
-import { SqmOption, WindowType, CleaningCategory } from './pricing/types';
+// Import data utility files
+import { getSqmOptions } from './pricing/data/sqmOptions';
+import { getWindowTypes, getInitialWindowCounts } from './pricing/data/windowTypes';
+import { 
+  getCleaningAreas, 
+  getIncludedCategories, 
+  getNotIncludedTranslations 
+} from './pricing/data/cleaningCategories';
 
 const Pricing = () => {
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('home');
-  const [isChecklistOpen, setIsChecklistOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string | null>(null);
-
-  // Define included categories for the cleaning checklist
-  const includedCategories: CleaningCategory[] = [{
-    id: 'all-rooms',
-    title: t('allRooms'),
-    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery')]
-  }, {
-    id: 'other-surfaces',
-    title: t('allOtherSurfaces'),
-    items: [t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffElectronics'), t('dustOffLamps'), t('polishMirrors')]
-  }, {
-    id: 'bathroom',
-    title: t('bathroom'),
-    items: [t('cleaningSinks'), t('cleaningAirVentsNotInside'), t('vacuumSweepingFloors')]
-  }, {
-    id: 'window',
-    title: t('windowCleaning'),
-    items: [t('windowCleaningBookedSeparately')]
-  }, {
-    id: 'balcony',
-    title: t('balcony'),
-    items: [t('cleaningCabinetsGarbage')]
-  }, {
-    id: 'additional',
-    title: t('additionalServices'),
-    items: [t('ovenCleaningInOut'), t('refrigeratorExternallyCleaned'), t('cleaningStovetops'), t('dishwasherCleanedInOut')]
-  }];
-
-  // Add translations for NOT included section
-  const notIncludedTranslations = {
-    notIncludedTitle: t('notIncludedTitle') || 'The following are NOT included in the price and will be charged extra',
-    notIncludedNewDescription: t('notIncludedNewDescription') || 'The following items are not included or are charged extra',
-    termsLink: t('termsLink') || 'here',
-    notIncludedDescriptionEnd: t('notIncludedDescriptionEnd') || 'for full information on what is included, not included and what is charged extra.',
-    glazedBalcony: t('glazedBalcony') || 'Glazed Balcony',
-    glazedBalconyDesc: t('glazedBalconyDesc') || 'Cleaning of the glazed balcony is NOT included in the price and will be charged extra.',
-    specialFloorTreatment: t('specialFloorTreatment') || 'Special Floor Treatment',
-    specialFloorTreatmentDesc: t('specialFloorTreatmentDesc') || 'Floor treatment such as waxing or polishing floors with polish is NOT included and will be charged extra if desired.',
-    householdAppliances: t('householdAppliances') || 'Household appliances',
-    householdAppliancesDesc: t('householdAppliancesDesc') || 'Cleaning of household appliances (washing machine, dryer and dishwasher) is not included in the price, and will be charged extra if desired.',
-    scrubberUse: t('scrubberUse') || 'Use of scrubber',
-    scrubberUseDesc: t('scrubberUseDesc') || 'Use of a scrubber for very dirty floors is not included in the price and will be charged extra if necessary.',
-    looseItemsRemoval: t('looseItemsRemoval') || 'Removal of loose items',
-    looseItemsRemovalDesc: t('looseItemsRemovalDesc') || 'Removal of loose items to be thrown away is NOT included in the price and is charged extra per hour.',
-    additionalServices: t('additionalServices') || 'Additional Services',
-  };
-
-  const toggleSection = (sectionId: string) => {
-    setActiveSection(activeSection === sectionId ? null : sectionId);
-  };
-
-  // Define square meter options
-  const sqmOptions: SqmOption[] = [{
-    value: "0-50",
-    label: "0-50 m²",
-    hours: 5,
-    price: 1800
-  }, {
-    value: "51-60",
-    label: "51-60 m²",
-    hours: 6,
-    price: 2000
-  }, {
-    value: "61-80",
-    label: "61-80 m²",
-    hours: 7,
-    price: 2600
-  }, {
-    value: "81-100",
-    label: "81-100 m²",
-    hours: 8,
-    price: 3300
-  }, {
-    value: "101-120",
-    label: "101-120 m²",
-    hours: 9,
-    price: 3600
-  }, {
-    value: "121-140",
-    label: "121-140 m²",
-    hours: 10,
-    price: 4000
-  }, {
-    value: "140+",
-    label: "140+ m²",
-    hours: 0,
-    price: 0
-  }];
-
+  
+  // Get data from utility files
+  const sqmOptions = getSqmOptions();
+  const windowTypes = getWindowTypes(t);
+  const cleaningAreas = getCleaningAreas(t);
+  const includedCategories = getIncludedCategories(t);
+  const notIncludedTranslations = getNotIncludedTranslations(t);
+  
   // Pre-select the lowest sqm option
   const [selectedSqm, setSelectedSqm] = useState(sqmOptions[0].value);
 
   // Window cleaning calculator state
-  const [windowCounts, setWindowCounts] = useState<Record<string, number>>({
-    type1: 0,
-    type2: 0,
-    type3: 0,
-    type4: 0,
-    balconyDoorLarge: 0,
-    balconyDoor: 0,
-    balconyFull: 0,
-    balconyHalf: 0
-  });
-  
-  const windowTypes: WindowType[] = [{
-    id: 'type1',
-    name: t('windowType1'),
-    description: t('regularNoBars'),
-    price: 100,
-    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
-          <rect x="2" y="3" width="20" height="18" rx="1" />
-          <line x1="12" y1="3" x2="12" y2="21" />
-        </svg>
-  }, {
-    id: 'type2',
-    name: t('windowType2'),
-    description: t('tripleNoBars'),
-    price: 120,
-    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
-          <rect x="2" y="3" width="20" height="18" rx="1" />
-          <line x1="8" y1="3" x2="8" y2="21" />
-          <line x1="16" y1="3" x2="16" y2="21" />
-        </svg>
-  }, {
-    id: 'type3',
-    name: t('windowType3'),
-    description: t('tripleWithBars'),
-    price: 140,
-    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
-          <rect x="2" y="3" width="20" height="18" rx="1" />
-          <line x1="8" y1="3" x2="8" y2="21" />
-          <line x1="16" y1="3" x2="16" y2="21" />
-          <line x1="2" y1="12" x2="22" y2="12" />
-        </svg>
-  }, {
-    id: 'type4',
-    name: t('windowType4'),
-    description: t('unusualLarge'),
-    price: 160,
-    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
-          <rect x="2" y="3" width="20" height="18" rx="1" />
-          <path d="M12 3 L12 21" strokeDasharray="2 2" />
-        </svg>
-  }, {
-    id: 'balconyDoorLarge',
-    name: t('balconyDoorLarge'),
-    description: t('balconyDoorLargeDesc'),
-    price: 150,
-    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
-          <rect x="3" y="2" width="18" height="20" rx="1" />
-          <circle cx="18" cy="12" r="1" />
-        </svg>
-  }, {
-    id: 'balconyDoor',
-    name: t('balconyDoor'),
-    description: t('balconyDoorDesc'),
-    price: 100,
-    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
-          <rect x="3" y="2" width="18" height="20" rx="1" />
-          <rect x="12" y="6" width="6" height="6" />
-          <circle cx="18" cy="12" r="1" />
-        </svg>
-  }, {
-    id: 'balconyFull',
-    name: t('balconyFullGlazed'),
-    description: t('balconyFullGlazedDesc'),
-    price: 950,
-    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
-          <rect x="2" y="3" width="20" height="18" rx="1" />
-          <line x1="6" y1="3" x2="6" y2="21" />
-          <line x1="10" y1="3" x2="10" y2="21" />
-          <line x1="14" y1="3" x2="14" y2="21" />
-          <line x1="18" y1="3" x2="18" y2="21" />
-        </svg>
-  }, {
-    id: 'balconyHalf',
-    name: t('balconyHalfGlazed'),
-    description: t('balconyHalfGlazedDesc'),
-    price: 600,
-    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
-          <rect x="2" y="3" width="20" height="18" rx="1" />
-          <line x1="7" y1="3" x2="7" y2="21" />
-          <line x1="12" y1="3" x2="12" y2="21" />
-          <line x1="17" y1="3" x2="17" y2="21" />
-        </svg>
-  }];
+  const [windowCounts, setWindowCounts] = useState(getInitialWindowCounts());
   
   const handleCountChange = (id: string, change: number) => {
     setWindowCounts(prev => {
@@ -210,36 +41,8 @@ const Pricing = () => {
     });
   };
 
-  // Define cleaning areas for the checklist
-  const cleaningAreas: CleaningCategory[] = [{
-    id: 'kitchen',
-    title: t('kitchen'),
-    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffLamps'), t('polishMirrors'), t('dustFurniture')]
-  }, {
-    id: 'livingRoom',
-    title: t('livingRoom'),
-    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffElectronics'), t('dustOffLamps'), t('polishMirrors'), t('dustFurniture'), t('dustDesk'), t('dustPaintings')]
-  }, {
-    id: 'bedroom',
-    title: t('bedroom'),
-    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffElectronics'), t('dustOffLamps'), t('dustPaintings'), t('polishMirrors'), t('dustFurniture'), t('dustDesk'), t('wipeBedside')]
-  }, {
-    id: 'bathroom',
-    title: t('bathroom'),
-    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffLamps'), t('polishMirrors'), t('dustFurniture')]
-  }, {
-    id: 'hall',
-    title: t('hall'),
-    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffLamps'), t('polishMirrors'), t('dustFurniture')]
-  }, {
-    id: 'extraRoom',
-    title: t('extraRoom'),
-    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffElectronics'), t('dustOffLamps'), t('polishMirrors'), t('dustFurniture'), t('dustDesk'), t('wipeBedside'), t('dustPaintings')]
-  }];
-
-  // Fix the tab switching to avoid DOM manipulation errors
+  // Handle tab changes
   const handleTabChange = (tabName: string) => {
-    // Direct state update without setTimeout to avoid DOM manipulation errors
     setActiveTab(tabName);
   };
 

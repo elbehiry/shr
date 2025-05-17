@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Check, X, Info, AlertTriangle } from 'lucide-react';
+import { Check, X, AlertTriangle } from 'lucide-react';
 import SizeSelector from './SizeSelector';
 import PriceDisplay from './PriceDisplay';
 import ContactButton from './ContactButton';
@@ -9,6 +9,8 @@ import FeaturesList from './FeaturesList';
 import { calculatePrice } from './utils';
 import { SqmOption, CleaningCategory } from './types';
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { getCommonFeatures } from './data/commonFeatures';
+import { getNotIncludedItems } from './data/cleaningCategories';
 
 interface GeneralCleaningProps {
   t: (key: string) => string;
@@ -32,34 +34,8 @@ const GeneralCleaning: React.FC<GeneralCleaningProps> = ({
     () => t('callForQuote')
   );
 
-  const features = [
-    t('generalFeature1'),
-    t('generalFeature2'),
-    t('generalFeature3')
-  ];
-
-  const notIncludedItems = [
-    {
-      title: t('glazedBalcony'),
-      description: t('glazedBalconyDesc')
-    },
-    {
-      title: t('specialFloorTreatment'),
-      description: t('specialFloorTreatmentDesc')
-    },
-    {
-      title: t('householdAppliances'),
-      description: t('householdAppliancesDesc')
-    },
-    {
-      title: t('scrubberUse'),
-      description: t('scrubberUseDesc')
-    },
-    {
-      title: t('looseItemsRemoval'),
-      description: t('looseItemsRemovalDesc')
-    }
-  ];
+  const features = getCommonFeatures(t);
+  const notIncludedItems = getNotIncludedItems(t);
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">

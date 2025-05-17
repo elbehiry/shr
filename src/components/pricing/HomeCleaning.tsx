@@ -8,6 +8,7 @@ import ContactButton from './ContactButton';
 import FeaturesList from './FeaturesList';
 import { calculatePrice } from './utils';
 import { SqmOption, CleaningCategory } from './types';
+import { getCommonFeatures } from './data/commonFeatures';
 
 interface HomeCleaningProps {
   t: (key: string) => string;
@@ -31,11 +32,7 @@ const HomeCleaning: React.FC<HomeCleaningProps> = ({
     () => t('callForQuote')
   );
 
-  const features = [
-    t('generalFeature1'),
-    t('generalFeature2'),
-    t('generalFeature3')
-  ];
+  const features = getCommonFeatures(t);
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
