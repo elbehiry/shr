@@ -1,5 +1,6 @@
 
 import { useLanguage } from '@/hooks/useLanguage';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
 const About = () => {
   const { t } = useLanguage();
@@ -65,6 +66,132 @@ const About = () => {
                 <h4 className="font-semibold">{t('satisfactionGuarantee')}</h4>
                 <p className="text-sm text-gray-600">{t('happinessPriority')}</p>
               </div>
+            </div>
+            
+            <div className="mt-8">
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="included">
+                  <AccordionTrigger className="font-bold text-lg">
+                    THIS IS INCLUDED IN HOME CLEANING
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <p className="mb-4">We start from this checklist and adapt it to your needs. This ensures that we maintain a continuous high quality.</p>
+                    
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div>
+                        <h4 className="font-bold mb-2">KITCHEN</h4>
+                        <ul className="space-y-1">
+                          <li className="flex items-center">✓ Vacuum floors</li>
+                          <li className="flex items-center">✓ Mop floors</li>
+                          <li className="flex items-center">✓ Damp-dry skirting boards</li>
+                          <li className="flex items-center">✓ Damp-dry door frames</li>
+                          <li className="flex items-center">✓ Dust shelves & joinery</li>
+                          <li className="flex items-center">✓ Dust free surfaces</li>
+                          <li className="flex items-center">✓ Dust covered surfaces</li>
+                          <li className="flex items-center">✓ Dust off lamps</li>
+                          <li className="flex items-center">✓ Polish mirrors</li>
+                          <li className="flex items-center">✓ Dust the furniture</li>
+                        </ul>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-bold mb-2">LIVING ROOM</h4>
+                        <ul className="space-y-1">
+                          <li className="flex items-center">✓ Vacuum floors</li>
+                          <li className="flex items-center">✓ Mop floors</li>
+                          <li className="flex items-center">✓ Damp-dry skirting boards</li>
+                          <li className="flex items-center">✓ Damp-dry door frames</li>
+                          <li className="flex items-center">✓ Dust shelves & joinery</li>
+                          <li className="flex items-center">✓ Dust free surfaces</li>
+                          <li className="flex items-center">✓ Dust covered surfaces</li>
+                          <li className="flex items-center">✓ Dust off electronics</li>
+                          <li className="flex items-center">✓ Dust off lamps</li>
+                          <li className="flex items-center">✓ Polish mirrors</li>
+                          <li className="flex items-center">✓ Dust the furniture</li>
+                          <li className="flex items-center">✓ Dust the desk</li>
+                          <li className="flex items-center">✓ Dusting paintings</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-2 gap-8 mt-6">
+                      <div>
+                        <h4 className="font-bold mb-2">BEDROOM</h4>
+                        <ul className="space-y-1">
+                          <li className="flex items-center">✓ Vacuum floors</li>
+                          <li className="flex items-center">✓ Mop floors</li>
+                          <li className="flex items-center">✓ Damp-dry skirting boards</li>
+                          <li className="flex items-center">✓ Damp-dry door frames</li>
+                          <li className="flex items-center">✓ Dust shelves & joinery</li>
+                          <li className="flex items-center">✓ Dust free surfaces</li>
+                          <li className="flex items-center">✓ Dust covered surfaces</li>
+                          <li className="flex items-center">✓ Dust off electronics</li>
+                          <li className="flex items-center">✓ Dust off lamps</li>
+                          <li className="flex items-center">✓ Dusting paintings</li>
+                          <li className="flex items-center">✓ Polish mirrors</li>
+                          <li className="flex items-center">✓ Dust the furniture</li>
+                          <li className="flex items-center">✓ Dust the desk</li>
+                          <li className="flex items-center">✓ Wipe bedside tables & headboards</li>
+                        </ul>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-bold mb-2">BATHROOM</h4>
+                        <ul className="space-y-1">
+                          <li className="flex items-center">✓ Vacuum floors</li>
+                          <li className="flex items-center">✓ Mop floors</li>
+                          <li className="flex items-center">✓ Damp-dry skirting boards</li>
+                          <li className="flex items-center">✓ Damp-dry door frames</li>
+                          <li className="flex items-center">✓ Dust shelves & joinery</li>
+                          <li className="flex items-center">✓ Dust free surfaces</li>
+                          <li className="flex items-center">✓ Dust covered surfaces</li>
+                          <li className="flex items-center">✓ Dust off lamps</li>
+                          <li className="flex items-center">✓ Polish mirrors</li>
+                          <li className="flex items-center">✓ Dust the furniture</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="grid md:grid-cols-2 gap-8 mt-6">
+                      <div>
+                        <h4 className="font-bold mb-2">HALL</h4>
+                        <ul className="space-y-1">
+                          <li className="flex items-center">✓ Vacuum floors</li>
+                          <li className="flex items-center">✓ Mop floors</li>
+                          <li className="flex items-center">✓ Damp-dry skirting boards</li>
+                          <li className="flex items-center">✓ Damp-dry door frames</li>
+                          <li className="flex items-center">✓ Dust shelves & joinery</li>
+                          <li className="flex items-center">✓ Dust free surfaces</li>
+                          <li className="flex items-center">✓ Dust covered surfaces</li>
+                          <li className="flex items-center">✓ Dust off lamps</li>
+                          <li className="flex items-center">✓ Polish mirrors</li>
+                          <li className="flex items-center">✓ Dust the furniture</li>
+                        </ul>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-bold mb-2">EXTRA ROOM</h4>
+                        <ul className="space-y-1">
+                          <li className="flex items-center">✓ Vacuum floors</li>
+                          <li className="flex items-center">✓ Mop floors</li>
+                          <li className="flex items-center">✓ Damp-dry skirting boards</li>
+                          <li className="flex items-center">✓ Damp-dry door frames</li>
+                          <li className="flex items-center">✓ Dust shelves & joinery</li>
+                          <li className="flex items-center">✓ Dust free surfaces</li>
+                          <li className="flex items-center">✓ Dust covered surfaces</li>
+                          <li className="flex items-center">✓ Dust off electronics</li>
+                          <li className="flex items-center">✓ Dust off lamps</li>
+                          <li className="flex items-center">✓ Polish mirrors</li>
+                          <li className="flex items-center">✓ Dust the furniture</li>
+                          <li className="flex items-center">✓ Dust the desk</li>
+                          <li className="flex items-center">✓ Wipe bedside tables & headboards</li>
+                          <li className="flex items-center">✓ Dusting paintings</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           </div>
         </div>
