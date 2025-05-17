@@ -23,16 +23,21 @@ const SizeSelector: React.FC<SizeSelectorProps> = ({
   const selectId = useMemo(() => `sqm-selector-${Math.random().toString(36).substring(2, 9)}`, []);
   
   return (
-    <div className="mb-6" data-nosnippet="true">
-      <Label htmlFor={selectId}>{label}</Label>
+    <div className="mb-6" data-nosnippet="true" translate="no">
+      <Label htmlFor={selectId} data-nosnippet="true" translate="no">{label}</Label>
       <Select value={selectedSqm} onValueChange={setSelectedSqm}>
-        <SelectTrigger className="w-full mt-1" id={selectId}>
-          <SelectValue placeholder={selectSizeText} />
+        <SelectTrigger className="w-full mt-1" id={selectId} data-nosnippet="true" translate="no">
+          <SelectValue placeholder={selectSizeText} data-nosnippet="true" translate="no" />
         </SelectTrigger>
         <SelectContent>
           {sqmOptions.map(option => (
-            <SelectItem key={option.value} value={option.value}>
-              {option.label}
+            <SelectItem 
+              key={option.value} 
+              value={option.value} 
+              data-nosnippet="true" 
+              translate="no"
+            >
+              <span data-nosnippet="true" translate="no">{option.label}</span>
             </SelectItem>
           ))}
         </SelectContent>

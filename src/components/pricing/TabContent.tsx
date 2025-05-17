@@ -44,7 +44,7 @@ const TabContent: React.FC<TabContentProps> = ({
   notIncludedTranslations
 }) => {
   return (
-    <div className="tab-content" data-nosnippet="true">
+    <div className="tab-content" data-nosnippet="true" translate="no">
       {activeTab === 'home' && (
         <MemoizedHomeCleaning
           t={t}

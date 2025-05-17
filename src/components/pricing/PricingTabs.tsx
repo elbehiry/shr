@@ -35,9 +35,10 @@ const PricingTabs: React.FC<PricingTabsProps> = ({ activeTab, onTabChange, t }) 
               className={`${activeTab === tab.value ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90 text-white' : 'bg-white border border-input'} px-4 py-2 rounded-md font-medium transition-colors`}
               aria-label={tab.label}
               data-value={tab.value}
+              data-nosnippet="true"
               translate="no"
             >
-              {tab.label}
+              <span data-nosnippet="true" translate="no">{tab.label}</span>
             </TabsTrigger>
           ))}
         </TabsList>
