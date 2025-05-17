@@ -46,6 +46,46 @@ const Pricing = () => {
     title: t('additionalServices'),
     items: [t('ovenCleaningInOut'), t('refrigeratorExternallyCleaned'), t('cleaningStovetops'), t('dishwasherCleanedInOut')]
   }];
+
+  // Add translations for NOT included section
+  const notIncludedTranslations = {
+    notIncludedTitle: 'The following are NOT included in the price and will be charged extra',
+    notIncludedDescription: 'The following items are not included or are charged extra, read our terms and conditions',
+    termsLink: 'here',
+    notIncludedDescriptionEnd: 'for full information on what is included, not included and what is charged extra.',
+    glazedBalcony: 'Glazed Balcony',
+    glazedBalconyDesc: 'Cleaning of the glazed balcony is NOT included in the price and will be charged extra.',
+    specialFloorTreatment: 'Special Floor Treatment',
+    specialFloorTreatmentDesc: 'Floor treatment such as waxing or polishing floors with polish is NOT included and will be charged extra if desired.',
+    householdAppliances: 'Household appliances',
+    householdAppliancesDesc: 'Cleaning of household appliances (washing machine, dryer and dishwasher) is not included in the price, and will be charged extra if desired.',
+    scrubberUse: 'Use of scrubber',
+    scrubberUseDesc: 'Use of a scrubber for very dirty floors is not included in the price and will be charged extra if necessary.',
+    looseItemsRemoval: 'Removal of loose items',
+    looseItemsRemovalDesc: 'Removal of loose items to be thrown away is NOT included in the price and is charged extra per hour.',
+  };
+  
+  // Add Swedish translations
+  const notIncludedTranslationsSv = {
+    notIncludedTitle: 'Följande ingår INTE i priset och debiteras extra',
+    notIncludedDescription: 'Följande artiklar ingår inte eller debiteras extra, läs våra villkor',
+    termsLink: 'här',
+    notIncludedDescriptionEnd: 'för fullständig information om vad som ingår, inte ingår och vad som debiteras extra.',
+    glazedBalcony: 'Inglasad balkong',
+    glazedBalconyDesc: 'Rengöring av den inglasade balkongen ingår INTE i priset och debiteras extra.',
+    specialFloorTreatment: 'Speciell golvbehandling',
+    specialFloorTreatmentDesc: 'Golvbehandling som vaxning eller polering av golv med polish ingår INTE och debiteras extra om så önskas.',
+    householdAppliances: 'Hushållsapparater',
+    householdAppliancesDesc: 'Rengöring av hushållsapparater (tvättmaskin, torktumlare och diskmaskin) ingår inte i priset och debiteras extra om så önskas.',
+    scrubberUse: 'Användning av skurmaskin',
+    scrubberUseDesc: 'Användning av en skurmaskin för mycket smutsiga golv ingår inte i priset och debiteras extra om det behövs.',
+    looseItemsRemoval: 'Borttagning av lösa föremål',
+    looseItemsRemovalDesc: 'Borttagning av lösa föremål som ska kastas ingår INTE i priset och debiteras extra per timme.',
+  };
+  
+  // Original useLanguage hook structure assumes t function handles these translations
+  // and they're likely loaded from a language file or object
+  // For simplicity, we're adding these translations directly to the component
   
   const toggleSection = (sectionId: string) => {
     setActiveSection(activeSection === sectionId ? null : sectionId);
@@ -315,7 +355,13 @@ const Pricing = () => {
 
           {activeTab === 'general' && (
             <GeneralCleaning
-              t={t}
+              t={(key) => {
+                // Special handling for the new NOT included section translations
+                if (key in notIncludedTranslations) {
+                  return notIncludedTranslations[key as keyof typeof notIncludedTranslations];
+                }
+                return t(key);
+              }}
               sqmOptions={sqmOptions}
               selectedSqm={selectedSqm}
               setSelectedSqm={setSelectedSqm}

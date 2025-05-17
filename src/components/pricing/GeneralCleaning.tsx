@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Check } from 'lucide-react';
+import { Check, X, Info } from 'lucide-react';
 import SizeSelector from './SizeSelector';
 import PriceDisplay from './PriceDisplay';
 import ContactButton from './ContactButton';
@@ -35,6 +35,29 @@ const GeneralCleaning: React.FC<GeneralCleaningProps> = ({
     t('generalFeature1'),
     t('generalFeature2'),
     t('generalFeature3')
+  ];
+
+  const notIncludedItems = [
+    {
+      title: t('glazedBalcony'),
+      description: t('glazedBalconyDesc')
+    },
+    {
+      title: t('specialFloorTreatment'),
+      description: t('specialFloorTreatmentDesc')
+    },
+    {
+      title: t('householdAppliances'),
+      description: t('householdAppliancesDesc')
+    },
+    {
+      title: t('scrubberUse'),
+      description: t('scrubberUseDesc')
+    },
+    {
+      title: t('looseItemsRemoval'),
+      description: t('looseItemsRemovalDesc')
+    }
   ];
 
   return (
@@ -93,7 +116,7 @@ const GeneralCleaning: React.FC<GeneralCleaningProps> = ({
         </div>
         
         {/* Second row - Additional categories */}
-        <div className="w-full">
+        <div className="w-full mb-8">
           <Accordion type="single" collapsible className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
             {includedCategories.slice(3).map(category => (
               <AccordionItem key={category.id} value={category.id} className="border border-gray-200 rounded-lg">
@@ -113,6 +136,32 @@ const GeneralCleaning: React.FC<GeneralCleaningProps> = ({
               </AccordionItem>
             ))}
           </Accordion>
+        </div>
+
+        {/* NOT included section - Only shown on the General Cleaning tab */}
+        <div className="w-full mt-8 mb-4 bg-gray-50 border border-gray-200 rounded-lg p-6">
+          <h3 className="text-xl font-semibold mb-4 text-red-600">
+            {t('notIncludedTitle')}
+          </h3>
+          <p className="mb-4 text-gray-700">
+            {t('notIncludedDescription')} 
+            <a href="#" className="text-blue-600 hover:text-blue-800 underline mx-1">
+              {t('termsLink')}
+            </a>
+            {t('notIncludedDescriptionEnd')}
+          </p>
+          
+          <div className="space-y-4">
+            {notIncludedItems.map((item, index) => (
+              <div key={index} className="flex items-start">
+                <X size={18} className="text-red-500 mr-3 mt-1" />
+                <div>
+                  <h4 className="font-medium">{item.title}</h4>
+                  <p className="text-gray-600">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
