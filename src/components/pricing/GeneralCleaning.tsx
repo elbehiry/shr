@@ -1,13 +1,14 @@
 
 import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Check, X, Info } from 'lucide-react';
+import { Check, X, Info, AlertTriangle } from 'lucide-react';
 import SizeSelector from './SizeSelector';
 import PriceDisplay from './PriceDisplay';
 import ContactButton from './ContactButton';
 import FeaturesList from './FeaturesList';
 import { calculatePrice } from './utils';
 import { SqmOption, CleaningCategory } from './types';
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 interface GeneralCleaningProps {
   t: (key: string) => string;
@@ -139,30 +140,35 @@ const GeneralCleaning: React.FC<GeneralCleaningProps> = ({
         </div>
 
         {/* NOT included section - Only shown on the General Cleaning tab */}
-        <div className="w-full mt-8 mb-4 bg-gray-50 border border-gray-200 rounded-lg p-6">
-          <h3 className="text-xl font-semibold mb-4 text-red-600">
+        <Alert className="w-full my-8 bg-gradient-to-r from-shr-blue/10 to-shr-blue/5 border border-shr-blue/20 rounded-lg p-6 shadow-sm">
+          <AlertTriangle className="h-5 w-5 text-shr-blue-dark" />
+          <AlertTitle className="text-xl font-semibold mb-3 text-gray-800">
             {t('notIncludedTitle')}
-          </h3>
-          <p className="mb-4 text-gray-700">
-            {t('notIncludedDescription')} 
-            <a href="#" className="text-blue-600 hover:text-blue-800 underline mx-1">
-              {t('termsLink')}
-            </a>
-            {t('notIncludedDescriptionEnd')}
-          </p>
-          
-          <div className="space-y-4">
-            {notIncludedItems.map((item, index) => (
-              <div key={index} className="flex items-start">
-                <X size={18} className="text-red-500 mr-3 mt-1" />
-                <div>
-                  <h4 className="font-medium">{item.title}</h4>
-                  <p className="text-gray-600">{item.description}</p>
+          </AlertTitle>
+          <AlertDescription className="text-gray-700">
+            <p className="mb-4">
+              {t('notIncludedNewDescription')} 
+              <a href="#" className="text-shr-blue-dark hover:text-blue-500 underline mx-1 font-medium">
+                {t('termsLink')}
+              </a>
+              {t('notIncludedDescriptionEnd')}
+            </p>
+            
+            <div className="space-y-5 mt-6">
+              {notIncludedItems.map((item, index) => (
+                <div key={index} className="flex items-start p-3 bg-white rounded-md border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="p-2 bg-shr-gray rounded-full mr-4 flex-shrink-0">
+                    <X size={16} className="text-shr-gray-dark" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-800">{item.title}</h4>
+                    <p className="text-gray-600 mt-1">{item.description}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
+              ))}
+            </div>
+          </AlertDescription>
+        </Alert>
       </div>
     </div>
   );
