@@ -7,7 +7,6 @@ import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-
 interface WindowType {
   id: string;
   name: string;
@@ -28,66 +27,33 @@ const Pricing = () => {
   const [activeTab, setActiveTab] = useState('moving');
   const [isChecklistOpen, setIsChecklistOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  
+
   // Define included categories for the cleaning checklist (moved from Services.tsx)
-  const includedCategories = [
-    {
-      id: 'all-rooms',
-      title: t('allRooms'),
-      items: [
-        t('vacuumFloors'),
-        t('mopFloors'),
-        t('dampDrySkirtingBoards'),
-        t('dampDryDoorFrames'),
-        t('dustShelvesJoinery'),
-      ]
-    },
-    {
-      id: 'other-surfaces',
-      title: t('allOtherSurfaces'),
-      items: [
-        t('dustFreeSurfaces'),
-        t('dustCoveredSurfaces'),
-        t('dustOffElectronics'),
-        t('dustOffLamps'),
-        t('polishMirrors'),
-      ]
-    },
-    {
-      id: 'bathroom',
-      title: t('bathroom'),
-      items: [
-        t('cleaningSinks'),
-        t('cleaningAirVentsNotInside'),
-        t('vacuumSweepingFloors'),
-      ]
-    },
-    {
-      id: 'window',
-      title: t('windowCleaning'),
-      items: [
-        t('windowCleaningBookedSeparately'),
-      ]
-    },
-    {
-      id: 'balcony',
-      title: t('balcony'),
-      items: [
-        t('cleaningCabinetsGarbage'),
-      ]
-    },
-    {
-      id: 'additional',
-      title: t('additionalServices'),
-      items: [
-        t('ovenCleaningInOut'),
-        t('refrigeratorExternallyCleaned'),
-        t('cleaningStovetops'),
-        t('dishwasherCleanedInOut'),
-      ]
-    }
-  ];
-  
+  const includedCategories = [{
+    id: 'all-rooms',
+    title: t('allRooms'),
+    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery')]
+  }, {
+    id: 'other-surfaces',
+    title: t('allOtherSurfaces'),
+    items: [t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffElectronics'), t('dustOffLamps'), t('polishMirrors')]
+  }, {
+    id: 'bathroom',
+    title: t('bathroom'),
+    items: [t('cleaningSinks'), t('cleaningAirVentsNotInside'), t('vacuumSweepingFloors')]
+  }, {
+    id: 'window',
+    title: t('windowCleaning'),
+    items: [t('windowCleaningBookedSeparately')]
+  }, {
+    id: 'balcony',
+    title: t('balcony'),
+    items: [t('cleaningCabinetsGarbage')]
+  }, {
+    id: 'additional',
+    title: t('additionalServices'),
+    items: [t('ovenCleaningInOut'), t('refrigeratorExternallyCleaned'), t('cleaningStovetops'), t('dishwasherCleanedInOut')]
+  }];
   const toggleSection = (sectionId: string) => {
     setActiveSection(activeSection === sectionId ? null : sectionId);
   };
@@ -254,116 +220,31 @@ const Pricing = () => {
   };
 
   // Define cleaning areas for the checklist
-  const cleaningAreas = [
-    {
-      id: 'kitchen',
-      title: t('kitchen'),
-      items: [
-        t('vacuumFloors'),
-        t('mopFloors'),
-        t('dampDrySkirtingBoards'),
-        t('dampDryDoorFrames'),
-        t('dustShelvesJoinery'),
-        t('dustFreeSurfaces'),
-        t('dustCoveredSurfaces'),
-        t('dustOffLamps'),
-        t('polishMirrors'),
-        t('dustFurniture')
-      ]
-    },
-    {
-      id: 'livingRoom',
-      title: t('livingRoom'),
-      items: [
-        t('vacuumFloors'),
-        t('mopFloors'),
-        t('dampDrySkirtingBoards'),
-        t('dampDryDoorFrames'),
-        t('dustShelvesJoinery'),
-        t('dustFreeSurfaces'),
-        t('dustCoveredSurfaces'),
-        t('dustOffElectronics'),
-        t('dustOffLamps'),
-        t('polishMirrors'),
-        t('dustFurniture'),
-        t('dustDesk'),
-        t('dustPaintings')
-      ]
-    },
-    {
-      id: 'bedroom',
-      title: t('bedroom'),
-      items: [
-        t('vacuumFloors'),
-        t('mopFloors'),
-        t('dampDrySkirtingBoards'),
-        t('dampDryDoorFrames'),
-        t('dustShelvesJoinery'),
-        t('dustFreeSurfaces'),
-        t('dustCoveredSurfaces'),
-        t('dustOffElectronics'),
-        t('dustOffLamps'),
-        t('dustPaintings'),
-        t('polishMirrors'),
-        t('dustFurniture'),
-        t('dustDesk'),
-        t('wipeBedside')
-      ]
-    },
-    {
-      id: 'bathroom',
-      title: t('bathroom'),
-      items: [
-        t('vacuumFloors'),
-        t('mopFloors'),
-        t('dampDrySkirtingBoards'),
-        t('dampDryDoorFrames'),
-        t('dustShelvesJoinery'),
-        t('dustFreeSurfaces'),
-        t('dustCoveredSurfaces'),
-        t('dustOffLamps'),
-        t('polishMirrors'),
-        t('dustFurniture')
-      ]
-    },
-    {
-      id: 'hall',
-      title: t('hall'),
-      items: [
-        t('vacuumFloors'),
-        t('mopFloors'),
-        t('dampDrySkirtingBoards'),
-        t('dampDryDoorFrames'),
-        t('dustShelvesJoinery'),
-        t('dustFreeSurfaces'),
-        t('dustCoveredSurfaces'),
-        t('dustOffLamps'),
-        t('polishMirrors'),
-        t('dustFurniture')
-      ]
-    },
-    {
-      id: 'extraRoom',
-      title: t('extraRoom'),
-      items: [
-        t('vacuumFloors'),
-        t('mopFloors'),
-        t('dampDrySkirtingBoards'),
-        t('dampDryDoorFrames'),
-        t('dustShelvesJoinery'),
-        t('dustFreeSurfaces'),
-        t('dustCoveredSurfaces'),
-        t('dustOffElectronics'),
-        t('dustOffLamps'),
-        t('polishMirrors'),
-        t('dustFurniture'),
-        t('dustDesk'),
-        t('wipeBedside'),
-        t('dustPaintings')
-      ]
-    }
-  ];
-  
+  const cleaningAreas = [{
+    id: 'kitchen',
+    title: t('kitchen'),
+    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffLamps'), t('polishMirrors'), t('dustFurniture')]
+  }, {
+    id: 'livingRoom',
+    title: t('livingRoom'),
+    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffElectronics'), t('dustOffLamps'), t('polishMirrors'), t('dustFurniture'), t('dustDesk'), t('dustPaintings')]
+  }, {
+    id: 'bedroom',
+    title: t('bedroom'),
+    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffElectronics'), t('dustOffLamps'), t('dustPaintings'), t('polishMirrors'), t('dustFurniture'), t('dustDesk'), t('wipeBedside')]
+  }, {
+    id: 'bathroom',
+    title: t('bathroom'),
+    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffLamps'), t('polishMirrors'), t('dustFurniture')]
+  }, {
+    id: 'hall',
+    title: t('hall'),
+    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffLamps'), t('polishMirrors'), t('dustFurniture')]
+  }, {
+    id: 'extraRoom',
+    title: t('extraRoom'),
+    items: [t('vacuumFloors'), t('mopFloors'), t('dampDrySkirtingBoards'), t('dampDryDoorFrames'), t('dustShelvesJoinery'), t('dustFreeSurfaces'), t('dustCoveredSurfaces'), t('dustOffElectronics'), t('dustOffLamps'), t('polishMirrors'), t('dustFurniture'), t('dustDesk'), t('wipeBedside'), t('dustPaintings')]
+  }];
   return <section id="pricing" className="section-padding">
       <div className="container mx-auto">
         <div className="text-center mb-12">
@@ -452,23 +333,19 @@ const Pricing = () => {
                     <p className="text-gray-700 mb-6">{t('cleaningChecklistDescription')}</p>
                     
                     <Accordion type="single" collapsible className="w-full">
-                      {cleaningAreas.map((area) => (
-                        <AccordionItem key={area.id} value={area.id} className="border-b border-gray-200">
+                      {cleaningAreas.map(area => <AccordionItem key={area.id} value={area.id} className="border-b border-gray-200">
                           <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
                             {area.title}
                           </AccordionTrigger>
                           <AccordionContent className="bg-gray-50 rounded-b-lg p-5 pt-2">
                             <ul className="space-y-2 mt-2">
-                              {area.items.map((item, index) => (
-                                <li key={index} className="flex items-start">
+                              {area.items.map((item, index) => <li key={index} className="flex items-start">
                                   <Check size={18} className="text-green-500 mr-2 mt-1" /> 
                                   <span>{item}</span>
-                                </li>
-                              ))}
+                                </li>)}
                             </ul>
                           </AccordionContent>
-                        </AccordionItem>
-                      ))}
+                        </AccordionItem>)}
                     </Accordion>
                   </div>
                 </div>
@@ -520,70 +397,7 @@ const Pricing = () => {
               </Button>
               
               {/* What's included in main cleaning section - Reorganized into 2 rows with 3 options each */}
-              <div className="mb-8">
-                <div className="text-center mb-6">
-                  <h3 className="text-xl md:text-2xl font-bold text-shr-blue-dark">{t('includedMainCleaning')}</h3>
-                  <p className="text-gray-600 mt-2 max-w-md mx-auto">
-                    {t('cleaningChecklistDescription')}
-                  </p>
-                </div>
-                
-                {/* First row - 3 categories */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
-                  {includedCategories.slice(0, 3).map((category) => (
-                    <div 
-                      key={category.id}
-                      className="border border-gray-200 rounded-lg overflow-hidden"
-                    >
-                      <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value={category.id} className="border-0">
-                          <AccordionTrigger className="py-3 px-3 bg-white hover:bg-gray-50 text-left font-semibold text-gray-800 transition-colors">
-                            {category.title}
-                          </AccordionTrigger>
-                          <AccordionContent className="bg-gray-50 p-3">
-                            <ul className="space-y-2">
-                              {category.items.map((item, index) => (
-                                <li key={index} className="flex items-start">
-                                  <Check size={16} className="text-green-500 mr-2 mt-0.5" />
-                                  <span className="text-sm">{item}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    </div>
-                  ))}
-                </div>
-                
-                {/* Second row - 3 categories */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                  {includedCategories.slice(3, 6).map((category) => (
-                    <div 
-                      key={category.id}
-                      className="border border-gray-200 rounded-lg overflow-hidden"
-                    >
-                      <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value={category.id} className="border-0">
-                          <AccordionTrigger className="py-3 px-3 bg-white hover:bg-gray-50 text-left font-semibold text-gray-800 transition-colors">
-                            {category.title}
-                          </AccordionTrigger>
-                          <AccordionContent className="bg-gray-50 p-3">
-                            <ul className="space-y-2">
-                              {category.items.map((item, index) => (
-                                <li key={index} className="flex items-start">
-                                  <Check size={16} className="text-green-500 mr-2 mt-0.5" />
-                                  <span className="text-sm">{item}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              
               
               {/* Moving Cleaning Checklist - Removed the collapsible button */}
               <div className="mt-4">
