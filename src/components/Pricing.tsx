@@ -295,6 +295,7 @@ const Pricing = () => {
             variant={activeTab === 'home' ? 'default' : 'outline'} 
             onClick={() => handleTabChange('home')} 
             className={activeTab === 'home' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
+            aria-label={t('homeCleaning')}
           >
             {t('homeCleaning')}
           </Button>
@@ -302,6 +303,7 @@ const Pricing = () => {
             variant={activeTab === 'moving' ? 'default' : 'outline'} 
             onClick={() => handleTabChange('moving')} 
             className={activeTab === 'moving' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
+            aria-label={t('movingCleaning')}
           >
             {t('movingCleaning')}
           </Button>
@@ -309,6 +311,7 @@ const Pricing = () => {
             variant={activeTab === 'general' ? 'default' : 'outline'} 
             onClick={() => handleTabChange('general')} 
             className={activeTab === 'general' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
+            aria-label={t('generalCleaning')}
           >
             {t('generalCleaning')}
           </Button>
@@ -316,6 +319,7 @@ const Pricing = () => {
             variant={activeTab === 'window' ? 'default' : 'outline'} 
             onClick={() => handleTabChange('window')} 
             className={activeTab === 'window' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
+            aria-label={t('windowCleaning')}
           >
             {t('windowCleaning')}
           </Button>
@@ -323,6 +327,7 @@ const Pricing = () => {
             variant={activeTab === 'office' ? 'default' : 'outline'} 
             onClick={() => handleTabChange('office')} 
             className={activeTab === 'office' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
+            aria-label={t('officeCleaning')}
           >
             {t('officeCleaning')}
           </Button>
@@ -330,6 +335,7 @@ const Pricing = () => {
             variant={activeTab === 'recurring' ? 'default' : 'outline'} 
             onClick={() => handleTabChange('recurring')} 
             className={activeTab === 'recurring' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
+            aria-label={t('recurringService')}
           >
             {t('recurringService')}
           </Button>
