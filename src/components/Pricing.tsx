@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useLanguage } from './LanguageSwitcher';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -162,7 +161,7 @@ const Pricing = () => {
     icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
           <rect x="2" y="3" width="20" height="18" rx="1" />
           <line x1="8" y1="3" x2="8" y2="21" />
-          <line x1="16" y1="3" x2="16" y2="21" />
+          <line x1="16" y1="3" x2="16" y1="21" />
         </svg>
   }, {
     id: 'type3',
@@ -378,50 +377,6 @@ const Pricing = () => {
           </p>
         </div>
         
-        {/* What's included in main cleaning section - Moved from Services.tsx */}
-        <div className="mb-16">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl md:text-3xl font-bold text-shr-blue-dark">{t('includedMainCleaning')}</h3>
-            <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
-              {t('cleaningChecklistDescription')}
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {includedCategories.map((category) => (
-              <div 
-                key={category.id}
-                className="border border-gray-200 rounded-lg overflow-hidden"
-              >
-                <button 
-                  className="w-full flex items-center justify-between py-4 px-6 bg-white text-left font-semibold text-gray-800 hover:bg-gray-50 transition-colors"
-                  onClick={() => toggleSection(category.id)}
-                >
-                  <span>{category.title}</span>
-                  <ChevronDown 
-                    className={`transition-transform duration-300 ${activeSection === category.id ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                
-                {activeSection === category.id && (
-                  <div className="bg-gray-50 p-4 animate-accordion-down">
-                    <ul className="space-y-2">
-                      {category.items.map((item, index) => (
-                        <li key={index} className="flex items-start">
-                          <svg className="h-5 w-5 text-shr-blue-dark shrink-0 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-        
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           <Button variant={activeTab === 'home' ? 'default' : 'outline'} onClick={() => setActiveTab('home')} className={activeTab === 'home' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}>
             {t('homeCleaning')}
@@ -506,7 +461,7 @@ const Pricing = () => {
                             <ul className="space-y-2 mt-2">
                               {area.items.map((item, index) => (
                                 <li key={index} className="flex items-start">
-                                  <Check size={18} className="text-green-500 mr-2 mt-1 shrink-0" /> 
+                                  <Check size={18} className="text-green-500 mr-2 mt-1" /> 
                                   <span>{item}</span>
                                 </li>
                               ))}
@@ -559,13 +514,57 @@ const Pricing = () => {
                 </p>
               </div>
 
-              <Button className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2" onClick={() => window.location.href = 'tel:+46704019341'}>
+              <Button className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2 mb-8" onClick={() => window.location.href = 'tel:+46704019341'}>
                 <Phone size={20} />
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
               </Button>
               
+              {/* What's included in main cleaning section - Moved from outside to here */}
+              <div className="mb-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl md:text-2xl font-bold text-shr-blue-dark">{t('includedMainCleaning')}</h3>
+                  <p className="text-gray-600 mt-2 max-w-md mx-auto">
+                    {t('cleaningChecklistDescription')}
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 gap-3">
+                  {includedCategories.map((category) => (
+                    <div 
+                      key={category.id}
+                      className="border border-gray-200 rounded-lg overflow-hidden"
+                    >
+                      <button 
+                        className="w-full flex items-center justify-between py-3 px-4 bg-white text-left font-semibold text-gray-800 hover:bg-gray-50 transition-colors"
+                        onClick={() => toggleSection(category.id)}
+                      >
+                        <span>{category.title}</span>
+                        <ChevronDown 
+                          className={`transition-transform duration-300 ${activeSection === category.id ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                      
+                      {activeSection === category.id && (
+                        <div className="bg-gray-50 p-3 animate-accordion-down">
+                          <ul className="space-y-2">
+                            {category.items.map((item, index) => (
+                              <li key={index} className="flex items-start">
+                                <svg className="h-5 w-5 text-shr-blue-dark shrink-0 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
               {/* Moving Cleaning Checklist */}
-              <div className="mt-8">
+              <div className="mt-4">
                 <Collapsible open={isChecklistOpen} onOpenChange={setIsChecklistOpen} className="w-full">
                   <CollapsibleTrigger className="w-full bg-shr-blue-dark text-white rounded-lg p-4 flex justify-between items-center">
                     <h3 className="text-xl font-semibold">{t('cleaningIncludedIn')} {t('movingCleaning')}</h3>
