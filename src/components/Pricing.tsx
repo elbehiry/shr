@@ -6,7 +6,6 @@ import { Phone, Check, Plus, Minus, ChevronDown, ChevronUp } from 'lucide-react'
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-
 interface WindowType {
   id: string;
   name: string;
@@ -14,33 +13,60 @@ interface WindowType {
   price: number;
   icon: React.ReactNode;
 }
-
 interface SqmOption {
   value: string;
   label: string;
   hours: number;
   price: number;
 }
-
 const Pricing = () => {
-  const { t } = useLanguage();
+  const {
+    t
+  } = useLanguage();
   const [activeTab, setActiveTab] = useState('moving');
   const [isChecklistOpen, setIsChecklistOpen] = useState(false);
-  
+
   // Define square meter options
-  const sqmOptions: SqmOption[] = [
-    { value: "0-50", label: "0-50 m²", hours: 5, price: 1800 },
-    { value: "51-60", label: "51-60 m²", hours: 6, price: 2000 },
-    { value: "61-80", label: "61-80 m²", hours: 7, price: 2600 },
-    { value: "81-100", label: "81-100 m²", hours: 8, price: 3300 },
-    { value: "101-120", label: "101-120 m²", hours: 9, price: 3600 },
-    { value: "121-140", label: "121-140 m²", hours: 10, price: 4000 },
-    { value: "140+", label: "140+ m²", hours: 0, price: 0 },
-  ];
-  
+  const sqmOptions: SqmOption[] = [{
+    value: "0-50",
+    label: "0-50 m²",
+    hours: 5,
+    price: 1800
+  }, {
+    value: "51-60",
+    label: "51-60 m²",
+    hours: 6,
+    price: 2000
+  }, {
+    value: "61-80",
+    label: "61-80 m²",
+    hours: 7,
+    price: 2600
+  }, {
+    value: "81-100",
+    label: "81-100 m²",
+    hours: 8,
+    price: 3300
+  }, {
+    value: "101-120",
+    label: "101-120 m²",
+    hours: 9,
+    price: 3600
+  }, {
+    value: "121-140",
+    label: "121-140 m²",
+    hours: 10,
+    price: 4000
+  }, {
+    value: "140+",
+    label: "140+ m²",
+    hours: 0,
+    price: 0
+  }];
+
   // Pre-select the lowest sqm option
   const [selectedSqm, setSelectedSqm] = useState(sqmOptions[0].value);
-  
+
   // Window cleaning calculator state
   const [windowCounts, setWindowCounts] = useState<Record<string, number>>({
     type1: 0,
@@ -50,148 +76,117 @@ const Pricing = () => {
     balconyDoorLarge: 0,
     balconyDoor: 0,
     balconyFull: 0,
-    balconyHalf: 0,
+    balconyHalf: 0
   });
-  
-  const windowTypes: WindowType[] = [
-    {
-      id: 'type1',
-      name: t('windowType1'),
-      description: t('regularNoBars'),
-      price: 100,
-      icon: (
-        <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
+  const windowTypes: WindowType[] = [{
+    id: 'type1',
+    name: t('windowType1'),
+    description: t('regularNoBars'),
+    price: 100,
+    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
           <rect x="2" y="3" width="20" height="18" rx="1" />
           <line x1="12" y1="3" x2="12" y2="21" />
         </svg>
-      )
-    },
-    {
-      id: 'type2',
-      name: t('windowType2'),
-      description: t('tripleNoBars'),
-      price: 120,
-      icon: (
-        <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
+  }, {
+    id: 'type2',
+    name: t('windowType2'),
+    description: t('tripleNoBars'),
+    price: 120,
+    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
           <rect x="2" y="3" width="20" height="18" rx="1" />
           <line x1="8" y1="3" x2="8" y2="21" />
           <line x1="16" y1="3" x2="16" y2="21" />
         </svg>
-      )
-    },
-    {
-      id: 'type3',
-      name: t('windowType3'),
-      description: t('tripleWithBars'),
-      price: 140,
-      icon: (
-        <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
+  }, {
+    id: 'type3',
+    name: t('windowType3'),
+    description: t('tripleWithBars'),
+    price: 140,
+    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
           <rect x="2" y="3" width="20" height="18" rx="1" />
           <line x1="8" y1="3" x2="8" y2="21" />
           <line x1="16" y1="3" x2="16" y2="21" />
           <line x1="2" y1="12" x2="22" y2="12" />
         </svg>
-      )
-    },
-    {
-      id: 'type4',
-      name: t('windowType4'),
-      description: t('unusualLarge'),
-      price: 160,
-      icon: (
-        <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
+  }, {
+    id: 'type4',
+    name: t('windowType4'),
+    description: t('unusualLarge'),
+    price: 160,
+    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
           <rect x="2" y="3" width="20" height="18" rx="1" />
           <path d="M12 3 L12 21" strokeDasharray="2 2" />
         </svg>
-      )
-    },
-    {
-      id: 'balconyDoorLarge',
-      name: t('balconyDoorLarge'),
-      description: t('balconyDoorLargeDesc'),
-      price: 150,
-      icon: (
-        <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
+  }, {
+    id: 'balconyDoorLarge',
+    name: t('balconyDoorLarge'),
+    description: t('balconyDoorLargeDesc'),
+    price: 150,
+    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
           <rect x="3" y="2" width="18" height="20" rx="1" />
           <circle cx="18" cy="12" r="1" />
         </svg>
-      )
-    },
-    {
-      id: 'balconyDoor',
-      name: t('balconyDoor'),
-      description: t('balconyDoorDesc'),
-      price: 100,
-      icon: (
-        <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
+  }, {
+    id: 'balconyDoor',
+    name: t('balconyDoor'),
+    description: t('balconyDoorDesc'),
+    price: 100,
+    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
           <rect x="3" y="2" width="18" height="20" rx="1" />
           <rect x="12" y="6" width="6" height="6" />
           <circle cx="18" cy="12" r="1" />
         </svg>
-      )
-    },
-    {
-      id: 'balconyFull',
-      name: t('balconyFullGlazed'),
-      description: t('balconyFullGlazedDesc'),
-      price: 950,
-      icon: (
-        <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
+  }, {
+    id: 'balconyFull',
+    name: t('balconyFullGlazed'),
+    description: t('balconyFullGlazedDesc'),
+    price: 950,
+    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
           <rect x="2" y="3" width="20" height="18" rx="1" />
           <line x1="6" y1="3" x2="6" y2="21" />
           <line x1="10" y1="3" x2="10" y2="21" />
           <line x1="14" y1="3" x2="14" y2="21" />
           <line x1="18" y1="3" x2="18" y2="21" />
         </svg>
-      )
-    },
-    {
-      id: 'balconyHalf',
-      name: t('balconyHalfGlazed'),
-      description: t('balconyHalfGlazedDesc'),
-      price: 600,
-      icon: (
-        <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
+  }, {
+    id: 'balconyHalf',
+    name: t('balconyHalfGlazed'),
+    description: t('balconyHalfGlazedDesc'),
+    price: 600,
+    icon: <svg viewBox="0 0 24 24" className="h-12 w-12 mx-auto mb-2" stroke="currentColor" fill="none" strokeWidth="2">
           <rect x="2" y="3" width="20" height="18" rx="1" />
           <line x1="7" y1="3" x2="7" y2="21" />
           <line x1="12" y1="3" x2="12" y2="21" />
           <line x1="17" y1="3" x2="17" y2="21" />
         </svg>
-      )
-    },
-  ];
-
+  }];
   const handleCountChange = (id: string, change: number) => {
     setWindowCounts(prev => {
       const currentCount = prev[id] || 0;
       const newCount = Math.max(0, currentCount + change);
-      return { ...prev, [id]: newCount };
+      return {
+        ...prev,
+        [id]: newCount
+      };
     });
   };
-
   const getSelectedSqmOption = () => {
     return sqmOptions.find(option => option.value === selectedSqm) || sqmOptions[0];
   };
-
   const calculateMovingPrice = () => {
     const option = getSelectedSqmOption();
-    
     if (option.value === "140+") {
       return t('callForQuote');
-    } 
-    
+    }
     return `${option.hours} ${t('hours')} - ${option.price} kr`;
   };
-  
   const calculateWindowTotal = () => {
     return Object.entries(windowCounts).reduce((total, [id, count]) => {
       const windowType = windowTypes.find(w => w.id === id);
       return total + (windowType?.price || 0) * count;
     }, 0);
   };
-
-  return (
-    <section id="pricing" className="section-padding">
+  return <section id="pricing" className="section-padding">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('pricingTitle')}</h2>
@@ -205,53 +200,28 @@ const Pricing = () => {
         </div>
         
         <div className="flex flex-wrap justify-center gap-4 mb-8">
-          <Button 
-            variant={activeTab === 'home' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('home')}
-            className={activeTab === 'home' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-          >
+          <Button variant={activeTab === 'home' ? 'default' : 'outline'} onClick={() => setActiveTab('home')} className={activeTab === 'home' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}>
             {t('homeCleaning')}
           </Button>
-          <Button 
-            variant={activeTab === 'moving' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('moving')}
-            className={activeTab === 'moving' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-          >
+          <Button variant={activeTab === 'moving' ? 'default' : 'outline'} onClick={() => setActiveTab('moving')} className={activeTab === 'moving' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}>
             {t('movingCleaning')}
           </Button>
-          <Button 
-            variant={activeTab === 'general' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('general')}
-            className={activeTab === 'general' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-          >
+          <Button variant={activeTab === 'general' ? 'default' : 'outline'} onClick={() => setActiveTab('general')} className={activeTab === 'general' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}>
             {t('generalCleaning')}
           </Button>
-          <Button 
-            variant={activeTab === 'window' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('window')}
-            className={activeTab === 'window' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-          >
+          <Button variant={activeTab === 'window' ? 'default' : 'outline'} onClick={() => setActiveTab('window')} className={activeTab === 'window' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}>
             {t('windowCleaning')}
           </Button>
-          <Button 
-            variant={activeTab === 'office' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('office')}
-            className={activeTab === 'office' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-          >
+          <Button variant={activeTab === 'office' ? 'default' : 'outline'} onClick={() => setActiveTab('office')} className={activeTab === 'office' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}>
             {t('officeCleaning')}
           </Button>
-          <Button 
-            variant={activeTab === 'recurring' ? 'default' : 'outline'}
-            onClick={() => setActiveTab('recurring')}
-            className={activeTab === 'recurring' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
-          >
+          <Button variant={activeTab === 'recurring' ? 'default' : 'outline'} onClick={() => setActiveTab('recurring')} className={activeTab === 'recurring' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}>
             {t('recurringService')}
           </Button>
         </div>
 
         {/* Home Cleaning */}
-        {activeTab === 'home' && (
-          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+        {activeTab === 'home' && <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
             <h3 className="text-2xl font-semibold mb-6 text-center">{t('homeCleaning')}</h3>
             <div className="max-w-md mx-auto">
               <div className="mb-6">
@@ -261,11 +231,9 @@ const Pricing = () => {
                     <SelectValue placeholder={t('selectSize')} />
                   </SelectTrigger>
                   <SelectContent>
-                    {sqmOptions.map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
+                    {sqmOptions.map(option => <SelectItem key={option.value} value={option.value}>
                         {option.label}
-                      </SelectItem>
-                    ))}
+                      </SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
@@ -290,10 +258,7 @@ const Pricing = () => {
                 </p>
               </div>
 
-              <Button
-                className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={() => window.location.href = 'tel:+46704019341'}
-              >
+              <Button className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2" onClick={() => window.location.href = 'tel:+46704019341'}>
                 <Phone size={20} />
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
               </Button>
@@ -427,12 +392,10 @@ const Pricing = () => {
                 </Collapsible>
               </div>
             </div>
-          </div>
-        )}
+          </div>}
 
         {/* Moving Cleaning */}
-        {activeTab === 'moving' && (
-          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+        {activeTab === 'moving' && <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
             <h3 className="text-2xl font-semibold mb-6 text-center">{t('movingCleaning')}</h3>
             <div className="max-w-md mx-auto">
               <div className="mb-6">
@@ -442,11 +405,9 @@ const Pricing = () => {
                     <SelectValue placeholder={t('selectSize')} />
                   </SelectTrigger>
                   <SelectContent>
-                    {sqmOptions.map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
+                    {sqmOptions.map(option => <SelectItem key={option.value} value={option.value}>
                         {option.label}
-                      </SelectItem>
-                    ))}
+                      </SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
@@ -471,10 +432,7 @@ const Pricing = () => {
                 </p>
               </div>
 
-              <Button
-                className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={() => window.location.href = 'tel:+46704019341'}
-              >
+              <Button className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2" onClick={() => window.location.href = 'tel:+46704019341'}>
                 <Phone size={20} />
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
               </Button>
@@ -573,12 +531,10 @@ const Pricing = () => {
                 </Collapsible>
               </div>
             </div>
-          </div>
-        )}
+          </div>}
 
         {/* General Cleaning */}
-        {activeTab === 'general' && (
-          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+        {activeTab === 'general' && <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
             <h3 className="text-2xl font-semibold mb-6 text-center">{t('generalCleaning')}</h3>
             <div className="max-w-md mx-auto">
               <div className="mb-6">
@@ -588,11 +544,9 @@ const Pricing = () => {
                     <SelectValue placeholder={t('selectSize')} />
                   </SelectTrigger>
                   <SelectContent>
-                    {sqmOptions.map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
+                    {sqmOptions.map(option => <SelectItem key={option.value} value={option.value}>
                         {option.label}
-                      </SelectItem>
-                    ))}
+                      </SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
@@ -617,10 +571,7 @@ const Pricing = () => {
                 </p>
               </div>
 
-              <Button
-                className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={() => window.location.href = 'tel:+46704019341'}
-              >
+              <Button className="w-full mt-6 bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2" onClick={() => window.location.href = 'tel:+46704019341'}>
                 <Phone size={20} />
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
               </Button>
@@ -628,7 +579,7 @@ const Pricing = () => {
               {/* General Cleaning Checklist */}
               <div className="mt-8">
                 <Collapsible open={isChecklistOpen} onOpenChange={setIsChecklistOpen} className="w-full">
-                  <CollapsibleTrigger className="w-full bg-shr-blue-dark text-white rounded-lg p-4 flex justify-between items-center">
+                  <CollapsibleTrigger className="w-full bg-shr-blue-dark text-white rounded-lg p-4 flex justify-between items-center font-normal text-base">
                     <h3 className="text-xl font-semibold">{t('cleaningIncludedIn')} {t('generalCleaning')}</h3>
                     {isChecklistOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
                   </CollapsibleTrigger>
@@ -712,18 +663,15 @@ const Pricing = () => {
                 </Collapsible>
               </div>
             </div>
-          </div>
-        )}
+          </div>}
 
         {/* Window Cleaning */}
-        {activeTab === 'window' && (
-          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+        {activeTab === 'window' && <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
             <h3 className="text-2xl font-semibold mb-6 text-center">{t('windowCleaning')}</h3>
             <p className="text-center mb-8">{t('selectWindowTypes')}</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              {windowTypes.map((window) => (
-                <Card key={window.id} className="overflow-hidden">
+              {windowTypes.map(window => <Card key={window.id} className="overflow-hidden">
                   <CardHeader className="pb-2">
                     <div className="text-shr-blue-dark">{window.icon}</div>
                     <CardTitle className="text-lg">{window.name}</CardTitle>
@@ -732,28 +680,18 @@ const Pricing = () => {
                   <CardContent>
                     <p className="font-semibold mb-2">{window.price} kr</p>
                     <div className="flex items-center justify-between">
-                      <Button 
-                        variant="outline"
-                        size="icon"
-                        onClick={() => handleCountChange(window.id, -1)}
-                        disabled={!windowCounts[window.id]}
-                      >
+                      <Button variant="outline" size="icon" onClick={() => handleCountChange(window.id, -1)} disabled={!windowCounts[window.id]}>
                         <Minus className="h-4 w-4" />
                       </Button>
                       <span className="mx-2 text-lg font-medium w-8 text-center">
                         {windowCounts[window.id] || 0}
                       </span>
-                      <Button 
-                        variant="outline"
-                        size="icon"
-                        onClick={() => handleCountChange(window.id, 1)}
-                      >
+                      <Button variant="outline" size="icon" onClick={() => handleCountChange(window.id, 1)}>
                         <Plus className="h-4 w-4" />
                       </Button>
                     </div>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
 
             <div className="max-w-md mx-auto">
@@ -762,20 +700,15 @@ const Pricing = () => {
                 <p className="text-2xl font-bold">{calculateWindowTotal()} kr</p>
               </div>
 
-              <Button
-                className="w-full bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={() => window.location.href = 'tel:+46704019341'}
-              >
+              <Button className="w-full bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2" onClick={() => window.location.href = 'tel:+46704019341'}>
                 <Phone size={20} />
                 {t('bookNow')}
               </Button>
             </div>
-          </div>
-        )}
+          </div>}
 
         {/* Office Cleaning */}
-        {activeTab === 'office' && (
-          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+        {activeTab === 'office' && <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
             <h3 className="text-2xl font-semibold mb-6 text-center">{t('officeCleaning')}</h3>
             <p className="text-center max-w-2xl mx-auto mb-8">
               {t('officeDescription')}
@@ -801,20 +734,15 @@ const Pricing = () => {
                 </ul>
               </div>
 
-              <Button
-                className="w-full bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={() => window.location.href = 'tel:+46704019341'}
-              >
+              <Button className="w-full bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2" onClick={() => window.location.href = 'tel:+46704019341'}>
                 <Phone size={20} />
                 {t('requestQuote')}
               </Button>
             </div>
-          </div>
-        )}
+          </div>}
 
         {/* Recurring Service */}
-        {activeTab === 'recurring' && (
-          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+        {activeTab === 'recurring' && <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
             <h3 className="text-2xl font-semibold mb-6 text-center">{t('recurringService')}</h3>
             <p className="text-center max-w-2xl mx-auto mb-8">
               {t('recurringDescription')}
@@ -838,19 +766,13 @@ const Pricing = () => {
                 </div>
               </div>
 
-              <Button
-                className="w-full bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2"
-                onClick={() => window.location.href = 'tel:+46704019341'}
-              >
+              <Button className="w-full bg-shr-blue-dark hover:bg-shr-blue-dark/90 flex items-center justify-center gap-2" onClick={() => window.location.href = 'tel:+46704019341'}>
                 <Phone size={20} />
                 {t('callForCustomPlan')}
               </Button>
             </div>
-          </div>
-        )}
+          </div>}
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Pricing;

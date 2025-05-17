@@ -1,61 +1,22 @@
-
 import { useState } from 'react';
 import { useLanguage } from './LanguageSwitcher';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
-import { 
-  Carousel, 
-  CarouselContent, 
-  CarouselItem, 
-  CarouselNext, 
-  CarouselPrevious 
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-
 const About = () => {
-  const { t } = useLanguage();
+  const {
+    t
+  } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-  
   const cleaningItemsByRoom = {
-    allRooms: [
-      'vacuumFloors',
-      'mopFloors',
-      'dampDrySkirtingBoards',
-      'dampDryDoorFrames',
-      'dustShelvesJoinery',
-      'dustFreeSurfaces',
-      'dustCoveredSurfaces',
-      'dustOffElectronics',
-      'dustOffLamps',
-      'dustPaintings',
-      'polishMirrors',
-    ],
-    kitchen: [
-      'refrigeratorExternallyCleaned',
-      'ovenCleaningInOut',
-      'cleaningStovetops',
-      'dishwasherCleanedInOut',
-      'cleaningSinks',
-      'cabinetDoorsCleaned',
-      'cleaningCabinetsGarbage',
-      'cleaningKitchenHood',
-    ],
-    bathroom: [
-      'cleaningAirVentsNotInside',
-      'vacuumSweepingFloors',
-    ],
-    bedroom: [
-      'dustFurniture',
-      'dustDesk',
-      'wipeBedside',
-    ],
-    other: [
-      'windowCleaningBookedSeparately',
-    ],
+    allRooms: ['vacuumFloors', 'mopFloors', 'dampDrySkirtingBoards', 'dampDryDoorFrames', 'dustShelvesJoinery', 'dustFreeSurfaces', 'dustCoveredSurfaces', 'dustOffElectronics', 'dustOffLamps', 'dustPaintings', 'polishMirrors'],
+    kitchen: ['refrigeratorExternallyCleaned', 'ovenCleaningInOut', 'cleaningStovetops', 'dishwasherCleanedInOut', 'cleaningSinks', 'cabinetDoorsCleaned', 'cleaningCabinetsGarbage', 'cleaningKitchenHood'],
+    bathroom: ['cleaningAirVentsNotInside', 'vacuumSweepingFloors'],
+    bedroom: ['dustFurniture', 'dustDesk', 'wipeBedside'],
+    other: ['windowCleaningBookedSeparately']
   };
-  
-  return (
-    <section id="about" className="section-padding bg-shr-gray">
+  return <section id="about" className="section-padding bg-shr-gray">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('aboutTitle')}</h2>
@@ -68,20 +29,12 @@ const About = () => {
               <CarouselContent>
                 <CarouselItem>
                   <div className="aspect-square overflow-hidden rounded-lg shadow-lg">
-                    <img 
-                      src="https://images.unsplash.com/photo-1686178827149-6d55c72d81df?q=80&w=1770" 
-                      alt="SHR Cleaning Professional" 
-                      className="w-full h-full object-cover"
-                    />
+                    <img src="https://images.unsplash.com/photo-1686178827149-6d55c72d81df?q=80&w=1770" alt="SHR Cleaning Professional" className="w-full h-full object-cover" />
                   </div>
                 </CarouselItem>
                 <CarouselItem>
                   <div className="aspect-square overflow-hidden rounded-lg shadow-lg">
-                    <img 
-                      src="https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1770" 
-                      alt="SHR Cleaning Service" 
-                      className="w-full h-full object-cover"
-                    />
+                    <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1770" alt="SHR Cleaning Service" className="w-full h-full object-cover" />
                   </div>
                 </CarouselItem>
               </CarouselContent>
@@ -137,98 +90,11 @@ const About = () => {
             </div>
             
             <div className="mt-8">
-              <div className="bg-white p-6 rounded-lg shadow">
-                <h4 className="text-xl font-bold text-center mb-4">{t('cleaningIncluded')}</h4>
-                <p className="text-gray-600 mb-6 text-center">{t('cleaningChecklistDescription')}</p>
-                
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="all-rooms">
-                    <AccordionTrigger className="font-semibold text-shr-blue-dark">
-                      {t('allRooms')}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="space-y-2">
-                        {cleaningItemsByRoom.allRooms.map((item, i) => (
-                          <li key={i} className="flex items-start">
-                            <Check className="h-5 w-5 text-shr-blue-dark shrink-0 mr-2" />
-                            <span>{t(item)}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                  
-                  <AccordionItem value="kitchen">
-                    <AccordionTrigger className="font-semibold text-shr-blue-dark">
-                      {t('kitchen')}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="space-y-2">
-                        {cleaningItemsByRoom.kitchen.map((item, i) => (
-                          <li key={i} className="flex items-start">
-                            <Check className="h-5 w-5 text-shr-blue-dark shrink-0 mr-2" />
-                            <span>{t(item)}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                  
-                  <AccordionItem value="bathroom">
-                    <AccordionTrigger className="font-semibold text-shr-blue-dark">
-                      {t('bathroom')}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="space-y-2">
-                        {cleaningItemsByRoom.bathroom.map((item, i) => (
-                          <li key={i} className="flex items-start">
-                            <Check className="h-5 w-5 text-shr-blue-dark shrink-0 mr-2" />
-                            <span>{t(item)}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                  
-                  <AccordionItem value="bedroom">
-                    <AccordionTrigger className="font-semibold text-shr-blue-dark">
-                      {t('bedroom')}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="space-y-2">
-                        {cleaningItemsByRoom.bedroom.map((item, i) => (
-                          <li key={i} className="flex items-start">
-                            <Check className="h-5 w-5 text-shr-blue-dark shrink-0 mr-2" />
-                            <span>{t(item)}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                  
-                  <AccordionItem value="other">
-                    <AccordionTrigger className="font-semibold text-shr-blue-dark">
-                      {t('other')}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="space-y-2">
-                        {cleaningItemsByRoom.other.map((item, i) => (
-                          <li key={i} className="flex items-start">
-                            <Check className="h-5 w-5 text-shr-blue-dark shrink-0 mr-2" />
-                            <span>{t(item)}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
+              
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default About;
