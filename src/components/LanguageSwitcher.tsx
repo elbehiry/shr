@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { Languages } from 'lucide-react';
@@ -152,7 +151,16 @@ const translations: Record<string, Record<string, string>> = {
     scrubberUseDesc: 'Användning av en skurmaskin för mycket smutsiga golv ingår inte i priset och debiteras extra om det behövs.',
     looseItemsRemoval: 'Borttagning av lösa föremål',
     looseItemsRemovalDesc: 'Borttagning av lösa föremål som ska kastas ingår INTE i priset och debiteras extra per timme.',
-
+    
+    // Features for the different cleaning services
+    generalFeature1: 'Omfattande rengöring av alla ytor',
+    generalFeature2: 'Miljövänliga rengöringsmedel',
+    generalFeature3: 'Erfarna städare med omsorg för detaljer',
+    
+    movingFeature1: 'Professionell flyttstädning enligt checklista',
+    movingFeature2: 'Godkänd av besiktningsman',
+    movingFeature3: 'Fullständig rengöring av alla utrymmen',
+    
     // Services
     servicesTitle: 'Våra tjänster',
     servicesDescription: 'Vi erbjuder ett brett utbud av städtjänster för att möta alla dina behov.',
@@ -365,7 +373,7 @@ const translations: Record<string, Record<string, string>> = {
     vacuumSweepingFloors: 'Vacuuming/sweeping floors',
     windowCleaningBookedSeparately: 'Window cleaning is booked separately.',
     desireText: 'We can adapt our assignment to your wishes. If your wishes deviate from the checklist, please request a quote and we can give you an exact price.',
-
+    
     // NOT included section - English translations
     notIncludedTitle: 'The following are NOT included in the price and will be charged extra',
     notIncludedNewDescription: 'The following items are not included or are charged extra',
@@ -381,6 +389,15 @@ const translations: Record<string, Record<string, string>> = {
     scrubberUseDesc: 'Use of a scrubber for very dirty floors is not included in the price and will be charged extra if necessary.',
     looseItemsRemoval: 'Removal of loose items',
     looseItemsRemovalDesc: 'Removal of loose items to be thrown away is NOT included in the price and is charged extra per hour.',
+    
+    // Features for the different cleaning services
+    generalFeature1: 'Comprehensive cleaning of all surfaces',
+    generalFeature2: 'Eco-friendly cleaning products',
+    generalFeature3: 'Experienced cleaners with attention to detail',
+    
+    movingFeature1: 'Professional move-out cleaning according to checklist',
+    movingFeature2: 'Approved by property inspectors',
+    movingFeature3: 'Complete cleaning of all spaces',
     
     // Services
     servicesTitle: 'Our Services',
