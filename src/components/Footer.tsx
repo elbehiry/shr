@@ -61,8 +61,8 @@ const Footer = () => {
               &copy; {currentYear} SHR. {t('allRightsReserved')}
             </p>
             <div className="flex gap-6">
-              <a href="#" className="text-gray-400 hover:text-shr-blue-dark transition-colors">Terms of Use</a>
-              <a href="#" className="text-gray-400 hover:text-shr-blue-dark transition-colors">Privacy Policy</a>
+              <a href="#" className="text-gray-400 hover:text-shr-blue-dark transition-colors">{t('termsOfService')}</a>
+              <a href="#" className="text-gray-400 hover:text-shr-blue-dark transition-colors">{t('privacyPolicy')}</a>
             </div>
           </div>
         </div>
