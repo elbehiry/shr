@@ -30,7 +30,7 @@ const About = () => {
                 <CarouselItem>
                   <div className="aspect-square overflow-hidden rounded-lg shadow-lg">
                     <img 
-                      src="https://images.unsplash.com/photo-1691201180898-d5cca5e28a67?q=80&w=1770" 
+                      src="https://images.unsplash.com/photo-1686178827149-6d55c72d81df?q=80&w=1770" 
                       alt="SHR Cleaning Professional" 
                       className="w-full h-full object-cover"
                     />
@@ -39,7 +39,7 @@ const About = () => {
                 <CarouselItem>
                   <div className="aspect-square overflow-hidden rounded-lg shadow-lg">
                     <img 
-                      src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1769" 
+                      src="https://images.unsplash.com/photo-1686178827149-6d55c72d81df?q=80&w=1770" 
                       alt="SHR Cleaning Service" 
                       className="w-full h-full object-cover"
                     />
