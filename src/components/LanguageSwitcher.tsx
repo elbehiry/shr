@@ -72,6 +72,7 @@ const translations: Record<string, Record<string, string>> = {
     guarantee: 'GARANTI',
     other: 'ÖVRIGT',
     desire: 'ÖNSKEMÅL',
+    additionalServices: 'YTTERLIGARE TJÄNSTER',
     
     // Cleaning checklist items
     vacuumFloors: 'Dammsuga golv',
@@ -134,6 +135,22 @@ const translations: Record<string, Record<string, string>> = {
     vacuumSweepingFloors: 'Dammsugning/sopning av golv',
     windowCleaningBookedSeparately: 'Fönsterputs bokas separat.',
     desireText: 'Vi kan anpassa vårt uppdrag efter dina önskemål. Om dina önskemål avviker från checklistan, vänligen begär en offert så kan vi ge dig ett exakt pris.',
+    
+    // NOT included section - Swedish translations
+    notIncludedTitle: 'Följande ingår INTE i priset och debiteras extra',
+    notIncludedNewDescription: 'Följande artiklar ingår inte eller debiteras extra',
+    termsLink: 'här',
+    notIncludedDescriptionEnd: 'för fullständig information om vad som ingår, inte ingår och vad som debiteras extra.',
+    glazedBalcony: 'Inglasad balkong',
+    glazedBalconyDesc: 'Rengöring av den inglasade balkongen ingår INTE i priset och debiteras extra.',
+    specialFloorTreatment: 'Speciell golvbehandling',
+    specialFloorTreatmentDesc: 'Golvbehandling som vaxning eller polering av golv med polish ingår INTE och debiteras extra om så önskas.',
+    householdAppliances: 'Hushållsapparater',
+    householdAppliancesDesc: 'Rengöring av hushållsapparater (tvättmaskin, torktumlare och diskmaskin) ingår inte i priset och debiteras extra om så önskas.',
+    scrubberUse: 'Användning av skurmaskin',
+    scrubberUseDesc: 'Användning av en skurmaskin för mycket smutsiga golv ingår inte i priset och debiteras extra om det behövs.',
+    looseItemsRemoval: 'Borttagning av lösa föremål',
+    looseItemsRemovalDesc: 'Borttagning av lösa föremål som ska kastas ingår INTE i priset och debiteras extra per timme.',
 
     // Services
     servicesTitle: 'Våra tjänster',
@@ -281,6 +298,7 @@ const translations: Record<string, Record<string, string>> = {
     guarantee: 'GUARANTEE',
     other: 'OTHER',
     desire: 'DESIRE',
+    additionalServices: 'ADDITIONAL SERVICES',
     
     // Cleaning checklist items
     vacuumFloors: 'Vacuum floors',
@@ -344,6 +362,22 @@ const translations: Record<string, Record<string, string>> = {
     windowCleaningBookedSeparately: 'Window cleaning is booked separately.',
     desireText: 'We can adapt our assignment to your wishes. If your wishes deviate from the checklist, please request a quote and we can give you an exact price.',
 
+    // NOT included section - English translations
+    notIncludedTitle: 'The following are NOT included in the price and will be charged extra',
+    notIncludedNewDescription: 'The following items are not included or are charged extra',
+    termsLink: 'here',
+    notIncludedDescriptionEnd: 'for full information on what is included, not included and what is charged extra.',
+    glazedBalcony: 'Glazed Balcony',
+    glazedBalconyDesc: 'Cleaning of the glazed balcony is NOT included in the price and will be charged extra.',
+    specialFloorTreatment: 'Special Floor Treatment',
+    specialFloorTreatmentDesc: 'Floor treatment such as waxing or polishing floors with polish is NOT included and will be charged extra if desired.',
+    householdAppliances: 'Household appliances',
+    householdAppliancesDesc: 'Cleaning of household appliances (washing machine, dryer and dishwasher) is not included in the price, and will be charged extra if desired.',
+    scrubberUse: 'Use of scrubber',
+    scrubberUseDesc: 'Use of a scrubber for very dirty floors is not included in the price and will be charged extra if necessary.',
+    looseItemsRemoval: 'Removal of loose items',
+    looseItemsRemovalDesc: 'Removal of loose items to be thrown away is NOT included in the price and is charged extra per hour.',
+    
     // Services
     servicesTitle: 'Our Services',
     servicesDescription: 'We offer a wide range of cleaning services to meet all your needs.',

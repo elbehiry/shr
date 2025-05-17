@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useLanguage } from './LanguageSwitcher';
 import { Button } from '@/components/ui/button';
@@ -15,8 +16,8 @@ import { SqmOption, WindowType, CleaningCategory } from './pricing/types';
 
 const Pricing = () => {
   const { t } = useLanguage();
-  // Already set to 'moving' as default
-  const [activeTab, setActiveTab] = useState('moving');
+  // Changed default tab to 'general'
+  const [activeTab, setActiveTab] = useState('general');
   const [isChecklistOpen, setIsChecklistOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
@@ -49,26 +50,27 @@ const Pricing = () => {
 
   // Add translations for NOT included section
   const notIncludedTranslations = {
-    notIncludedTitle: 'The following are NOT included in the price and will be charged extra',
-    notIncludedDescription: 'The following items are not included or are charged extra, read our terms and conditions',
-    termsLink: 'here',
-    notIncludedDescriptionEnd: 'for full information on what is included, not included and what is charged extra.',
-    glazedBalcony: 'Glazed Balcony',
-    glazedBalconyDesc: 'Cleaning of the glazed balcony is NOT included in the price and will be charged extra.',
-    specialFloorTreatment: 'Special Floor Treatment',
-    specialFloorTreatmentDesc: 'Floor treatment such as waxing or polishing floors with polish is NOT included and will be charged extra if desired.',
-    householdAppliances: 'Household appliances',
-    householdAppliancesDesc: 'Cleaning of household appliances (washing machine, dryer and dishwasher) is not included in the price, and will be charged extra if desired.',
-    scrubberUse: 'Use of scrubber',
-    scrubberUseDesc: 'Use of a scrubber for very dirty floors is not included in the price and will be charged extra if necessary.',
-    looseItemsRemoval: 'Removal of loose items',
-    looseItemsRemovalDesc: 'Removal of loose items to be thrown away is NOT included in the price and is charged extra per hour.',
+    notIncludedTitle: t('notIncludedTitle') || 'The following are NOT included in the price and will be charged extra',
+    notIncludedNewDescription: t('notIncludedNewDescription') || 'The following items are not included or are charged extra',
+    termsLink: t('termsLink') || 'here',
+    notIncludedDescriptionEnd: t('notIncludedDescriptionEnd') || 'for full information on what is included, not included and what is charged extra.',
+    glazedBalcony: t('glazedBalcony') || 'Glazed Balcony',
+    glazedBalconyDesc: t('glazedBalconyDesc') || 'Cleaning of the glazed balcony is NOT included in the price and will be charged extra.',
+    specialFloorTreatment: t('specialFloorTreatment') || 'Special Floor Treatment',
+    specialFloorTreatmentDesc: t('specialFloorTreatmentDesc') || 'Floor treatment such as waxing or polishing floors with polish is NOT included and will be charged extra if desired.',
+    householdAppliances: t('householdAppliances') || 'Household appliances',
+    householdAppliancesDesc: t('householdAppliancesDesc') || 'Cleaning of household appliances (washing machine, dryer and dishwasher) is not included in the price, and will be charged extra if desired.',
+    scrubberUse: t('scrubberUse') || 'Use of scrubber',
+    scrubberUseDesc: t('scrubberUseDesc') || 'Use of a scrubber for very dirty floors is not included in the price and will be charged extra if necessary.',
+    looseItemsRemoval: t('looseItemsRemoval') || 'Removal of loose items',
+    looseItemsRemovalDesc: t('looseItemsRemovalDesc') || 'Removal of loose items to be thrown away is NOT included in the price and is charged extra per hour.',
+    additionalServices: t('additionalServices') || 'Additional Services',
   };
   
   // Add Swedish translations
   const notIncludedTranslationsSv = {
     notIncludedTitle: 'Följande ingår INTE i priset och debiteras extra',
-    notIncludedDescription: 'Följande artiklar ingår inte eller debiteras extra, läs våra villkor',
+    notIncludedNewDescription: 'Följande artiklar ingår inte eller debiteras extra',
     termsLink: 'här',
     notIncludedDescriptionEnd: 'för fullständig information om vad som ingår, inte ingår och vad som debiteras extra.',
     glazedBalcony: 'Inglasad balkong',
@@ -81,6 +83,7 @@ const Pricing = () => {
     scrubberUseDesc: 'Användning av en skurmaskin för mycket smutsiga golv ingår inte i priset och debiteras extra om det behövs.',
     looseItemsRemoval: 'Borttagning av lösa föremål',
     looseItemsRemovalDesc: 'Borttagning av lösa föremål som ska kastas ingår INTE i priset och debiteras extra per timme.',
+    additionalServices: 'Ytterligare tjänster',
   };
   
   // Original useLanguage hook structure assumes t function handles these translations
