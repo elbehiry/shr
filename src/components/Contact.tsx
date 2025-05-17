@@ -1,13 +1,11 @@
-
 import { Button } from '@/components/ui/button';
 import { Phone, Mail } from 'lucide-react';
 import { useLanguage } from './LanguageSwitcher';
-
 const Contact = () => {
-  const { t } = useLanguage();
-  
-  return (
-    <section id="contact" className="section-padding">
+  const {
+    t
+  } = useLanguage();
+  return <section id="contact" className="section-padding">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('contactUs')}</h2>
@@ -47,11 +45,7 @@ const Contact = () => {
               </div>
               
               <div className="mt-8">
-                <Button 
-                  className="cta-button w-full md:w-auto flex items-center justify-center gap-2" 
-                  size="lg"
-                  onClick={() => window.location.href = 'tel:+46704019341'}
-                >
+                <Button className="cta-button w-full md:w-auto flex items-center justify-center gap-2" size="lg" onClick={() => window.location.href = 'tel:+46704019341'}>
                   <Phone size={20} />
                   {t('callNow')}
                 </Button>
@@ -78,16 +72,12 @@ const Contact = () => {
               </div>
               
               <div className="mt-8">
-                <p className="text-center italic text-gray-500">
-                  {t('notSure')}
-                </p>
+                
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Contact;
