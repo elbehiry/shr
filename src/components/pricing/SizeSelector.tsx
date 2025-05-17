@@ -24,7 +24,7 @@ const SizeSelector: React.FC<SizeSelectorProps> = ({
   return (
     <div className="mb-6">
       <Label htmlFor={selectId}>{label}</Label>
-      <Select value={selectedSqm} onValueChange={setSelectedSqm} id={selectId}>
+      <Select value={selectedSqm} onValueChange={setSelectedSqm}>
         <SelectTrigger className="w-full mt-1" id={selectId}>
           <SelectValue placeholder={selectSizeText} />
         </SelectTrigger>
