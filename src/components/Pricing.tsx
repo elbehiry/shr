@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Phone, Check, Plus, Minus } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Check, Info, Phone } from 'lucide-react';
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
@@ -182,6 +182,7 @@ const Pricing = () => {
     return `${option.hours} ${t('hours')} - ${option.price} kr`;
   };
   
+  // Fix the calculation function
   const calculateWindowTotal = () => {
     return Object.entries(windowCounts).reduce((total, [id, count]) => {
       const windowType = windowTypes.find(w => w.id === id);
