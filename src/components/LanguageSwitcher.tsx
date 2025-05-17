@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { Languages } from 'lucide-react';
@@ -162,8 +163,28 @@ const translations: Record<string, Record<string, string>> = {
     specialtyDescription: 'Specialiserade tjänster för specifika behov som mattvätt, fönsterputs m.m.',
     recurringService: 'Återkommande tjänst',
     recurringDescription: 'Regelbunden städning enligt ditt schema: veckovis, varannan vecka eller månadsvis.',
-    getQuote: 'Begär offert',
-    getInTouch: 'Kom i kontakt',
+    
+    // New translations for service features
+    regularMaintenance: 'Regelbundet underhåll',
+    deepCleaning: 'Djuprengöring',
+    houseMoving: 'Flyttstädning',
+    customSchedules: 'Anpassade scheman',
+    officeCleaning: 'Kontorstädning',
+    retailSpaces: 'Butikslokaler',
+    medicalFacilities: 'Vårdinrättningar',
+    afterHoursService: 'Service efter arbetstid',
+    carpetCleaning: 'Mattvätt',
+    windowWashing: 'Fönsterputs',
+    postConstruction: 'Efter renovering',
+    eventCleanup: 'Evenemangsstäd',
+    weeklyService: 'Veckovis service',
+    biweeklyOptions: 'Varannan vecka',
+    monthlyDeepCleaning: 'Månadsvis djuprengöring',
+    customizedSchedules: 'Anpassade scheman',
+    
+    // Additional services translations
+    getQuoteButton: 'Få offert',
+    getInTouch: 'Kontakta oss',
     serviceAreas: 'Serviceområden',
     readyForCleaner: 'Redo för professionell städning?',
     notSure: 'Osäker på vad du behöver?',
@@ -315,7 +336,27 @@ const translations: Record<string, Record<string, string>> = {
     specialtyDescription: 'Specialized services for specific needs like carpet cleaning, window washing, etc.',
     recurringService: 'Recurring Service',
     recurringDescription: 'Regular cleaning on your schedule: weekly, bi-weekly, or monthly.',
-    getQuote: 'Get Quote',
+    
+    // New translations for service features
+    regularMaintenance: 'Regular Maintenance',
+    deepCleaning: 'Deep Cleaning',
+    houseMoving: 'House Moving',
+    customSchedules: 'Custom Schedules',
+    officeCleaning: 'Office Cleaning',
+    retailSpaces: 'Retail Spaces',
+    medicalFacilities: 'Medical Facilities',
+    afterHoursService: 'After Hours Service',
+    carpetCleaning: 'Carpet Cleaning',
+    windowWashing: 'Window Washing',
+    postConstruction: 'Post-Construction',
+    eventCleanup: 'Event Cleanup',
+    weeklyService: 'Weekly Service',
+    biweeklyOptions: 'Bi-weekly Options',
+    monthlyDeepCleaning: 'Monthly Deep Cleaning',
+    customizedSchedules: 'Customized Schedules',
+    
+    // Additional services translations
+    getQuoteButton: 'Get Quote',
     getInTouch: 'Get in Touch',
     serviceAreas: 'Service Areas',
     readyForCleaner: 'Ready for Professional Cleaning?',
