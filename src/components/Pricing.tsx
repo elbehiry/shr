@@ -396,16 +396,13 @@ const Pricing = () => {
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
               </Button>
               
-              {/* What's included in main cleaning section - Reorganized into 2 rows with 3 options each */}
-              
-              
               {/* Moving Cleaning Checklist - Removed the collapsible button */}
               <div className="mt-4">
                 <h3 className="text-xl font-semibold mb-6">{t('cleaningIncludedIn')} {t('movingCleaning')}</h3>
                 
-                <Accordion type="single" collapsible className="w-full">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                   {/* Kitchen */}
-                  <AccordionItem value="kitchen" className="border-b border-gray-200">
+                  <AccordionItem value="kitchen" className="border border-gray-200 rounded-lg">
                     <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
                       {t('kitchen')}
                     </AccordionTrigger>
@@ -426,7 +423,7 @@ const Pricing = () => {
                   </AccordionItem>
                   
                   {/* Bathroom */}
-                  <AccordionItem value="bathroom" className="border-b border-gray-200">
+                  <AccordionItem value="bathroom" className="border border-gray-200 rounded-lg">
                     <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
                       {t('bathroom')}
                     </AccordionTrigger>
@@ -447,7 +444,7 @@ const Pricing = () => {
                   </AccordionItem>
                   
                   {/* Room */}
-                  <AccordionItem value="room" className="border-b border-gray-200">
+                  <AccordionItem value="room" className="border border-gray-200 rounded-lg">
                     <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
                       {t('room')}
                     </AccordionTrigger>
@@ -465,9 +462,11 @@ const Pricing = () => {
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
-                  
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {/* Laundry */}
-                  <AccordionItem value="laundry" className="border-b border-gray-200">
+                  <AccordionItem value="laundry" className="border border-gray-200 rounded-lg">
                     <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
                       {t('laundry')}
                     </AccordionTrigger>
@@ -486,7 +485,7 @@ const Pricing = () => {
                   </AccordionItem>
                   
                   {/* Guarantee */}
-                  <AccordionItem value="guarantee" className="border-b border-gray-200">
+                  <AccordionItem value="guarantee" className="border border-gray-200 rounded-lg">
                     <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
                       {t('guarantee')}
                     </AccordionTrigger>
@@ -496,7 +495,7 @@ const Pricing = () => {
                   </AccordionItem>
                   
                   {/* Other */}
-                  <AccordionItem value="other" className="border-b border-gray-200">
+                  <AccordionItem value="other" className="border border-gray-200 rounded-lg">
                     <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
                       {t('other')}
                     </AccordionTrigger>
@@ -507,7 +506,7 @@ const Pricing = () => {
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
-                </Accordion>
+                </div>
               </div>
             </div>
           </div>}
