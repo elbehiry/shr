@@ -6,6 +6,8 @@ import { Phone, Check, Plus, Minus, ChevronDown, ChevronUp } from 'lucide-react'
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+
 interface WindowType {
   id: string;
   name: string;
@@ -186,6 +188,118 @@ const Pricing = () => {
       return total + (windowType?.price || 0) * count;
     }, 0);
   };
+
+  // Define cleaning areas for the checklist
+  const cleaningAreas = [
+    {
+      id: 'kitchen',
+      title: t('kitchen'),
+      items: [
+        t('vacuumFloors'),
+        t('mopFloors'),
+        t('dampDrySkirtingBoards'),
+        t('dampDryDoorFrames'),
+        t('dustShelvesJoinery'),
+        t('dustFreeSurfaces'),
+        t('dustCoveredSurfaces'),
+        t('dustOffLamps'),
+        t('polishMirrors'),
+        t('dustFurniture')
+      ]
+    },
+    {
+      id: 'livingRoom',
+      title: t('livingRoom'),
+      items: [
+        t('vacuumFloors'),
+        t('mopFloors'),
+        t('dampDrySkirtingBoards'),
+        t('dampDryDoorFrames'),
+        t('dustShelvesJoinery'),
+        t('dustFreeSurfaces'),
+        t('dustCoveredSurfaces'),
+        t('dustOffElectronics'),
+        t('dustOffLamps'),
+        t('polishMirrors'),
+        t('dustFurniture'),
+        t('dustDesk'),
+        t('dustPaintings')
+      ]
+    },
+    {
+      id: 'bedroom',
+      title: t('bedroom'),
+      items: [
+        t('vacuumFloors'),
+        t('mopFloors'),
+        t('dampDrySkirtingBoards'),
+        t('dampDryDoorFrames'),
+        t('dustShelvesJoinery'),
+        t('dustFreeSurfaces'),
+        t('dustCoveredSurfaces'),
+        t('dustOffElectronics'),
+        t('dustOffLamps'),
+        t('dustPaintings'),
+        t('polishMirrors'),
+        t('dustFurniture'),
+        t('dustDesk'),
+        t('wipeBedside')
+      ]
+    },
+    {
+      id: 'bathroom',
+      title: t('bathroom'),
+      items: [
+        t('vacuumFloors'),
+        t('mopFloors'),
+        t('dampDrySkirtingBoards'),
+        t('dampDryDoorFrames'),
+        t('dustShelvesJoinery'),
+        t('dustFreeSurfaces'),
+        t('dustCoveredSurfaces'),
+        t('dustOffLamps'),
+        t('polishMirrors'),
+        t('dustFurniture')
+      ]
+    },
+    {
+      id: 'hall',
+      title: t('hall'),
+      items: [
+        t('vacuumFloors'),
+        t('mopFloors'),
+        t('dampDrySkirtingBoards'),
+        t('dampDryDoorFrames'),
+        t('dustShelvesJoinery'),
+        t('dustFreeSurfaces'),
+        t('dustCoveredSurfaces'),
+        t('dustOffLamps'),
+        t('polishMirrors'),
+        t('dustFurniture')
+      ]
+    },
+    {
+      id: 'extraRoom',
+      title: t('extraRoom'),
+      items: [
+        t('vacuumFloors'),
+        t('mopFloors'),
+        t('dampDrySkirtingBoards'),
+        t('dampDryDoorFrames'),
+        t('dustShelvesJoinery'),
+        t('dustFreeSurfaces'),
+        t('dustCoveredSurfaces'),
+        t('dustOffElectronics'),
+        t('dustOffLamps'),
+        t('polishMirrors'),
+        t('dustFurniture'),
+        t('dustDesk'),
+        t('wipeBedside'),
+        t('dustPaintings')
+      ]
+    }
+  ];
+  
   return <section id="pricing" className="section-padding">
       <div className="container mx-auto">
         <div className="text-center mb-12">
@@ -263,133 +377,37 @@ const Pricing = () => {
                 {selectedSqm === "140+" ? t('callForQuote') : t('bookNow')}
               </Button>
 
-              {/* Home Cleaning Checklist */}
+              {/* Home Cleaning Checklist - TRANSFORMED TO ACCORDION */}
               <div className="mt-8">
-                <Collapsible open={isChecklistOpen} onOpenChange={setIsChecklistOpen} className="w-full">
-                  <CollapsibleTrigger className="w-full bg-shr-blue-dark text-white rounded-lg p-4 flex justify-between items-center">
-                    <h3 className="text-xl font-semibold">{t('cleaningIncludedIn')} {t('homeCleaning')}</h3>
-                    {isChecklistOpen ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
-                  </CollapsibleTrigger>
+                <div className="w-full">
+                  <h3 className="text-xl font-semibold mb-4 bg-shr-blue-dark text-white rounded-lg p-4">
+                    {t('cleaningIncludedIn')} {t('homeCleaning')}
+                  </h3>
                   
-                  <CollapsibleContent className="mt-6 bg-white rounded-lg p-6 shadow-lg">
-                    <p className="text-gray-700 mb-8">{t('cleaningChecklistDescription')}</p>
+                  <div className="mt-4">
+                    <p className="text-gray-700 mb-6">{t('cleaningChecklistDescription')}</p>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                      {/* Kitchen */}
-                      <div className="bg-gray-50 rounded-lg p-5">
-                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('kitchen')}</h4>
-                        <ul className="space-y-2">
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
-                        </ul>
-                      </div>
-                      
-                      {/* Living Room */}
-                      <div className="bg-gray-50 rounded-lg p-5">
-                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('livingRoom')}</h4>
-                        <ul className="space-y-2">
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffElectronics')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustDesk')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustPaintings')}</li>
-                        </ul>
-                      </div>
-                      
-                      {/* Bedroom */}
-                      <div className="bg-gray-50 rounded-lg p-5">
-                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('bedroom')}</h4>
-                        <ul className="space-y-2">
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffElectronics')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustPaintings')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustDesk')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wipeBedside')}</li>
-                        </ul>
-                      </div>
-                      
-                      {/* Bathroom */}
-                      <div className="bg-gray-50 rounded-lg p-5">
-                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('bathroom')}</h4>
-                        <ul className="space-y-2">
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
-                        </ul>
-                      </div>
-                      
-                      {/* Hall */}
-                      <div className="bg-gray-50 rounded-lg p-5">
-                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('hall')}</h4>
-                        <ul className="space-y-2">
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
-                        </ul>
-                      </div>
-                      
-                      {/* Extra Room */}
-                      <div className="bg-gray-50 rounded-lg p-5">
-                        <h4 className="text-lg font-semibold mb-4 text-shr-blue-dark">{t('extraRoom')}</h4>
-                        <ul className="space-y-2">
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('vacuumFloors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('mopFloors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDrySkirtingBoards')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dampDryDoorFrames')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustShelvesJoinery')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFreeSurfaces')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustCoveredSurfaces')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffElectronics')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustOffLamps')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('polishMirrors')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustFurniture')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustDesk')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('wipeBedside')}</li>
-                          <li className="flex items-start"><Check size={18} className="text-green-500 mr-2" /> {t('dustPaintings')}</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CollapsibleContent>
-                </Collapsible>
+                    <Accordion type="single" collapsible className="w-full">
+                      {cleaningAreas.map((area) => (
+                        <AccordionItem key={area.id} value={area.id} className="border-b border-gray-200">
+                          <AccordionTrigger className="py-4 px-5 bg-gray-50 hover:bg-gray-100 rounded-t-lg text-lg font-medium text-shr-blue-dark">
+                            {area.title}
+                          </AccordionTrigger>
+                          <AccordionContent className="bg-gray-50 rounded-b-lg p-5 pt-2">
+                            <ul className="space-y-2 mt-2">
+                              {area.items.map((item, index) => (
+                                <li key={index} className="flex items-start">
+                                  <Check size={18} className="text-green-500 mr-2 mt-1 shrink-0" /> 
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </AccordionContent>
+                        </AccordionItem>
+                      ))}
+                    </Accordion>
+                  </div>
+                </div>
               </div>
             </div>
           </div>}
