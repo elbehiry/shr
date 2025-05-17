@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 
 interface PricingTabsProps {
@@ -9,11 +9,16 @@ interface PricingTabsProps {
 }
 
 const PricingTabs: React.FC<PricingTabsProps> = ({ activeTab, onTabChange, t }) => {
+  // Use useCallback to prevent unnecessary renders
+  const handleTabClick = useCallback((tabName: string) => {
+    onTabChange(tabName);
+  }, [onTabChange]);
+
   return (
     <div className="flex flex-wrap justify-center gap-4 mb-8">
       <Button 
         variant={activeTab === 'home' ? 'default' : 'outline'} 
-        onClick={() => onTabChange('home')} 
+        onClick={() => handleTabClick('home')} 
         className={activeTab === 'home' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
         aria-label={t('homeCleaning')}
       >
@@ -21,7 +26,7 @@ const PricingTabs: React.FC<PricingTabsProps> = ({ activeTab, onTabChange, t }) 
       </Button>
       <Button 
         variant={activeTab === 'moving' ? 'default' : 'outline'} 
-        onClick={() => onTabChange('moving')} 
+        onClick={() => handleTabClick('moving')} 
         className={activeTab === 'moving' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
         aria-label={t('movingCleaning')}
       >
@@ -29,7 +34,7 @@ const PricingTabs: React.FC<PricingTabsProps> = ({ activeTab, onTabChange, t }) 
       </Button>
       <Button 
         variant={activeTab === 'general' ? 'default' : 'outline'} 
-        onClick={() => onTabChange('general')} 
+        onClick={() => handleTabClick('general')} 
         className={activeTab === 'general' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
         aria-label={t('generalCleaning')}
       >
@@ -37,7 +42,7 @@ const PricingTabs: React.FC<PricingTabsProps> = ({ activeTab, onTabChange, t }) 
       </Button>
       <Button 
         variant={activeTab === 'window' ? 'default' : 'outline'} 
-        onClick={() => onTabChange('window')} 
+        onClick={() => handleTabClick('window')} 
         className={activeTab === 'window' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
         aria-label={t('windowCleaning')}
       >
@@ -45,7 +50,7 @@ const PricingTabs: React.FC<PricingTabsProps> = ({ activeTab, onTabChange, t }) 
       </Button>
       <Button 
         variant={activeTab === 'office' ? 'default' : 'outline'} 
-        onClick={() => onTabChange('office')} 
+        onClick={() => handleTabClick('office')} 
         className={activeTab === 'office' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
         aria-label={t('officeCleaning')}
       >
@@ -53,7 +58,7 @@ const PricingTabs: React.FC<PricingTabsProps> = ({ activeTab, onTabChange, t }) 
       </Button>
       <Button 
         variant={activeTab === 'recurring' ? 'default' : 'outline'} 
-        onClick={() => onTabChange('recurring')} 
+        onClick={() => handleTabClick('recurring')} 
         className={activeTab === 'recurring' ? 'bg-shr-blue-dark hover:bg-shr-blue-dark/90' : ''}
         aria-label={t('recurringService')}
       >

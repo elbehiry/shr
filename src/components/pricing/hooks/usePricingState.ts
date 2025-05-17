@@ -17,6 +17,7 @@ export const usePricingState = () => {
   const [windowCounts, setWindowCounts] = useState(getInitialWindowCounts());
   
   const handleTabChange = (tabName: string) => {
+    // Simple direct state update without any DOM manipulation
     setActiveTab(tabName);
   };
   

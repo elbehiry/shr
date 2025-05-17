@@ -35,68 +35,58 @@ const TabContent: React.FC<TabContentProps> = ({
   handleCountChange,
   notIncludedTranslations
 }) => {
-  // Render content based on active tab
-  if (activeTab === 'home') {
-    return (
-      <HomeCleaning
-        t={t}
-        sqmOptions={sqmOptions}
-        selectedSqm={selectedSqm}
-        setSelectedSqm={setSelectedSqm}
-        cleaningAreas={cleaningAreas}
-      />
-    );
-  }
+  // Use React.memo'd components or render conditionally with &&
+  return (
+    <>
+      {activeTab === 'home' && (
+        <HomeCleaning
+          t={t}
+          sqmOptions={sqmOptions}
+          selectedSqm={selectedSqm}
+          setSelectedSqm={setSelectedSqm}
+          cleaningAreas={cleaningAreas}
+        />
+      )}
 
-  if (activeTab === 'moving') {
-    return (
-      <MovingCleaning
-        t={t}
-        sqmOptions={sqmOptions}
-        selectedSqm={selectedSqm}
-        setSelectedSqm={setSelectedSqm}
-      />
-    );
-  }
+      {activeTab === 'moving' && (
+        <MovingCleaning
+          t={t}
+          sqmOptions={sqmOptions}
+          selectedSqm={selectedSqm}
+          setSelectedSqm={setSelectedSqm}
+        />
+      )}
 
-  if (activeTab === 'general') {
-    return (
-      <GeneralCleaning
-        t={(key) => {
-          // Special handling for the new NOT included section translations
-          if (key in notIncludedTranslations) {
-            return notIncludedTranslations[key as keyof typeof notIncludedTranslations];
-          }
-          return t(key);
-        }}
-        sqmOptions={sqmOptions}
-        selectedSqm={selectedSqm}
-        setSelectedSqm={setSelectedSqm}
-        includedCategories={includedCategories}
-      />
-    );
-  }
+      {activeTab === 'general' && (
+        <GeneralCleaning
+          t={(key) => {
+            // Special handling for the new NOT included section translations
+            if (key in notIncludedTranslations) {
+              return notIncludedTranslations[key as keyof typeof notIncludedTranslations];
+            }
+            return t(key);
+          }}
+          sqmOptions={sqmOptions}
+          selectedSqm={selectedSqm}
+          setSelectedSqm={setSelectedSqm}
+          includedCategories={includedCategories}
+        />
+      )}
 
-  if (activeTab === 'window') {
-    return (
-      <WindowCleaning
-        t={t}
-        windowTypes={windowTypes}
-        windowCounts={windowCounts}
-        handleCountChange={handleCountChange}
-      />
-    );
-  }
+      {activeTab === 'window' && (
+        <WindowCleaning
+          t={t}
+          windowTypes={windowTypes}
+          windowCounts={windowCounts}
+          handleCountChange={handleCountChange}
+        />
+      )}
 
-  if (activeTab === 'office') {
-    return <OfficeCleaning t={t} />;
-  }
+      {activeTab === 'office' && <OfficeCleaning t={t} />}
 
-  if (activeTab === 'recurring') {
-    return <RecurringService t={t} />;
-  }
-
-  return null;
+      {activeTab === 'recurring' && <RecurringService t={t} />}
+    </>
+  );
 };
 
 export default TabContent;
