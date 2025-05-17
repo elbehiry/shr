@@ -22,12 +22,12 @@ export const translations = {
     notSure: "Not sure if we serve your area? Call us to find out!",
     // Hero translations
     heroTitle: "Professional Cleaning Services for Your Home & Office",
-    heroDescription: "SHR provides top-quality cleaning services tailored to your needs. We take pride in delivering spotless results and exceptional customer service.",
+    heroDescription: "SHR städ provides top-quality cleaning services tailored to your needs. We take pride in delivering spotless results and exceptional customer service.",
     learnMore: "Learn More",
     // About translations
     aboutTitle: "About SHR",
     aboutDescription: "We Make Your Space Shine",
-    aboutText: "SHR Cleaning Services has been providing exceptional cleaning solutions to homes and offices. Our dedicated team of professionals is committed to delivering spotless results and outstanding customer service.",
+    aboutText: "SHR städ has been providing exceptional cleaning solutions to homes and offices. Our dedicated team of professionals is committed to delivering spotless results and outstanding customer service.",
     professionalStaff: "Professional Staff",
     trainedSpecialists: "Trained and experienced cleaning specialists",
     efficientService: "Efficient Service",
@@ -72,10 +72,10 @@ export const translations = {
     contactInformation: "Contact Information",
     allRightsReserved: "All rights reserved.",
     // Other
-    readyForCleaner: "Ready for a cleaner space? Contact SHR Cleaning Services today for a free quote. We're here to answer your questions and provide the highest quality service.",
+    readyForCleaner: "Ready for a cleaner space? Contact SHR städ today for a free quote. We're here to answer your questions and provide the highest quality service.",
     // Pricing translations
     pricingTitle: "Our Pricing",
-    pricingDescription: "We offer transparent pricing for all our services. See our rates below or contact us for a custom quote.",
+    pricingDescription: "We offer transparent pricing for all our services. All prices are quoted with RUT deductions. See our rates below or contact us for a custom quote.",
     movingCleaning: "Moving Cleaning",
     generalCleaning: "General Cleaning",
     windowCleaning: "Window Cleaning",
@@ -123,7 +123,16 @@ export const translations = {
     balconyHalfGlazed: "Half Glazed Balcony",
     balconyHalfGlazedDesc: "Max 6 m²",
     termsOfUse: "Terms of Use",
-    privacyPolicy: "Privacy Policy"
+    privacyPolicy: "Privacy Policy",
+    // Cleaning checklist
+    cleaningIncluded: "THIS IS INCLUDED IN HOME CLEANING",
+    cleaningChecklistDescription: "We start from this checklist and adapt it to your needs. This ensures that we maintain a continuous high quality.",
+    kitchen: "KITCHEN",
+    livingRoom: "LIVING ROOM",
+    bedroom: "BEDROOM",
+    bathroom: "BATHROOM",
+    hall: "HALL",
+    extraRoom: "EXTRA ROOM"
   },
   sv: {
     home: "Hem",
@@ -140,12 +149,12 @@ export const translations = {
     notSure: "Osäker på om vi betjänar ditt område? Ring oss för att ta reda på det!",
     // Hero translations
     heroTitle: "Professionella städtjänster för ditt hem och kontor",
-    heroDescription: "SHR tillhandahåller städtjänster av högsta kvalitet anpassade efter dina behov. Vi är stolta över att leverera fläckfria resultat och exceptionell kundservice.",
+    heroDescription: "SHR städ tillhandahåller städtjänster av högsta kvalitet anpassade efter dina behov. Vi är stolta över att leverera fläckfria resultat och exceptionell kundservice.",
     learnMore: "Läs mer",
     // About translations
     aboutTitle: "Om SHR",
     aboutDescription: "Vi får ditt utrymme att skina",
-    aboutText: "SHR Cleaning Services har levererat exceptionella städlösningar till hem och kontor. Vårt dedikerade team av proffs är engagerade i att leverera fläckfria resultat och utmärkt kundservice.",
+    aboutText: "SHR städ har levererat exceptionella städlösningar till hem och kontor. Vårt dedikerade team av proffs är engagerade i att leverera fläckfria resultat och utmärkt kundservice.",
     professionalStaff: "Professionell personal",
     trainedSpecialists: "Utbildade och erfarna städspecialister",
     efficientService: "Effektiv service",
@@ -190,10 +199,10 @@ export const translations = {
     contactInformation: "Kontaktinformation",
     allRightsReserved: "Alla rättigheter förbehållna.",
     // Other
-    readyForCleaner: "Redo för ett renare utrymme? Kontakta SHR Cleaning Services idag för en gratis offert. Vi finns här för att svara på dina frågor och ge service av högsta kvalitet.",
+    readyForCleaner: "Redo för ett renare utrymme? Kontakta SHR städ idag för en gratis offert. Vi finns här för att svara på dina frågor och ge service av högsta kvalitet.",
     // Pricing translations
     pricingTitle: "Våra priser",
-    pricingDescription: "Vi erbjuder transparenta priser för alla våra tjänster. Se våra priser nedan eller kontakta oss för en anpassad offert.",
+    pricingDescription: "Vi erbjuder transparenta priser för alla våra tjänster. Alla priser är angivna med RUT-avdrag. Se våra priser nedan eller kontakta oss för en anpassad offert.",
     movingCleaning: "Flyttstädning",
     generalCleaning: "Allmän städning",
     windowCleaning: "Fönsterputsning",
@@ -241,7 +250,16 @@ export const translations = {
     balconyHalfGlazed: "Halvglasad balkong",
     balconyHalfGlazedDesc: "Max 6 m²",
     termsOfUse: "Användarvillkor",
-    privacyPolicy: "Integritetspolicy"
+    privacyPolicy: "Integritetspolicy",
+    // Cleaning checklist
+    cleaningIncluded: "DETTA INGÅR I HEMSTÄDNINGEN",
+    cleaningChecklistDescription: "Vi utgår från denna checklista och anpassar den efter dina behov. Detta säkerställer att vi upprätthåller en kontinuerligt hög kvalitet.",
+    kitchen: "KÖK",
+    livingRoom: "VARDAGSRUM",
+    bedroom: "SOVRUM",
+    bathroom: "BADRUM",
+    hall: "HALL",
+    extraRoom: "EXTRA RUM"
   }
 };
 

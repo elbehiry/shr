@@ -33,7 +33,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center">
           <h1 className="text-2xl font-bold text-shr-blue-dark">SHR</h1>
-          <span className="ml-2 text-gray-600 hidden sm:inline">Cleaning Services</span>
+          <span className="ml-2 text-gray-600 hidden sm:inline">städ</span>
         </div>
         
         {/* Desktop Navigation */}
