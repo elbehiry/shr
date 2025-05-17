@@ -24,7 +24,7 @@ interface LanguageProviderProps {
 const translations: Record<string, Record<string, string>> = {
   sv: {
     // General
-    title: 'SHR städ',
+    title: 'SHRstäd.se',
     rutDeduction: 'Alla priser är angivna med RUT-avdrag.',
     
     // Navigation
@@ -32,7 +32,7 @@ const translations: Record<string, Record<string, string>> = {
     about: 'Om oss',
     services: 'Tjänster',
     pricing: 'Priser',
-    testimonials: 'Recensioner',
+    testimonials: 'Omdömen',
     contact: 'Kontakt',
     
     // Hero
@@ -185,19 +185,37 @@ const translations: Record<string, Record<string, string>> = {
     // Additional services translations
     getQuoteButton: 'Få offert',
     getInTouch: 'Kontakta oss',
-    serviceAreas: 'Serviceområden',
+    serviceAreas: 'Våra serviceområden',
     readyForCleaner: 'Redo för professionell städning?',
-    notSure: 'Osäker på vad du behöver?',
     professionalServices: 'Professionella tjänster',
     quickLinks: 'Snabblänkar',
     contactInformation: 'Kontaktinformation',
     ourServices: 'Våra tjänster',
     ourServicesDescription: 'Vi erbjuder ett brett utbud av städtjänster för att möta alla dina behov.',
     requestQuote: 'Begär offert',
+    
+    // Pricing section
+    pricingTitle: 'Våra priser',
+    pricingDescription: 'Transparenta priser utan dolda avgifter',
+    homeCleaning: 'Hemstädning',
+    movingCleaning: 'Flyttstädning',
+    generalCleaning: 'Storstädning',
+    windowCleaning: 'Fönsterputs',
+    homeSize: 'Bostadens storlek',
+    selectSize: 'Välj storlek',
+    estimatedPrice: 'Uppskattat pris',
+    bookNow: 'Boka nu',
+    callForQuote: 'Ring för offert',
+    hours: 'timmar',
+    customQuote: 'Anpassad offert',
+    
+    // Testimonials section
+    testimonialsTitle: 'Vad våra kunder säger',
   },
+  
   en: {
     // General
-    title: 'SHR städ',
+    title: 'SHRstäd.se',
     rutDeduction: 'All prices are quoted with RUT deductions.',
     
     // Navigation
@@ -357,16 +375,33 @@ const translations: Record<string, Record<string, string>> = {
     
     // Additional services translations
     getQuoteButton: 'Get Quote',
-    getInTouch: 'Get in Touch',
-    serviceAreas: 'Service Areas',
+    getInTouch: 'Contact Us',
+    serviceAreas: 'Our Service Areas',
     readyForCleaner: 'Ready for Professional Cleaning?',
-    notSure: 'Not Sure What You Need?',
     professionalServices: 'Professional Services',
     quickLinks: 'Quick Links',
     contactInformation: 'Contact Information',
     ourServices: 'Our Services',
     ourServicesDescription: 'We offer a wide range of cleaning services to meet all your needs.',
     requestQuote: 'Request Quote',
+    
+    // Pricing section
+    pricingTitle: 'Our Prices',
+    pricingDescription: 'Transparent pricing with no hidden fees',
+    homeCleaning: 'Home Cleaning',
+    movingCleaning: 'Moving Cleaning',
+    generalCleaning: 'General Cleaning',
+    windowCleaning: 'Window Cleaning',
+    homeSize: 'Home Size',
+    selectSize: 'Select Size',
+    estimatedPrice: 'Estimated Price',
+    bookNow: 'Book Now',
+    callForQuote: 'Call for Quote',
+    hours: 'hours',
+    customQuote: 'Custom Quote',
+    
+    // Testimonials section
+    testimonialsTitle: 'What Our Clients Say',
   },
 };
 
