@@ -15,11 +15,6 @@ const About = () => {
   const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   
-  const serviceImages = [
-    "https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1770", // Black and brown fruit on wooden plate
-    "https://images.unsplash.com/photo-1686178827149-6d55c72d81df?q=80&w=1770" // Previously added image
-  ];
-  
   return (
     <section id="about" className="section-padding bg-shr-gray">
       <div className="container mx-auto">
@@ -32,17 +27,24 @@ const About = () => {
           <div className="relative">
             <Carousel className="w-full">
               <CarouselContent>
-                {serviceImages.map((image, i) => (
-                  <CarouselItem key={i}>
-                    <div className="aspect-square overflow-hidden rounded-lg shadow-lg">
-                      <img 
-                        src={image} 
-                        alt={`SHR städ service ${i+1}`} 
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
+                <CarouselItem>
+                  <div className="aspect-square overflow-hidden rounded-lg shadow-lg">
+                    <img 
+                      src="https://images.unsplash.com/photo-1686178827149-6d55c72d81df?q=80&w=1770" 
+                      alt="SHR Cleaning Professional" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="aspect-square overflow-hidden rounded-lg shadow-lg">
+                    <img 
+                      src="https://images.unsplash.com/photo-1686178827149-6d55c72d81df?q=80&w=1770" 
+                      alt="SHR Cleaning Service" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </CarouselItem>
               </CarouselContent>
               <div className="absolute inset-0 flex items-center justify-between pointer-events-none">
                 <CarouselPrevious className="pointer-events-auto left-2" />
