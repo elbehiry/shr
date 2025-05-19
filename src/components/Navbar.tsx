@@ -36,7 +36,7 @@ const Navbar = () => {
             <img 
               src="/lovable-uploads/77522d7c-5ba9-4a09-8571-f67143ca64c5.png" 
               alt="SHR Städ Logo" 
-              className="h-12 w-auto"
+              className="h-16 w-auto" // Increased from h-12 to h-16
             />
           </a>
         </div>
