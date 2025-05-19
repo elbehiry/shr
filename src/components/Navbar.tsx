@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone } from 'lucide-react';
@@ -31,8 +32,13 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center">
-          <h1 className="text-2xl font-bold text-shr-blue-dark">SHR</h1>
-          <span className="ml-2 text-gray-600 hidden sm:inline">städ</span>
+          <a href="#home" className="flex items-center">
+            <img 
+              src="/lovable-uploads/77522d7c-5ba9-4a09-8571-f67143ca64c5.png" 
+              alt="SHR Städ Logo" 
+              className="h-12 w-auto"
+            />
+          </a>
         </div>
         
         {/* Desktop Navigation */}

@@ -11,7 +11,13 @@ const Footer = () => {
       <div className="container mx-auto py-12 px-4">
         <div className="grid md:grid-cols-2 gap-8">
           <div>
-            <h3 className="text-2xl font-bold text-shr-blue mb-4">SHR</h3>
+            <div className="flex items-center mb-4">
+              <img 
+                src="/lovable-uploads/77522d7c-5ba9-4a09-8571-f67143ca64c5.png"
+                alt="SHR Städ Logo"
+                className="h-16 w-auto"
+              />
+            </div>
             <p className="text-gray-300 mb-4">
               {t('professionalServices')}
             </p>
