@@ -185,7 +185,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Pricing section
     pricingTitle: 'Våra priser',
-    pricingDescription: '',
+    pricingDescription: 'Transparenta priser för alla våra städtjänster. Välj den service som passar dig bäst.',
     homeCleaning: 'Hemstädning',
     movingCleaning: 'Flyttstädning',
     generalCleaning: 'Storstädning',
@@ -423,7 +423,7 @@ const translations: Record<string, Record<string, string>> = {
     
     // Pricing section
     pricingTitle: 'Our Prices',
-    pricingDescription: '',
+    pricingDescription: 'Transparent pricing for all our cleaning services. Choose the service that suits you best.',
     homeCleaning: 'Home Cleaning',
     movingCleaning: 'Moving Cleaning',
     generalCleaning: 'General Cleaning',
