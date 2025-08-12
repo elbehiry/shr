@@ -3,7 +3,7 @@ const translations: Record<string, Record<string, string>> = {
   sv: {
     // General
     title: 'SHRstäd.se',
-    rutDeduction: 'Alla priser är angivna med RUT-avdrag.',
+    rutDeduction: 'Alla priser är angivna före RUT-avdrag.',
     
     // Navigation
     home: 'Hem',
@@ -241,7 +241,7 @@ const translations: Record<string, Record<string, string>> = {
   en: {
     // General
     title: 'SHRstäd.se',
-    rutDeduction: 'All prices are quoted with RUT deductions.',
+    rutDeduction: 'All prices are quoted before RUT deductions.',
     
     // Navigation
     home: 'Home',
